@@ -1,1 +1,35 @@
 <p>register works!</p>
+<div class="bg-black row" > 
+
+    <div class="bg-danger w-50 card-img"></div>
+    <div class="bg-success w-50"> 
+
+        <div class=" d-flex row flex-wrap align-self-center justify-content-center p-5 ">
+
+
+            <h1 class="mb-5 text-center"> Sign Up </h1>
+            <form [formGroup]="registerForm" class="form-group d-flex row m-3 mt-0 w-sm-50 w-lg-100"
+                (ngSubmit)="onSubmitRegister()">
+
+                @for ( input of signUpForm; track input.name ){
+                <div class='mb-3'>
+                    <label [for]="input.name" class="pb-1">{{input.label}}</label>
+                    <input [formControlName]="input.name" [type]="input.type" class="form-control" [id]="input.name"
+                        [ngClass]="!isValidInput(input.name) ? 'form-control' : 'form-control is-invalid'">
+
+                    @if(isValidInput(input.name)){
+                    <p *ngIf="isValidInput(input.name)" class="text-danger form-text">{{getInputError(input.name)}}
+                    </p>
+                    }
+
+                </div>
+                }
+                <!-- <p class = 'text-danger w-100 text-center'> {{registerErrorMsg}}</p> -->
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
+        </div>
+
+
+
+    </div>
+</div>
