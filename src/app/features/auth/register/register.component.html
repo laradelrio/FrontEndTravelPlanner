@@ -3,33 +3,41 @@
 
         <div class="w-50 card-img"></div>
         <div class="w-50 form-half">
-    
-            <div class=" d-flex row flex-wrap align-self-center justify-content-center p-5 ">
-    
-                <h1 class="mb-5 text-center"> Sign Up </h1>
-                <form [formGroup]="registerForm" class="form-group d-flex row m-3 mt-0 w-sm-50 w-lg-100"
-                    (ngSubmit)="onSubmitRegister()">
-    
-                    @for ( input of signUpForm; track input.name ){
-                    <div class='mb-3'>
-                        <label [for]="input.name" class="pb-1">{{input.label}}</label>
-                        <input [formControlName]="input.name" [type]="input.type" class="form-control" [id]="input.name"
-                            [ngClass]="!isValidInput(input.name) ? 'form-control' : 'form-control is-invalid'">
-    
-                        @if(isValidInput(input.name)){
-                        <p *ngIf="isValidInput(input.name)" class="text-danger form-text">{{getInputError(input.name)}}
-                        </p>
+
+            <div class="d-flex row flex-wrap align-self-center justify-content-center form-half-content p-4 ">
+                <div class="content">
+                    <h1 class="mb-3 mt-4 text-center"> Sign Up </h1>
+                    <form [formGroup]="registerForm" class="form-group d-flex row m-3 mt-0 w-sm-50 w-lg-100"
+                        (ngSubmit)="onSubmitRegister()">
+
+                        @for ( input of signUpForm; track input.name ){
+                        <div class='mb-3'>
+                            <label [for]="input.name" class="pb-1">{{input.label}}</label>
+                            <input [formControlName]="input.name" [type]="input.type" class="form-control"
+                                [id]="input.name"
+                                [ngClass]="!isValidInput(input.name) ? 'form-control' : 'form-control is-invalid'">
+
+                            @if(isValidInput(input.name)){
+                            <p *ngIf="isValidInput(input.name)" class="text-danger form-text">
+                                {{getInputError(input.name)}}
+                            </p>
+                            }
+
+                        </div>
                         }
-    
-                    </div>
-                    }
-                    <!-- <p class = 'text-danger w-100 text-center'> {{registerErrorMsg}}</p> -->
-                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
-                </form>
+                        <!-- <p class = 'text-danger w-100 text-center'> {{registerErrorMsg}}</p> -->
+
+                        <div class=" w-100 text-center">
+                            <button type="submit" class="btn btn-primary btn-blue ">Submit</button>
+                            <p class="small-text fs-xs mb-0 pt-2"> Already have an Account? <a class="ps-2" href="/auth/login">Log
+                                    in</a></p>
+                        </div>
+                    </form>
+                </div>
             </div>
-    
-    
-    
+
+
+
         </div>
     </div>
 </div>

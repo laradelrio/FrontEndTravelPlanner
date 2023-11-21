@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+$textColor: #042e2f;
+$primaryColor: #97f7e9;
+$secondaryColor: #c7dc7a;
+$accentColor: #5cebda;
+$bgLightBlueColor: #ECFAF8;
+$bgLightGreenColor: #F0F4E0;
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: $textColor;
+
+}
+
+.btn-blue{
+    background-color: #97F7E9;
+    border-color: #97F7E9 ;
+    color: $textColor;
+
+    &:hover{
+        color: $textColor;
+        background-color:white;
+        border-color: #97F7E9 ;
+        border-width: 2px;
+    }
+}
+
+.content{
+    max-height: 75vh;
+}
+

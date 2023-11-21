@@ -1,25 +1,94 @@
+$textColor: #042e2f;
+$primaryColor: #97f7e9;
+$secondaryColor: #c7dc7a;
+$accentColor: #5cebda;
+$bgLightBlueColor: #ECFAF8;
+$bgLightGreenColor: #F0F4E0;
+
 .card-img {
-   background-image: url(../../../../assets/travel-girl.webp);
+   background-image: url(../../../../assets/illustration-man-suitcase.webp);
    background-repeat: no-repeat;
    background-size: cover;
    background-position: center;
    border-radius: 23px 0px 0px 23px;
+   max-height: 75vh;
 }
 
-.container-div{
-   display: grid;
-   background-color: red;
-   place-items: center;
-   height: 100vh;
+.container-div {
+   display: flex;
+   align-content: center;
+   justify-content: center;
+   height: 100vh;  
    padding: 2rem;
-   
+   background-color: #999999;
+
 }
 
-.main-card{
-   max-width: 100%;
+.main-card {
+   max-width: 75%;
+   margin: 4rem;
 }
 
-.form-half{
-   background-color: aliceblue;
+.form-half {
+   background-color:white;
    border-radius: 0px 23px 23px 0px;
+   overflow-x:hidden; 
+   overflow-y:auto;
+   max-height: 75vh;
+   display: grid;
+   align-items: center;
+   font-weight: small;
+  
+}
+
+h1{
+   font-size: x-large;
+   color: $secondaryColor
+}
+
+label{
+   font-size: small;
+   color: $textColor
+}
+
+.small-text{
+   font-size: small;
+   text-align: center;
+   padding-bottom: 30px;
+   a{
+      text-decoration: none;
+      font-weight: bold;
+      color:$textColor
+   }
+}
+
+.btn-blue{
+   font-size: smaller;
+   width: 50%;
+   place-self: center;
+}
+
+
+@media (max-width: 780px) {
+   .card-img {
+      display: none;
+   }
+
+   .form-half {
+      width: 100% !important;
+      border-radius: 23px;
+   }
+
+   .main-card {
+      margin: 2rem;
+      width: 100%;
+      display: grid;
+      place-items: center;
+      
+   }
+
+   .form-half-content{
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+   }
 }
