@@ -65,8 +65,6 @@ export class RegisterComponent {
     }
   }
 
- 
-
   openModal(): Promise<boolean> {
     return new Promise<boolean>(resolve => {
       this.modalRef = this.modalService.open(this.modalContent, { size: 'lg', centered: true })
