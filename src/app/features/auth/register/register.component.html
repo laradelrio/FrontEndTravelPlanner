@@ -1,12 +1,16 @@
-<div class="container-div w-100">
-    <div class="row main-card rounded">
+<ng-template #registerModal let-c="close" let-d="dismiss">
 
+    <div class="row main-card rounded">
         <div class="w-50 card-img"></div>
         <div class="w-50 form-half">
 
             <div class="d-flex row flex-wrap align-self-center justify-content-center form-half-content p-4 ">
                 <div class="content">
-                    <h1 class="mb-3 mt-4 text-center"> Sign Up </h1>
+                    <button  id="close-modal" type="button" class="close" aria-describedby="modal-title" (click)="d('Cross click')" class="btn offset-11">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h1 class="mb-3 mt-2 text-center"> Sign Up </h1>
                     <form [formGroup]="registerForm" class="form-group d-flex row m-3 mt-0 w-sm-50 w-lg-100"
                         (ngSubmit)="onSubmitRegister()">
 
@@ -22,22 +26,18 @@
                                 {{getInputError(input.name)}}
                             </p>
                             }
-
                         </div>
                         }
                         <!-- <p class = 'text-danger w-100 text-center'> {{registerErrorMsg}}</p> -->
 
                         <div class=" w-100 text-center">
                             <button type="submit" class="btn btn-primary btn-blue ">Submit</button>
-                            <p class="small-text fs-xs mb-0 pt-2"> Already have an Account? <a class="ps-2" href="/auth/login">Log
-                                    in</a></p>
+                            <p class="small-text fs-xs mb-0 pt-2"> Already have an Account? <a class="ps-2"
+                                    href="/auth/login">Log in</a></p>
                         </div>
                     </form>
                 </div>
             </div>
-
-
-
         </div>
     </div>
-</div>
+</ng-template>

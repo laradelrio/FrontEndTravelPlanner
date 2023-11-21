@@ -5,15 +5,6 @@ $accentColor: #5cebda;
 $bgLightBlueColor: #ECFAF8;
 $bgLightGreenColor: #F0F4E0;
 
-.card-img {
-   background-image: url(../../../../assets/illustration-man-suitcase.webp);
-   background-repeat: no-repeat;
-   background-size: cover;
-   background-position: center;
-   border-radius: 23px 0px 0px 23px;
-   max-height: 75vh;
-}
-
 .container-div {
    display: flex;
    align-content: center;
@@ -21,12 +12,15 @@ $bgLightGreenColor: #F0F4E0;
    height: 100vh;  
    padding: 2rem;
    background-color: #999999;
-
 }
 
-.main-card {
-   max-width: 75%;
-   margin: 4rem;
+.card-img {
+   background-image: url(../../../../assets/illustration-man-suitcase.webp);
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
+   border-radius: 23px 0px 0px 23px;
+   max-height: 75vh;
 }
 
 .form-half {
@@ -38,7 +32,10 @@ $bgLightGreenColor: #F0F4E0;
    display: grid;
    align-items: center;
    font-weight: small;
-  
+}
+
+.main-card{
+   scrollbar-gutter: auto;
 }
 
 h1{
@@ -51,6 +48,12 @@ label{
    color: $textColor
 }
 
+.btn-blue{
+   font-size: smaller;
+   width: 50%;
+   place-self: center;
+}
+
 .small-text{
    font-size: small;
    text-align: center;
@@ -58,14 +61,8 @@ label{
    a{
       text-decoration: none;
       font-weight: bold;
-      color:$textColor
+      color:$textColor;
    }
-}
-
-.btn-blue{
-   font-size: smaller;
-   width: 50%;
-   place-self: center;
 }
 
 
@@ -80,7 +77,6 @@ label{
    }
 
    .main-card {
-      margin: 2rem;
       width: 100%;
       display: grid;
       place-items: center;
