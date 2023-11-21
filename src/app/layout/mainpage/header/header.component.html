@@ -1,1 +1,6 @@
 <p>header works!</p>
+<app-modal #sharedModal (newModalEvent)="getModalValue($event)">
+</app-modal>
+<button class="btn btn-lg btn-outline-primary" (click)="open()">
+    Launch Confirmation Modal
+  </button>

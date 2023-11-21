@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AuthComponent } from '@layout/auth/auth.component';
 import { MainpageComponent } from '@layout/mainpage/mainpage.component';
+import { ModalComponent } from './shared/components/modal/modal.component';
 
 export const routes: Routes = [
     {
@@ -20,6 +21,10 @@ export const routes: Routes = [
         ]
     },
     {
+        path: 'route',
+        component: ModalComponent,
+    },
+    {
         path: '',
         component: MainpageComponent,
         children: [
@@ -34,6 +39,7 @@ export const routes: Routes = [
                 import('@app/features/home/home.component').then((m) => m.HomeComponent)
             },
         ]
-    }
+    },
+    
 
 ];
