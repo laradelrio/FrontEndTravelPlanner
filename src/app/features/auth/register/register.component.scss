@@ -3,4 +3,23 @@
    background-repeat: no-repeat;
    background-size: cover;
    background-position: center;
+   border-radius: 23px 0px 0px 23px;
+}
+
+.container-div{
+   display: grid;
+   background-color: red;
+   place-items: center;
+   height: 100vh;
+   padding: 2rem;
+   
+}
+
+.main-card{
+   max-width: 100%;
+}
+
+.form-half{
+   background-color: aliceblue;
+   border-radius: 0px 23px 23px 0px;
 }
