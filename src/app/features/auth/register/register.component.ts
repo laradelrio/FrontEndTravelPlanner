@@ -27,9 +27,7 @@ export class RegisterComponent {
   private userApiService: UserApiService = inject(UserApiService);
   private formService: FormService = inject(FormService);
   public registerForm: FormGroup;
-  public registrationResponse!: UserApiResp;
-  public registrationError!: UserApiResp | null;
-  public registerFormMsg: string = '';
+  public registrationResponse: UserApiResp = { success: false,  message: '' }
   public secondsLeftTillRedirect: number = 3;
 
   signUpForm: Form[] = [
@@ -70,15 +68,18 @@ export class RegisterComponent {
       if (this.samePassword()) {
         this.userApiService.registerUser(this.registerForm)
           .pipe(
-            finalize(() => { this.displayMessageAfterSubmit() })
+            finalize(() => { 
+              if(this.registrationResponse.success){
+                this.loginRedirect()
+              }
+          })
           )
           .subscribe({
             next: (res) => (this.registrationResponse = res),
-            error: (error) => (this.registrationError = error.error)
+            error: (error) => (this.registrationResponse = error.error)
           })
       } else {
-        this.registrationError = { success: false, message: "Passwords don't match" }
-        this.displayMessageAfterSubmit()
+        this.registrationResponse = { success: false, message: "Passwords don't match" }
       }
     }
   }
@@ -87,17 +88,6 @@ export class RegisterComponent {
     return (this.registerForm.get('password')?.value === this.registerForm.get('passwordConfirmation')?.value);
   }
 
-  displayMessageAfterSubmit() {
-    if (this.registrationError) {
-      this.registerFormMsg = this.registrationError.message;
-    }
-
-    if (this.registrationResponse.success) {
-      this.registrationError = null;
-      this.registerFormMsg = this.registrationResponse.message;
-      this.loginRedirect()
-    }
-  }
 
   loginRedirect() {
     let counter = this.countdownTillLoginRedirect();

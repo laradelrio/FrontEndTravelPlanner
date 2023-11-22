@@ -30,3 +30,6 @@ div .modal-content{
     --bs-body-bg: transparent;
 }
 
+.modal {
+    --bs-modal-border-color: none !important;
+}

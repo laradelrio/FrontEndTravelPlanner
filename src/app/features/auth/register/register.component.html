@@ -15,38 +15,46 @@
                     <form [formGroup]="registerForm" class="form-group d-flex row m-3 mt-0 w-sm-50 w-lg-100"
                         (ngSubmit)="onSubmitRegister()">
 
-                        @for ( input of signUpForm; track input.name ){
-                        <div class='mb-3'>
-                            <label [for]="input.name" class="pb-1">{{input.label}}</label>
-                            <input [formControlName]="input.name" [type]="input.type" class="form-control"
-                                [id]="input.name"
-                                [ngClass]="!isValidInput(input.name) ? 'form-control' : 'form-control is-invalid'">
+                        @if(!registrationResponse.success){
 
-                            @if(isValidInput(input.name)){
-                            <p *ngIf="isValidInput(input.name)" class="text-danger form-text">
-                                {{getInputError(input.name)}}
-                            </p>
+                            @for ( input of signUpForm; track input.name ){
+                            <div class='mb-3'>
+                                <label [for]="input.name" class="pb-1">{{input.label}}</label>
+                                <input [formControlName]="input.name" [type]="input.type" class="form-control"
+                                    [id]="input.name"
+                                    [ngClass]="!isValidInput(input.name) ? 'form-control' : 'form-control is-invalid'">
+
+                                @if(isValidInput(input.name)){
+                                <p *ngIf="isValidInput(input.name)" class="text-danger form-text">
+                                    {{getInputError(input.name)}}
+                                </p>
+                                }
+
+                            </div>
                             }
+
+                            @if(!registrationResponse.success){
+                            <p class='w-100 text-center text-danger'> {{registrationResponse.message}}</p>
+                            }
+
+                            <div class=" w-100 text-center">
+                                <button type="submit" class="btn btn-primary btn-blue ">Submit</button>
+                                <p class="small-text fs-xs mb-0 pt-2"> Already have an Account? <a class="ps-2"
+                                        href="/auth/login">Log in</a></p>
+                            </div>
+                        }
+
+                        @if(registrationResponse.success){
+                        <div class="bg-green p-2">
+                            <div>
+                                <p class='w-100 text-center text-success'> {{registrationResponse.message}}</p>
+                                <p class='w-100 text-center mb-0'> You will be redirected to login in </p>
+                                <p class="counter w-100 text-center"> 00:0{{secondsLeftTillRedirect}} </p>
+                            </div>
                         </div>
                         }
 
-                        @if(registrationResponse !== undefined){
-                        <div class="bg-green p-2 m-2">
-                            <p class='w-100 text-center text-success'> {{registerFormMsg}}</p>
 
-                            <p class='w-100 text-center'> "Redirect to login in {{secondsLeftTillRedirect}} second" </p>
-                        </div>
-                        }
-
-                        @if( registrationError !== null){
-                        <p class='w-100 text-center text-danger'> {{registerFormMsg}}</p>
-                        }
-
-                        <div class=" w-100 text-center">
-                            <button type="submit" class="btn btn-primary btn-blue ">Submit</button>
-                            <p class="small-text fs-xs mb-0 pt-2"> Already have an Account? <a class="ps-2"
-                                    href="/auth/login">Log in</a></p>
-                        </div>
                     </form>
                 </div>
             </div>

@@ -9,15 +9,19 @@ $bgLightGreenColor: #F0F4E0;
    display: flex;
    align-content: center;
    justify-content: center;
-   height: 100vh;  
+   height: 100vh;
    padding: 2rem;
    background-color: #999999;
 }
- .bg-green{
+
+.bg-green {
    background-color: $bgLightGreenColor;
    border-radius: 13px;
-   
- }
+   min-height: 40vh;
+   display: grid;
+   place-items: center;
+}
+
 .card-img {
    background-image: url(../../../../assets/illustration-man-suitcase.webp);
    background-repeat: no-repeat;
@@ -28,48 +32,56 @@ $bgLightGreenColor: #F0F4E0;
 }
 
 .form-half {
-   background-color:white;
+   background-color: white;
    border-radius: 0px 23px 23px 0px;
-   overflow-x:hidden; 
-   overflow-y:auto;
+   overflow-x: hidden;
+   overflow-y: auto;
    max-height: 75vh;
    display: grid;
    align-items: center;
    font-weight: small;
 }
 
-.main-card{
+.main-card {
    scrollbar-gutter: auto;
-   
+   min-height: 50%;
 }
 
-h1{
+h1 {
    font-size: x-large;
    color: $secondaryColor
 }
 
-label{
+label {
    font-size: small;
    color: $textColor
 }
 
-.btn-blue{
+.btn-blue {
    font-size: smaller;
    width: 50%;
    place-self: center;
 }
 
-.small-text{
+.counter {
+   font-size: x-large;
+}
+
+.small-text {
    font-size: small;
    text-align: center;
    padding-bottom: 30px;
-   a{
+
+   a {
       text-decoration: none;
       font-weight: bold;
-      color:$textColor;
+      color: $textColor;
    }
 }
 
+.row {
+   --bs-gutter-x: 0rem
+}
 
 @media (max-width: 780px) {
    .card-img {
@@ -85,10 +97,10 @@ label{
       width: 100%;
       display: grid;
       place-items: center;
-      
+
    }
 
-   .form-half-content{
+   .form-half-content {
       padding-left: 10px !important;
       padding-right: 10px !important;
    }
