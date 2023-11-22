@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { UserApiResp } from '../interfaces/apiReponses.interface';
+import { UserApiResp } from '../interfaces/apiResponses.interface';
 import { Constants } from '../constants/constants';
 
 @Injectable({
@@ -20,6 +20,5 @@ export class UserApiService {
   registerUser(registerForm: FormGroup): Observable<UserApiResp> {
     return this.http.post<UserApiResp>(`${this.baseUrl}/users`, registerForm.value);
   }
-
 
 }

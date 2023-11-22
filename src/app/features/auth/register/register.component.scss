@@ -13,7 +13,11 @@ $bgLightGreenColor: #F0F4E0;
    padding: 2rem;
    background-color: #999999;
 }
-
+ .bg-green{
+   background-color: $bgLightGreenColor;
+   border-radius: 13px;
+   
+ }
 .card-img {
    background-image: url(../../../../assets/illustration-man-suitcase.webp);
    background-repeat: no-repeat;
@@ -36,6 +40,7 @@ $bgLightGreenColor: #F0F4E0;
 
 .main-card{
    scrollbar-gutter: auto;
+   
 }
 
 h1{
