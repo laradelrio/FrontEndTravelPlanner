@@ -1,1 +1,50 @@
 <p>login works!</p>
+<ng-template #loginModal let-c="close" let-d="dismiss">
+
+    <div class="row main-card rounded">
+        <div class="w-50 card-img login-img"></div>
+        <div class="w-50 form-half">
+
+            <div class="d-flex row flex-wrap align-self-center justify-content-center form-half-content p-4 pt-0 pb-0 ">
+                <div class="content">
+                    <button id="close-modal" type="button" class="close" aria-describedby="modal-title"
+                        (click)="d('Cross click')" class="btn offset-11 mt-2">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h1 class="mb-3 text-center"> Log In </h1>
+                    <form [formGroup]="loginForm" class="form-group d-flex row m-3 mt-0 w-sm-50 w-lg-100"
+                        (ngSubmit)="onSubmitLogin()">
+
+                            @for ( input of signInForm; track input.name ){
+                            <div class='mb-3'>
+                                <label [for]="input.name" class="pb-1">{{input.label}}</label>
+                                <input [formControlName]="input.name" [type]="input.type" class="form-control"
+                                    [id]="input.name"
+                                    [ngClass]="!isValidInput(input.name) ? 'form-control' : 'form-control is-invalid'">
+
+                                @if(isValidInput(input.name)){
+                                <p *ngIf="isValidInput(input.name)" class="text-danger form-text">
+                                    {{getInputError(input.name)}}
+                                </p>
+                                }
+
+                            </div>
+                            }
+
+                            @if(!loginResponse.success){
+                            <p class='w-100 text-center text-danger'> {{loginResponse.message}}</p>
+                            }
+
+                            <div class=" w-100 text-center">
+                                <button type="submit" class="btn btn-primary btn-blue ">Submit</button>
+                                <p class="small-text fs-xs mb-0 pt-2"> Don't have an account yet?? <a class="ps-2"
+                                        href="/auth/register">Sign Up</a></p>
+                            </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

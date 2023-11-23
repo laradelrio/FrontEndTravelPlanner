@@ -21,4 +21,11 @@ export class UserApiService {
     return this.http.post<UserApiResp>(`${this.baseUrl}/users`, registerForm.value);
   }
 
+  loginUser(loginForm: FormGroup): Observable<UserApiResp> {
+    return this.http.post<UserApiResp>(`${this.baseUrl}/users/byEmail`, loginForm.value);
+  }
+
+
+  
+
 }

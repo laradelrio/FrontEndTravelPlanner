@@ -15,7 +15,7 @@ import { UserApiResp } from '@app/core/interfaces/apiResponses.interface';
   imports: [CommonModule, ReactiveFormsModule],
   providers: [NgbModalConfig, NgbModal],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: '../auth.component.scss'
 })
 export class RegisterComponent {
 

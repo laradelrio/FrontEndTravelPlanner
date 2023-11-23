@@ -1,6 +1,13 @@
 <p>header works!</p>
 <app-register #registerModal (newModalEvent)="getModalValue($event)">
 </app-register>
+<app-login #loginModal (newModalEvent)="getModalValue($event)">
+</app-login>
 <button class="btn btn-lg btn-outline-primary" (click)="open()">
+    Launch Confirmation Modal
+  </button>
+
+
+  <button class="btn btn-lg btn-outline-primary" (click)="open2()">
     Launch Confirmation Modal
   </button>

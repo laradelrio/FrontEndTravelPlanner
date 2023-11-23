@@ -22,8 +22,15 @@ $bgLightGreenColor: #F0F4E0;
    place-items: center;
 }
 
+.register-img{
+   background-image: url(../../../assets/illustration-man-suitcase.webp);
+}
+
+.login-img{
+   background-image: url(../../../assets/illustration-woman-suitcase.webp);
+}
+
 .card-img {
-   background-image: url(../../../../assets/illustration-man-suitcase.webp);
    background-repeat: no-repeat;
    background-size: cover;
    background-position: center;
