@@ -69,6 +69,7 @@ export class LoginComponent {
               this.router.navigate(['/home']);
               this.modalService.dismissAll();
             }
+            this.userApiService.isLoggedIn.set(this.loginResponse.success)
           })
         )
         .subscribe({

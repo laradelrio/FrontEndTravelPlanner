@@ -4,10 +4,16 @@
 <app-login #loginModal (newModalEvent)="getModalValue($event)">
 </app-login>
 <button class="btn btn-lg btn-outline-primary" (click)="open()">
-    Launch Confirmation Modal
+   Register
   </button>
 
 
   <button class="btn btn-lg btn-outline-primary" (click)="open2()">
-    Launch Confirmation Modal
+    Login
   </button>
+  
+  <button class="btn btn-lg btn-outline-primary" (click)="logout()">
+    Log Out
+  </button>
+
+  <h1> {{isLoggedIn}}</h1>

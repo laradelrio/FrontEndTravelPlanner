@@ -29,6 +29,7 @@ export class RegisterComponent {
   public registerForm: FormGroup;
   public registrationResponse: UserApiResp = { success: false,  message: '' }
   public secondsLeftTillRedirect: number = 3;
+  private router = inject(Router)
 
   signUpForm: Form[] = [
     { name: 'name', label: 'Name', type: 'text' },
@@ -39,7 +40,6 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     config: NgbModalConfig,
     private modalService: NgbModal,
   ) {

@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
 import { RegisterComponent } from '@app/features/auth/register/register.component';
 import { LoginComponent } from '@app/features/auth/login/login.component';
+import { UserApiService } from '@app/core/apiServices/user-api.service';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,15 @@ export class HeaderComponent {
   
   @ViewChild('loginModal') 
   private loginComponent!: LoginComponent;
+
+  private userApiService: UserApiService = inject(UserApiService);
   
+  constructor(){
+    effect(() => { this.isLoggedIn = this.userApiService.isLoggedIn()})
+  }
+
+  isLoggedIn = false;
+
   async openModal() {
     return await this.registerComponent.openModal();
   }
@@ -39,5 +48,13 @@ export class HeaderComponent {
   async openModal2() {
     return await this.loginComponent.openModal();
   }
+
+  logout(){
+   this.userApiService.logout()
+    
+  }
+
+  
+
   
 }
