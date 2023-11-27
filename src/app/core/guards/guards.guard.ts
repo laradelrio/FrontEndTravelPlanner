@@ -1,26 +1,18 @@
-import { inject } from '@angular/core';
+import { effect, inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+import { UserApiService } from '../apiServices/user-api.service';
+import { HomeComponent } from '@app/features/home/home.component';
+import { HeaderComponent } from '@app/layout/mainpage/header/header.component';
 
-export const guardsGuard: CanActivateFn = (route, state) => {
+export const guardsGuard: CanActivateFn = async (route, state) => {
   const router = inject(Router);
-  let userAuthorized: boolean = false;
+  const userApiService = inject(UserApiService);
 
-
-
-  return userAuthorized;
-};
-
-
-// import { CanActivateFn, Router} from '@angular/router';
-// import { UserApiDbService } from '../../data/services/api/user-db-api.service';
-// import { inject } from '@angular/core';
-
-
-// export const authGuardGuard: CanActivateFn = async() => {
-  // const userApiDbService = inject(UserApiDbService);
-  // const router = inject(Router);
-
-  // let isValidToken = await userApiDbService.isValidToken()
+  let isUserAuthorized = await userApiService.setUserAuthorizationStatus();
   
-  // return !isValidToken ? router.navigate(['/auth/login']) : true;
-// };
+  if(!isUserAuthorized){
+    alert('Unauthorized, please Login');
+  }
+  
+  return isUserAuthorized ? true : router.navigate(['/home'])
+};

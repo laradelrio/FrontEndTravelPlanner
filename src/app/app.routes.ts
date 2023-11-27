@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { AuthComponent } from '@layout/auth/auth.component';
 import { MainpageComponent } from '@layout/mainpage/mainpage.component';
 import { ModalComponent } from './shared/components/modal/modal.component';
+import { guardsGuard } from './core/guards/guards.guard';
+
 
 export const routes: Routes = [
     {
@@ -11,12 +13,14 @@ export const routes: Routes = [
             {
                 path: 'login',
                 loadComponent : () => 
-                    import('@app/features/auth/login/login.component').then((m) => m.LoginComponent)
+                    import('@app/features/auth/login/login.component').then((m) => m.LoginComponent),
+                canActivate: [guardsGuard],
             },
             {
                 path: 'register',
                 loadComponent : () => 
-                    import('@app/features/auth/register/register.component').then((m) => m.RegisterComponent)
+                    import('@app/features/auth/register/register.component').then((m) => m.RegisterComponent),
+                canActivate: [guardsGuard],
             },
         ]
     },

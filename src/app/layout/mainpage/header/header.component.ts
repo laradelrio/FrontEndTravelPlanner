@@ -39,6 +39,7 @@ export class HeaderComponent {
   openLogin() {
     this.openModalLogin();
   }
+  
   async openModalLogin() {
     return await this.loginComponent.openModal();
   }

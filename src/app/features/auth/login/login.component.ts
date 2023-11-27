@@ -76,8 +76,8 @@ export class LoginComponent {
           })
         )
         .subscribe({
-          next: (res) => (this.loginResponse = res, console.log(res)),
-          error: (error) => (this.loginResponse = error.error, console.log(error))
+          next: (res) => (this.loginResponse = res),
+          error: (error) => (this.loginResponse = error.error)
         })
     }
   }
