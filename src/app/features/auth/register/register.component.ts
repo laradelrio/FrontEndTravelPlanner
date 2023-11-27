@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild, inject } from '@angular/core';
+import { Component, EventEmitter, Output, TemplateRef, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,6 +18,8 @@ import { UserApiResp } from '@app/core/interfaces/apiResponses.interface';
   styleUrl: '../auth.component.scss'
 })
 export class RegisterComponent {
+
+  @Output() openLoginClicked = new EventEmitter<void>();
 
   //for modal
   private modalRef!: NgbModalRef;
@@ -70,7 +72,7 @@ export class RegisterComponent {
           .pipe(
             finalize(() => { 
               if(this.registrationResponse.success){
-                this.loginRedirect()
+                this.loginRedirectAfterSubmit()
               }
           })
           )
@@ -89,11 +91,11 @@ export class RegisterComponent {
   }
 
 
-  loginRedirect() {
+  loginRedirectAfterSubmit() {
     let counter = this.countdownTillLoginRedirect();
     setTimeout(() => {
       this.modalService.dismissAll();
-      this.router.navigate(['/auth/login'])
+      this.openLoginClicked.emit()
       clearInterval(counter);
     }, 3000);
   }
@@ -112,6 +114,11 @@ export class RegisterComponent {
     return new Promise<boolean>(resolve => {
       this.modalRef = this.modalService.open(this.modalContent, { size: 'lg', centered: true })
     })
+  }
+
+  openLogin(){
+    this.modalService.dismissAll();
+    this.openLoginClicked.emit();
   }
 
 }

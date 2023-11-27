@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild, inject } from '@angular/core';
+import { Component, EventEmitter, Output, TemplateRef, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,6 +19,8 @@ import { UserApiResp } from '@app/core/interfaces/apiResponses.interface';
 })
 export class LoginComponent {
 
+  @Output() openRegisterClicked = new EventEmitter<void>();
+
   //for modal
   private modalRef!: NgbModalRef;
   @ViewChild('loginModal') private modalContent!: TemplateRef<LoginComponent>
@@ -27,7 +29,8 @@ export class LoginComponent {
   private userApiService: UserApiService = inject(UserApiService);
   private formService: FormService = inject(FormService);
   public loginForm: FormGroup;
-  public loginResponse: UserApiResp = { success: false, message: '' }
+  public loginResponse: UserApiResp = { success: false, message: '' };
+
 
   signInForm: Form[] = [
     { name: 'email', label: 'Email Address', type: 'email' },
@@ -83,6 +86,11 @@ export class LoginComponent {
     return new Promise<boolean>(resolve => {
       this.modalRef = this.modalService.open(this.modalContent, { size: 'lg', centered: true })
     })
+  }
+
+  openRegister(){
+    this.modalService.dismissAll();
+    this.openRegisterClicked.emit();
   }
 
 }

@@ -28,33 +28,23 @@ export class HeaderComponent {
 
   isLoggedIn = false;
 
-  async openModal() {
+  openRegister() {
+    this.openModalRegister();
+  }
+
+  async openModalRegister() {
     return await this.registerComponent.openModal();
   }
-
-  getModalValue(value: any) {
-    if (value == 'Save click') {
-      console.log(value);
-    }
+  
+  openLogin() {
+    this.openModalLogin();
   }
-
-  open() {
-    this.openModal();
-  }
-
-  open2() {
-    this.openModal2();
-  }
-  async openModal2() {
+  async openModalLogin() {
     return await this.loginComponent.openModal();
   }
 
   logout(){
-   this.userApiService.logout()
-    
+    this.userApiService.logout()
   }
 
-  
-
-  
 }
