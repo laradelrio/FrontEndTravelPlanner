@@ -4,29 +4,31 @@ import { ModalComponent } from '@app/shared/components/modal/modal.component';
 import { RegisterComponent } from '@app/features/auth/register/register.component';
 import { LoginComponent } from '@app/features/auth/login/login.component';
 import { UserApiService } from '@app/core/apiServices/user-api.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, ModalComponent, RegisterComponent, LoginComponent],
+  imports: [CommonModule, ModalComponent, RegisterComponent, LoginComponent, RouterLink],
 
 templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+
   @ViewChild('registerModal') 
   private registerComponent!: RegisterComponent;
+  isLoggedIn!: boolean;
   
   @ViewChild('loginModal') 
   private loginComponent!: LoginComponent;
 
   private userApiService: UserApiService = inject(UserApiService);
-  
-  constructor(){
-    effect(() => { this.isLoggedIn = this.userApiService.isLoggedIn()})
-  }
+  private router = inject(Router)
 
-  isLoggedIn = false;
+  constructor(){
+    effect(() => this.isLoggedIn = this.userApiService.isLoggedIn())
+  }
 
   openRegister() {
     this.openModalRegister();

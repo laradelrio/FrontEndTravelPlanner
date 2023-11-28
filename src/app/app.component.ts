@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { UserApiService } from './core/apiServices/user-api.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,13 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'frontTravelPlanner';
+
+  private userApiService: UserApiService = inject(UserApiService);
+
+  ngOnInit(): void {
+    this.userApiService.setUserAuthorizationStatus();
+  }
+
 }

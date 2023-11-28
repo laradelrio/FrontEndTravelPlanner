@@ -63,7 +63,6 @@ export class LoginComponent {
   onSubmitLogin() {
     this.loginForm.markAllAsTouched();
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value)
       this.userApiService.loginUser(this.loginForm)
         .pipe(
           finalize(() => {
@@ -72,7 +71,7 @@ export class LoginComponent {
               this.router.navigate(['/home']);
               this.modalService.dismissAll();
             }
-            this.userApiService.isLoggedIn.set(this.loginResponse.success)
+            this.userApiService.isLoggedIn.set(this.loginResponse.success);
           })
         )
         .subscribe({
@@ -84,7 +83,7 @@ export class LoginComponent {
 
   openModal(): Promise<boolean> {
     return new Promise<boolean>(resolve => {
-      this.modalRef = this.modalService.open(this.modalContent, { size: 'lg', centered: true })
+      this.modalRef = this.modalService.open(this.modalContent, { size: 'lg', centered: true });
     })
   }
 
