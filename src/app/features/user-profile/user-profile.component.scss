@@ -1,0 +1,42 @@
+
+$textColor: #042e2f;
+$primaryColor: #97f7e9;
+$secondaryColor: #c7dc7a;
+$accentColor: #5cebda;
+$bgLightBlueColor: #ECFAF8;
+$bgLightGreenColor: #F0F4E0;
+$primary:#97f7e9;
+
+h2{ 
+    color: $accentColor;
+    font-weight: bolder;
+}
+
+#profile-photo{
+    clip-path: circle();
+}
+
+#likes{
+    background-color: $bgLightBlueColor;
+}
+
+#trip-photo{
+    clip-path:inherit;
+    border-radius: 23px 23px 0px 0px;
+}
+.like{
+    background-color: $primaryColor;
+    width: fit-content;
+    border-radius: 23px 0px;
+}
+
+#trips{
+    background-color: $bgLightGreenColor;
+}
+
+.trip{
+    background-color: $secondaryColor;
+    width: fit-content;
+    border-radius: 0px 0px 23px 23px;
+}
+
