@@ -1,10 +1,11 @@
-import { Component, TemplateRef, ViewChild, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModal, NgbModalConfig, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ModalInfo } from '@app/core/interfaces/modal.interface';
 
 
 @Component({
-  selector: 'app-modal',
+  selector: 'app-shared-modal',
   standalone: true,
   imports: [CommonModule],
   providers: [NgbModalConfig, NgbModal],
@@ -13,14 +14,13 @@ import { NgbModal, NgbModalConfig, NgbModalRef } from '@ng-bootstrap/ng-bootstra
 })
 export class ModalComponent {
   private modalRef!: NgbModalRef;
-  
+  @Input() modalInfo!: ModalInfo;
   @ViewChild('sharedModal') private modalContent!: TemplateRef<ModalComponent>
+  @Output() buttonClick = new EventEmitter<string>();
 
   constructor(config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
     config.keyboard = false;
-
- 
   }
 
   ngOnInit(): void {
@@ -29,13 +29,14 @@ export class ModalComponent {
   open(): Promise<boolean> {
     return new Promise<boolean>(resolve => {
       this.modalRef = this.modalService.open(this.modalContent, { size: 'sm' })
-      // this.modalRef.result.then((result) => {
-      //   console.log(result);
-      //   this.newConfirmationEvent.emit(result);
-      // }, (reason) => {
-      //   console.log(reason);
-      // });
+      this.modalRef.result.then((result) => {
+      this.buttonClick.emit(result);
+      }, (reason) => {});
     })
+  }
+
+  closeModals(){
+    this.modalService.dismissAll()
   }
   
 }

@@ -1,0 +1,23 @@
+.modal-style-primary {
+    border-top: 10px solid #5cebda;
+    color: #042e2f;
+}
+
+.round-top{
+    border-radius: 23px 23px 0px 0px;
+}
+
+.round-bottom{
+    border-radius: 0px 0px 23px 23px;
+}
+
+.close-btn{
+    background-color: #ECFAF8;
+    border-color: white;
+
+    &:hover{
+        background-color: white;
+        border-color: #ECFAF8 ;
+        border-width: 2px;
+    }
+}

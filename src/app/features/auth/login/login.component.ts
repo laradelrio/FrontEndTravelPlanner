@@ -8,6 +8,7 @@ import { NgbModal, NgbModalConfig, NgbModalRef } from '@ng-bootstrap/ng-bootstra
 import { UserApiService } from '@app/core/apiServices/user-api.service';
 import { finalize } from 'rxjs';
 import { UserApiResp } from '@app/core/interfaces/apiResponses.interface';
+import { AppComponent } from '@app/app.component';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ import { UserApiResp } from '@app/core/interfaces/apiResponses.interface';
 export class LoginComponent {
 
   @Output() openRegisterClicked = new EventEmitter<void>();
+  appComponent: AppComponent = inject(AppComponent);
 
   //for modal
   private modalRef!: NgbModalRef;
@@ -70,6 +72,7 @@ export class LoginComponent {
               this.loginForm.reset();
               this.router.navigate(['/home']);
               this.modalService.dismissAll();
+              this.appComponent.startUserActivityCheck();
             }
             this.userApiService.isLoggedIn.set(this.loginResponse.success);
           })

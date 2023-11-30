@@ -1,36 +1,39 @@
 <ng-template #sharedModal let-c="close" let-d="dismiss">
-    <div class="modal-header body">
-      <h5 class="modal-title" id="modal-title">
-      body
-      </h5>
-      <button
-        type="button"
-        class="close"
-        aria-describedby="modal-title"
-        (click)="d('Cross click')"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>
-        body
-      </p>
-    </div>
-    <div class="modal-footer">
-      <button
-        type="button"
-        class="btn btn-outline-secondary"
-        (click)="d('Cross click')"
-      >
-        Cancel
-      </button>
-      <button
-        type="button"
-        class="btn "
-        (click)="c('Save click')"
-      >
-        Ok
-      </button>
-    </div>
-  </ng-template>
+  @if(modalInfo.title !== ''){
+  <div class="modal-header body bg-white modal-style-primary round-top">
+    <h5 class="modal-title" id="modal-title">
+      {{modalInfo.title}}
+    </h5>
+    <button type="button" class="close btn position-absolute top-0 end-0" aria-describedby="modal-title"
+      (click)="c('Cancel click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body bg-white">
+    <p>
+      {{modalInfo.body}}
+    </p>
+  </div>
+  } @else {
+  <div class="modal-body bg-white modal-style-primary round-top">
+    <button type="button" class="close btn position-absolute top-0 end-0" aria-describedby="modal-title"
+      (click)="c('Cancel click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <p>
+      {{modalInfo.body}}
+    </p>
+  </div>
+  }
+
+  <div class="modal-footer bg-white round-bottom">
+    @if(modalInfo.closeBtnName !== ''){
+    <button type="button" class="btn close-btn" (click)="c('Cancel click')">
+      {{modalInfo.closeBtnName}}
+    </button>
+    }
+    <button type="button" class="btn" [ngClass]="modalInfo.btnClass" (click)="c('Action click')">
+      {{modalInfo.actionBtnName}}
+    </button>
+  </div>
+</ng-template>

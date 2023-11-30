@@ -5,11 +5,12 @@ import { RegisterComponent } from '@app/features/auth/register/register.componen
 import { LoginComponent } from '@app/features/auth/login/login.component';
 import { UserApiService } from '@app/core/apiServices/user-api.service';
 import { Router, RouterLink } from '@angular/router';
+import { AppComponent } from '@app/app.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, ModalComponent, RegisterComponent, LoginComponent, RouterLink],
+  imports: [CommonModule, ModalComponent, RegisterComponent, LoginComponent, RouterLink, AppComponent],
 
 templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -25,6 +26,7 @@ export class HeaderComponent {
 
   private userApiService: UserApiService = inject(UserApiService);
   private router = inject(Router)
+  private appComponent:AppComponent = inject(AppComponent);
 
   constructor(){
     effect(() => this.isLoggedIn = this.userApiService.isLoggedIn())
@@ -48,6 +50,7 @@ export class HeaderComponent {
 
   logout(){
     this.userApiService.logout()
+    this.appComponent.stopUserActivityCheck()
   }
 
 }
