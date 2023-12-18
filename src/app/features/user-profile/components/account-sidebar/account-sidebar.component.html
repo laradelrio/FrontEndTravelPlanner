@@ -6,17 +6,17 @@
                     <span class="fs-5 d-none d-sm-inline pt-4">My Profile</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li class="nav-item" (click)="setDisplay(1)">
-                        <a class="nav-link align-middle px-0">
+                    <li class="nav-item">
+                        <a href="/profile" class="nav-link align-middle px-0">
                             <i class="fa-solid fa-user"></i> <span class="ms-1 d-none d-sm-inline">See</span>
                         </a>
                     </li>
-                    <li (click)="setDisplay(2)">
-                        <a data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                    <li>
+                        <a routerLink="/profile/edit" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fa-solid fa-pen-to-square"></i> <span class="ms-1 d-none d-sm-inline">Edit </span> </a>
                         
                     </li>
-                    <li (click)="setDisplay(3)">
+                    <li>
                         <a class="nav-link px-0 align-middle">
                             <i class="fa-solid fa-trash-can"></i> <span class="ms-1 d-none d-sm-inline">Delete</span></a>
                     </li>

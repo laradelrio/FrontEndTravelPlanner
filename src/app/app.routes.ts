@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { MainpageComponent } from '@layout/mainpage/mainpage.component';
 import { guardsGuard } from './core/guards/guards.guard';
 import { TestfeatureComponent } from './features/testfeature/testfeature.component';
+import { UserProfileComponent } from '@app/features/user-profile/user-profile.component';
 
 
 
@@ -22,11 +23,20 @@ export const routes: Routes = [
             },
             {
                 path: 'profile',
-                loadComponent : () => 
-                    import('@app/features/user-profile/user-profile.component').then((m) => m.UserProfileComponent),
-                canActivate: [guardsGuard],
+                component: UserProfileComponent,
+                children: [
+                    {
+                        path: '',
+                        loadComponent : () => 
+                            import('@app/features/user-profile/components/user-profile-view/user-profile-view.component').then((m) => m.UserProfileViewComponent)
+                    },
+                    {
+                        path: 'edit',
+                        loadComponent : () => 
+                            import('@app/features/testfeature/testfeature.component').then((m) => m.TestfeatureComponent)
+                    },
+                ]
             },
-
             {
                 path: '**',
                 loadComponent : () => 
