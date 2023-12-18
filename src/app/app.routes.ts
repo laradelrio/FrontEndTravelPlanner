@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { MainpageComponent } from '@layout/mainpage/mainpage.component';
 import { guardsGuard } from './core/guards/guards.guard';
 import { TestfeatureComponent } from './features/testfeature/testfeature.component';
-import { UserProfileComponent } from './features/user-profile/user-profile.component';
+
 
 
 export const routes: Routes = [

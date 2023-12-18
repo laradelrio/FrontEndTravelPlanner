@@ -1,27 +1,46 @@
-<section>
-    <figure class="rounded-circle d-flex justify-content-center">
-        <img id='profile-photo' class="rounded-circle w-75 "
-            src="https://images.hola.com/imagenes/actualidad/20231011241604/lady-gaga-rumores-de-embarazo-imagenes-concierto/1-322-390/lady-gaga6-t.jpg?tx=w_680"
-            alt="Your Profile Picture">
-    </figure>
-    <h2 class="fs-2 text-center">Paula Lopez</h2>
+<div class="d-flex justify-content-center align-items-center">
+    <div class="profile-container pt-5 pb-5 d-flex row flex-wrap ">
+        <section id="profile-header" class="col-sm-12 col-lg-6 offset-lg-3 mb-3 rounded d-flex col ">
+            <div class="col-6">
+                <div id="profile-photo"
+                    [ngStyle]="{'background-image': 'url(https://images.hola.com/imagenes/actualidad/20231011241604/lady-gaga-rumores-de-embarazo-imagenes-concierto/1-322-390/lady-gaga6-t.jpg?tx=w_680)'}">
+                </div>
+            </div>
+            <div class="col-sm-6 ps-1 p-0 d-flex row justify-content-center">
+                <div class="pt-4">
+                    <h3 class="w-100 text-center">Paula Lopez</h3>
+                    <h6 class="fw-2 rounded w-100 mt-3 mb-3 text-center"><img id="match-icon" class="p-2"
+                            src="../../../assets/match.png" alt="Match Icon" width="40px"> <strong
+                            class="ps-2">95%</strong>
+                        match</h6>
+                    <!-- <p class="w-100 bio"> I am an extroverted singer. ready for adventure</p> -->
+                </div>
+            </div>
+        </section>
 
-    <p class="text-center"> h! i'm paula</p>
-    <section id="likes" class="m-5 p-5 rounded row ">
-        <p>Paula's likes: </p>
-        <p class="like p-2 me-2">hostels</p>
-        <p class="like p-2">chicken</p>
-    </section>
-    <section id="trips" class="m-5 p-5 rounded row ">
-        <p>Paula's trips: </p>
-        <article>
-            <figure>
-                <img id='trip-photo' class="w-100"
-                    src="https://viajes.nationalgeographic.com.es/medio/2019/04/01/brasov_3d6dbe41_800x800.jpg">
-                <p class="trip p-2 w-100 text-cenert"> Romania</p>
-            </figure>
-        </article>
-        <p class="trip p-2">chicken</p>
-    </section>
+        <div class="col-12 d-flex col flex-wrap justify-content-center">
 
-</section>
+            <section id="upcoming-trips" class="col-sm-12 col-md-5 mb-3 ms-2 me-2 p-5 rounded row ">
+                <h5 class="w-100 text-center pb-4"><strong>Upcoming Trips</strong> </h5>
+                <article>
+                    <figure>
+                        <img id='trip-photo' class="w-100"
+                            src="https://viajes.nationalgeographic.com.es/medio/2019/04/01/brasov_3d6dbe41_800x800.jpg">
+                        <p class="up-trip p-2 w-100 text-center"> Romania </p>
+                    </figure>
+                </article>
+            </section>
+
+            <section id="past-trips" class="col-sm-12 col-md-5 mb-3 ms-2 me-2 p-5 rounded row ">
+                <h5 class="w-100 text-center pb-4"><strong>Past Trips</strong> </h5>
+                <article>
+                    <figure>
+                        <img id='trip-photo' class="w-100"
+                            src="https://viajes.nationalgeographic.com.es/medio/2019/04/01/brasov_3d6dbe41_800x800.jpg">
+                        <p class="past-trip p-2 w-100 text-center"> Romania</p>
+                    </figure>
+                </article>
+            </section>
+        </div>
+    </div>
+</div>
