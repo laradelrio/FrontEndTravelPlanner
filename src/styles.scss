@@ -12,14 +12,27 @@ body {
 }
 
 .btn-blue{
-    background-color: #97F7E9;
-    border-color: #97F7E9 ;
+    background-color: $primaryColor;
+    border-color: $primaryColor ;
     color: $textColor;
 
     &:hover{
         color: $textColor;
         background-color: $bgLightBlueColor;
-        border-color: #97F7E9 ;
+        border-color: $primaryColor ;
+        border-width: 2px;
+    }
+}
+
+.btn-green{
+    background-color: $secondaryColor;
+    border-color: $secondaryColor ;
+    color: $textColor;
+
+    &:hover{
+        color: $textColor;
+        background-color: $bgLightGreenColor;
+        border-color: $secondaryColor ;
         border-width: 2px;
     }
 }

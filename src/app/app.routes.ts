@@ -33,7 +33,7 @@ export const routes: Routes = [
                     {
                         path: 'edit',
                         loadComponent : () => 
-                            import('@app/features/testfeature/testfeature.component').then((m) => m.TestfeatureComponent)
+                            import('@app/features/user-profile/components/user-profile-edit/user-profile-edit.component').then((m) => m.UserProfileEditComponent ) 
                     },
                 ]
             },
