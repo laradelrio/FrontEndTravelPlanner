@@ -1,6 +1,6 @@
 <ng-template #sharedModal let-c="close" let-d="dismiss">
   @if(modalInfo.title !== ''){
-  <div class="modal-header body bg-white modal-style-primary round-top">
+  <div class="modal-header body bg-white round-top" [ngClass]="modalInfo.style">
     <h5 class="modal-title" id="modal-title">
       {{modalInfo.title}}
     </h5>
@@ -33,7 +33,7 @@
     </button>
     }
     <button type="button" class="btn" [ngClass]="modalInfo.btnClass" (click)="c('Action click')">
-      {{modalInfo.actionBtnName}}
+      {{modalInfo.actionBtnName}} 
     </button>
   </div>
 </ng-template>

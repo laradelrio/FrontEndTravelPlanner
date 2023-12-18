@@ -1,5 +1,5 @@
 export interface ModalInfo {
-    style: string;
+    style?: string;
     title: string;
     body: string;
     btnClass: string;
