@@ -4,7 +4,6 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { UserApiResp } from '../interfaces/apiResponses.interface';
 import { Constants } from '../constants/constants';
-import { AppComponent } from '@app/app.component';
 
 
 @Injectable({
@@ -56,5 +55,11 @@ export class UserApiService {
         error: (error) => (this.isLoggedIn.set(true))
       })
   }
+
+  getUser(userId: number): Observable<UserApiResp>{
+    return this.http.get<UserApiResp>(`${this.baseUrl}/users/${userId}`, { withCredentials: true });
+  }
+
+  
 
 }
