@@ -4,11 +4,12 @@ import { UserApiService } from '@app/core/apiServices/user-api.service';
 import { UserData } from '@app/core/interfaces/user.interface';
 import { TripApiService } from '@app/core/apiServices/trip-api.service';
 import { ApiResp } from '@app/core/interfaces/apiResponses.interface';
+import { TripCardComponent } from '@app/shared/components/trip-card/trip-card.component';
 
 @Component({
   selector: 'app-user-profile-view',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TripCardComponent], 
   templateUrl: './user-profile-view.component.html',
   styleUrl: './user-profile-view.component.scss'
 })
