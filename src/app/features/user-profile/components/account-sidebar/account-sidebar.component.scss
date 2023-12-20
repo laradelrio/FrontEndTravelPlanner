@@ -10,5 +10,13 @@ a{
 
 .container-fluid{
     border-right: 1px solid rgba(128, 128, 128, 0.249);
+}
 
+.nav-pills .nav-link.active{
+    background-color: white;
+    font-weight: bolder;
+    color:#042e2f
+}
+.nav-pills .nav-link.active i{
+    font-size: x-large;
 }

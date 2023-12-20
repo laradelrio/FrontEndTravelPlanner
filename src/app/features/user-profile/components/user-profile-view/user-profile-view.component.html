@@ -1,8 +1,8 @@
 <div id='main-container' class="col-12 d-flex justify-content-center align-items-center rounded">
     <div class="profile-container pt-5 pb-5 d-flex flex-wrap ">
-        <section id="profile-header" class="col-sm-12 col-lg-6 offset-lg-3 mb-3 rounded d-flex col ">
+        <section id="profile-header" class="col-sm-12 col-lg-6 offset-lg-3 mb-md-5  mb-sm-0 rounded d-flex col ">
             <div class="col-6 d-flex justify-content-center">
-                <div id="profile-photo-div" class="d-flex justify-content-center">
+                <div id="profile-photo-div" class="d-flex justify-content-center mb-3">
                     <img id="profile-photo" [src]="userData.photo" (error)="handleImageError($event)"/>
                 </div>
             </div>
@@ -21,27 +21,6 @@
 
         <div class="col-12 d-flex col flex-wrap justify-content-center">
             <app-trip-card [trips]="trips" class="w-75"></app-trip-card>
-            <!-- <section id="upcoming-trips" class="col-sm-12 col-md-4 mb-3 ms-2 me-2 p-4 rounded row ">
-                <p class="w-100 text-center pb-4"><strong>Upcoming Trips</strong> </p>
-                <article>
-                    <figure>
-                        <img id='trip-photo' class="w-100"
-                            src="https://viajes.nationalgeographic.com.es/medio/2019/04/01/brasov_3d6dbe41_800x800.jpg">
-                        <p class="up-trip p-2 w-100 text-center"> Romania </p>
-                    </figure>
-                </article>
-            </section>
-
-            <section id="past-trips" class="col-sm-12 col-md-4 mb-3 ms-2 me-2 p-4 rounded row ">
-                <p class="w-100 text-center pb-4"><strong>Past Trips</strong> </p>
-                <article>
-                    <figure>
-                        <img id='trip-photo' class="w-100"
-                            src="https://viajes.nationalgeographic.com.es/medio/2019/04/01/brasov_3d6dbe41_800x800.jpg">
-                        <p class="past-trip p-2 w-100 text-center"> Romania</p>
-                    </figure>
-                </article>
-            </section> -->
         </div>
     </div>
 </div>
