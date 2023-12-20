@@ -11,14 +11,28 @@ h3 {
     font-weight: bolder;
 }
 
+#main-container{
+    background: #ecfaf800; 
+} 
+
 #profile-photo {
+    width: 150px;
+    object-fit: cover;
     clip-path: circle();
-    height: 40vw;
-    background-size: cover;
-    background-position: center;
+    border-radius: 50%;
+    display: block;
+    margin-bottom: 1rem;
 }
 
-#match-icon{
+#profile-photo-div{
+    overflow: visible ;
+    width: 150px;
+    height: 150px;
+}
+
+
+
+#match-icon {
     padding: 5px;
     vertical-align: middle;
     background-color: $bgLightGreenColor;
@@ -33,11 +47,12 @@ h3 {
     clip-path: inherit;
     border-radius: 23px 23px 0px 0px;
 }
-.bio{
+
+.bio {
     font-size: small;
 }
 
-.up-trip{
+.up-trip {
     background-color: $primaryColor;
     width: fit-content;
     border-radius: 0px 0px 23px 23px;
@@ -54,19 +69,19 @@ h3 {
 }
 
 @media (min-width: 768px) {
-    .profile-container{
+    .profile-container {
         width: 90%;
     }
 
     #profile-photo {
         height: 20vw;
     }
-    
+
 }
 
 @media (min-width: 1200px) {
     #profile-photo {
         height: 10vw;
     }
-    
+
 }

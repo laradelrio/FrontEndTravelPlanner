@@ -1,11 +1,12 @@
-<div class="col-11 d-flex justify-content-center align-items-center m-2">
-    <div class="profile-container pt-5 pb-5 d-flex row flex-wrap ">
+<div id='main-container' class="col-12 d-flex justify-content-center align-items-center rounded">
+    <div class="profile-container pt-5 pb-5 d-flex flex-wrap ">
         <section id="profile-header" class="col-sm-12 col-lg-6 offset-lg-3 mb-3 rounded d-flex col ">
-            <div class="col-6">
-                <div id="profile-photo" [ngStyle]="{'background-image': 'url(' + userData.photo + ')'}">
+            <div class="col-6 d-flex justify-content-center">
+                <div id="profile-photo-div" class="d-flex justify-content-center">
+                    <img id="profile-photo" [src]="userData.photo" (error)="handleImageError($event)"/>
                 </div>
             </div>
-            <div class="col-6 ps-1 p-0 d-flex row justify-content-center align-items-center">
+            <div class="col-6 ps-1 p-0 d-flex justify-content-center align-items-center">
                 <div>
                     <h3 class="w-100 text-center">{{userData.name | titlecase}}</h3>
                     @if( matchPercentage !== 0 ){
@@ -14,15 +15,13 @@
                             class="ps-2">95%</strong>
                         match</h6>
                     }
-
-                    <!-- <p class="w-100 bio"> I am an extroverted singer. ready for adventure</p> -->
                 </div>
             </div>
         </section>
 
         <div class="col-12 d-flex col flex-wrap justify-content-center">
-            <app-trip-card></app-trip-card>
-            <section id="upcoming-trips" class="col-sm-12 col-md-4 mb-3 ms-2 me-2 p-4 rounded row ">
+            <app-trip-card [trips]="trips" class="w-75"></app-trip-card>
+            <!-- <section id="upcoming-trips" class="col-sm-12 col-md-4 mb-3 ms-2 me-2 p-4 rounded row ">
                 <p class="w-100 text-center pb-4"><strong>Upcoming Trips</strong> </p>
                 <article>
                     <figure>
@@ -42,7 +41,7 @@
                         <p class="past-trip p-2 w-100 text-center"> Romania</p>
                     </figure>
                 </article>
-            </section>
+            </section> -->
         </div>
     </div>
 </div>

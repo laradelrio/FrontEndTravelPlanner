@@ -17,7 +17,7 @@ export class TripApiService {
   }
 
   getAllUserTrips(userId: number): Observable<ApiResp> {
-    return this.http.get<ApiResp>(`${this.baseUrl}/trips/user/4`, { withCredentials: true });
+    return this.http.get<ApiResp>(`${this.baseUrl}/trips/user/${userId}`, { withCredentials: true });
   }
 
 }

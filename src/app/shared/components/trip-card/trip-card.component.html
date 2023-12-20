@@ -1,28 +1,76 @@
-<p>trip-card works!</p>
-<div class="card">
-    <div class="card-info">
-        <div class="card-avatar"></div>
-        <div class="card-title">Berlin</div>
-        <div class="card-subtitle">14-05 &amp;15-05r</div>
+@if(allTrips.length > 1){
+<nav>
+    <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
+        @if(currentTrips.length > 0){
+        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+            role="tab" aria-controls="nav-home" aria-selected="true">Current Trip</button>
+        }
+        @if(upcomingTrips.length>0){
+        <button class="nav-link" [ngClass]="currentTrips.length == 0 ? 'active': '' " id="nav-profile-tab"
+            data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
+            aria-selected="false">Upcoming Trips</button>
+        }
+        @if(pastTrips.length>0){
+        <button class="nav-link" [ngClass]="currentTrips.length == 0 && upcomingTrips.length == 0 ? 'active': '' "
+            id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab"
+            aria-controls="nav-contact" aria-selected="false">Past Trips</button>
+        }
+    </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane  fade mt-4 show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <article class="d-flex flex-wrap justify-content-evenly place-items-center">
+            @for (trip of currentTrips; track trip.id){
+            <div class="card me-2 ms-2">
+                <div class="card-info">
+                    <div class="card-avatar">
+                        <img [src]="trip.photo" (error)="handleImageError($event)" />
+                    </div>
+                    <div class="card-title text-center">{{trip.name}}</div>
+                    <div class="card-subtitle"> {{dateFormat(trip.startDate, trip.endDate)}}</div>
+                </div>
+            </div>
+            }
+        </article>
+    </div>
+    <div class="tab-pane fade  mt-4" [ngClass]="currentTrips.length == 0 ? 'show active': '' " id="nav-profile"
+        role="tabpanel" aria-labelledby="nav-profile-tab">
+        <article class="d-flex flex-wrap justify-content-evenly place-items-center">
+            @for (trip of upcomingTrips; track trip.id){
+            <div class="card me-2 ms-2">
+                <div class="card-info">
+                    <div class="card-avatar">
+                        <img [src]="trip.photo" (error)="handleImageError($event)" />
+                    </div>
+                    <div class="card-title text-center">{{trip.name}}</div>
+                    <div class="card-subtitle"> {{dateFormat(trip.startDate, trip.endDate)}}</div>
+                </div>
+            </div>
+            }
+        </article>
+    </div>
+    <div class="tab-pane fade  mt-4" [ngClass]="(currentTrips.length == 0 && upcomingTrips.length == 0) ? 'show active': ''"
+        id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <article class="d-flex flex-wrap justify-content-evenly place-items-center">
+            @for (trip of pastTrips; track trip.id){
+            <div class="card me-2 ms-2">
+                <div class="card-info">
+                    <div class="card-avatar">
+                        <img [src]="trip.photo" (error)="handleImageError($event)" />
+                    </div>
+                    <div class="card-title text-center">{{trip.name}}</div>
+                    <div class="card-subtitle"> {{dateFormat(trip.startDate, trip.endDate)}}</div>
+                </div>
+            </div>
+            }
+        </article>
     </div>
 </div>
+} @else {
+<hr>
+<div class="d-flex row justify-content-center align-items-center">
+    <p class="text-center pt-5"> No trips scheduled :(</p>
+    <img id="man-suitcase-icon" src="../../../../assets/man-suitcase-icon.png">
+</div>
 
-
-
-<!-- <p>trip-card works!</p>
-<div class="card">
-    <div class="card-info">
-        <div class="card-avatar"></div>
-        <div class="card-title">Berlin</div>
-        <div class="card-subtitle">14-05 &amp;15-05r</div>
-    </div>
-    <div class="card-social">
-        <div class="card-social__item">
-            <p class="fw-2 rounded w-100 text-center"><img id="match-icon" class="p-2"
-                src="../../../assets/match.png" alt="Match Icon" width="40px"> <strong
-                class="">95%</strong>
-            match</p>
-        
-            </div>
-    </div>
-</div> -->
+}
