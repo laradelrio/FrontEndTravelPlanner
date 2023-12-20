@@ -10,3 +10,17 @@
     width: 80vw;
 
 }
+#profile-photo {
+    width: 150px;
+    object-fit: cover;
+    clip-path: circle();
+    border-radius: 50%;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+#profile-photo-div{
+    overflow: visible ;
+    width: 150px;
+    height: 150px;
+}

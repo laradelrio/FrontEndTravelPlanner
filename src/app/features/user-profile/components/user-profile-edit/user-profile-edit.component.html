@@ -2,16 +2,16 @@
   <div class="col-md-12 col-lg-8 d-flex justify-content-center align-items-center row m-2">
     <h2 class="text-center pt-4 pb-4">Edit Profile</h2>
 
-    <form>
+    <form [formGroup]="editUserProfileForm">
       <section class="row pb-4">
-        <div class="col-md-3 col-sm-12">
-          <div id="profile-photo"
-            [ngStyle]="{'background-image': 'url(https://images.hola.com/imagenes/actualidad/20231011241604/lady-gaga-rumores-de-embarazo-imagenes-concierto/1-322-390/lady-gaga6-t.jpg?tx=w_680)'}">
+        <div class="col-md-3 col-sm-12 d-flex justify-content-center">
+          <div id="profile-photo-div" class="d-flex justify-content-center mb-3">
+              <img id="profile-photo" [src]="userData.photo" (error)="handleImageError($event)"/>
           </div>
-        </div>
-        <div class="col-md-4 col-sm-12 d-flex justify-content-center align-items-center">
+      </div>
+        <div class="col-md-5 col-sm-12 d-flex justify-content-center align-items-center">
           <div class="text-center">
-            <p class="text-center">Profile Photo</p>
+            <p class="text-center">Profile Picture</p>
             <button class="btn btn-blue me-2">Remove </button>
             @if (!updatePhoto) {
             <button class="btn btn-green" (click)="setUpdatePhoto()">Update</button>
@@ -22,9 +22,9 @@
 
       @if (updatePhoto) {
       <section class="">
-        <label class="mt-3 pb-1" for="image"> </label>Profile Photo:
+        <label class="mt-3 pb-1" for="image"> Choose a new profile picture:</label> 
         <div class="">
-          <input #imageInput accept="image/png, image/gif, image/jpeg" type="file" id="image"
+          <input #imageInput  formControlName="photo" accept="image/png, image/gif, image/jpeg" type="file" id="image"
             class="border border-light w-70">
           <!-- <p class="text-danger form-text">Select a valid image Format</p> -->
         </div>
@@ -33,16 +33,16 @@
       <hr>
 
       <section class="form-floating">
-        <input type="name" class="form-control" id="name" placeholder="name">
+        <input formControlName="name" (blur)="userDataUpdated('name')" type="name" class="form-control" id="name">
         <label for="name">Name</label>
       </section>
 
       <br>
 
       <section class="form-floating">
-        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+        <input formControlName="email" type="email" class="form-control" id="email">
         <label for="email">Email</label>
-      </section>
+      </section> 
 
       <br>
 

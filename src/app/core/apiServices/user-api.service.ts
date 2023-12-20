@@ -60,6 +60,10 @@ export class UserApiService {
     return this.http.get<UserApiResp>(`${this.baseUrl}/users/${userId}`, { withCredentials: true });
   }
 
+  updateUser(userId: number, update: {}): Observable<UserApiResp>{
+    return this.http.put<UserApiResp>(`${this.baseUrl}/users/update/${userId}`, update, { withCredentials: true });
+  }
+
   
 
 }
