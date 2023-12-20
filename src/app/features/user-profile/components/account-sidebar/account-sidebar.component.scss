@@ -5,18 +5,22 @@ i{
 }
 
 a{
-    color: #042e2f;;
+    color: #042e2f;
 }
 
 .container-fluid{
     border-right: 1px solid rgba(128, 128, 128, 0.249);
 }
 
-.nav-pills .nav-link.active{
+.nav-pills .nav-link{
+    color: #042e2fb7;
+}
+.nav-item .active{
     background-color: white;
     font-weight: bolder;
-    color:#042e2f
+    color: #042e2f;
 }
-.nav-pills .nav-link.active i{
-    font-size: x-large;
+
+.nav-item:hover{
+    color:#042e2f
 }
