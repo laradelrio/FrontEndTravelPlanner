@@ -1,11 +1,11 @@
 i{
-    color: #23BBAB;;
+    color: var(--mainDarkColor);
     font-size: larger;
     margin: 10px;
 }
 
 a{
-    color: #042e2f;
+    color: var(--text-color);
 }
 
 .container-fluid{
@@ -18,9 +18,9 @@ a{
 .nav-item .active{
     background-color: white;
     font-weight: bolder;
-    color: #042e2f;
+    color: var(--text-color);
 }
 
 .nav-item:hover{
-    color:#042e2f
+    color: var(--text-color);
 }

@@ -1,42 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
-$textColor: #042e2f;
-$primaryColor: #97f7e9;
-$secondaryColor: #c7dc7a;
-$accentColor: #5cebda;
-$bgLightBlueColor: #ECFAF8;
-$bgLightGreenColor: #F0F4E0;
-
 :root {
-    --dark-primary-color: #e70909;
-    --secondary-color: #2ecc71;
-  }
+    --textColor: #042e2f;
+    --mainDarkColor: #23BBAB;
+    --primaryColor: #97f7e9;
+    --secondaryColor: #c7dc7a;
+    --accentColor: #5cebda;
+    --bgLightPrimaryColor: #ECFAF8;
+    --bgLightSecondaryColor: #F0F4E0;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
-    color: $textColor;
+    color: var(--textColor);
 }
 
 .btn-blue{
-    background-color: $primaryColor;
-    border-color: $primaryColor ;
-    color: $textColor;
+    background-color: var(--primaryColor);
+    border-color: var(--primaryColor) ;
+    color: var(--textColor);
 
     &:hover{
-        color: $textColor;
-        background-color: $bgLightBlueColor;
-        border-color: $primaryColor ;
+        color: var(--textColor);
+        background-color: var(--bgLightPrimaryColor);
+        border-color: var(--primaryColor) ;
         border-width: 2px;
     }
 }
 
 .btn-green{
-    background-color: $secondaryColor;
-    border-color: $secondaryColor ;
-    color: $textColor;
+    background-color: var(--secondaryColor);
+    border-color: var(--secondaryColor) ;
+    color: var(--textColor);
 
     &:hover{
-        color: $textColor;
-        background-color: $bgLightGreenColor;
-        border-color: $secondaryColor ;
+        color: (--textColor);
+        background-color: var(--bgLightSecondaryColor);
+        border-color: var(--secondaryColor) ;
         border-width: 2px;
     }
 }

@@ -83,15 +83,10 @@
     box-shadow: 0 8px 50px #23232333;
     background-color:  #fff;
     z-index: -20;
-    border:2px solid var(--dark-primary-color)
+    border:2px solid var(--mainDarkColor)
 }
-
 
 .card:hover .card-social {
     transform: translateY(0%);
     opacity: 1;
 }
-
-// #profile-photo:hover {
-//     transform: scale(1.1);
-// }

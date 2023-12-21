@@ -1,11 +1,11 @@
 .modal-style-primary {
     border-top: 10px solid #5cebda;
-    color: #042e2f;
+    color: var(--text-color);
 }
 
 .modal-style-danger {
     border-top: 10px solid #DC3545;
-    color: #042e2f;
+    color: var(--text-color);
 }
 .round-top{
     border-radius: 23px 23px 0px 0px;
@@ -16,12 +16,9 @@
 }
 
 .close-btn{
-    background-color: #ECFAF8;
-    border-color: white;
+    border-color: rgb(198, 198, 198);
 
     &:hover{
-        background-color: white;
-        border-color: #ECFAF8 ;
-        border-width: 2px;
+        border-color: rgb(154, 154, 154);
     }
 }

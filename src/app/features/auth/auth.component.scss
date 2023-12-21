@@ -1,10 +1,3 @@
-$textColor: #042e2f;
-$primaryColor: #97f7e9;
-$secondaryColor: #c7dc7a;
-$accentColor: #5cebda;
-$bgLightBlueColor: #ECFAF8;
-$bgLightGreenColor: #F0F4E0;
-
 .container-div {
    display: flex;
    align-content: center;
@@ -15,7 +8,7 @@ $bgLightGreenColor: #F0F4E0;
 }
 
 .bg-green {
-   background-color: $bgLightGreenColor;
+   background-color: var(--bgLightSecondaryColor);
    border-radius: 13px;
    min-height: 40vh;
    display: grid;
@@ -56,12 +49,12 @@ $bgLightGreenColor: #F0F4E0;
 
 h1 {
    font-size: x-large;
-   color: $secondaryColor
+   color: var(--secondaryColor)
 }
 
 label {
    font-size: small;
-   color: $textColor
+   color: var(--textColor)
 }
 
 .btn-blue {
@@ -82,7 +75,7 @@ label {
    a {
       text-decoration: none;
       font-weight: bold;
-      color: $textColor;
+      color: var(--textColor);
    }
 }
 
