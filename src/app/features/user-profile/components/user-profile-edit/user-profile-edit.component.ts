@@ -20,6 +20,8 @@ export class UserProfileEditComponent implements OnInit{
   public updatePhoto: boolean = false;
   public editUserProfileForm: FormGroup;
   public userData!: UserData;
+  public isValidName: boolean = true;
+  public isValidEmail: boolean = true; 
 
   constructor(private fb: FormBuilder,) {
     this.editUserProfileForm = this.fb.group({
@@ -33,11 +35,7 @@ export class UserProfileEditComponent implements OnInit{
     this.getUserData();
   }
 
-  showUploadImgInput() {
-    this.updatePhoto = true;
-  }
-
-  getUserData(){
+  getUserData(): void{
     this.userApiService.getUser(1)
     .pipe(
       finalize( () => {
@@ -49,36 +47,45 @@ export class UserProfileEditComponent implements OnInit{
     });
   }
 
-  handleImageError(event: any){
-    event.target.src =  "../../../../../assets/user-default.webp";
-  }
-  
-  setFormInitialValues(){
+  setFormInitialValues(): void{
     this.editUserProfileForm.controls['name'].setValue(this.userData.name);
     this.editUserProfileForm.controls['email'].setValue(this.userData.email);
   }
 
-  imgUpload(imgUrl: string | null ){
+  handleImageError(event: any):void{
+    event.target.src =  "../../../../../assets/user-default.webp";
+  }
+
+  showUploadImgInput(): void{
+    this.updatePhoto = true;
+  }
+  
+  imgUpload(imgUrl: string | null ): void{
     this.editUserProfileForm.controls['photo'].setValue(imgUrl);
     this.userDataUpdated('photo'); 
     this.updatePhoto = false; 
-
-    
   }
+
   userDataUpdated(inputField: string) {
     let inputFieldValue = this.editUserProfileForm.get(`${inputField}`)?.value;
     let valueFound: number = (Object.values(this.userData)).indexOf(`${inputFieldValue}`)
 
-    console.log('blur')
-    //TODO CONTROL IF TEH FIELD IS VALID BEFORE SENDING IT
     if(valueFound === -1 && this.editUserProfileForm.controls[`${inputField}`].valid){
       this.userApiService.updateUser(1, {field: inputField, value: inputFieldValue})
-      .subscribe( (res) => {
-        console.log('RES', res);
-        this.getUserData();
+      .subscribe({
+        next:  (res) => { this.getUserData() },
+        error: (err) => { this.isValidEmail = false}
       })
     }
   }
-  
 
+  isValidInput(inputField: string): void{
+    let isValid: boolean = this.editUserProfileForm.controls[`${inputField}`].valid
+    if(inputField === 'name'){
+      this.isValidName = isValid;
+    } else{
+      this.isValidEmail = isValid;
+    }
+  }
+  
 }

@@ -47,7 +47,6 @@ export class UserProfileViewComponent implements OnInit{
     this.tripsApiService.getAllUserTrips(1).subscribe( (res) => {
       this.userTripsStatus = res.success;
       this.trips = res.data;
-      console.log('tripss', res, this.trips)
     })
   }
 

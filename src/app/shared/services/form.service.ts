@@ -21,8 +21,7 @@ export class FormService {
 
   uploadImg(imgFile: any): Observable<ImgbbAPIResp> {
     const formData = new FormData();
-    formData.append('image', imgFile)
-    console.log('here')
+    formData.append('image', imgFile);
     return this.http.post<ImgbbAPIResp>(this.baseImgBBUrl, formData, { params: { key: this.imgbbApiKey } })
   }
     

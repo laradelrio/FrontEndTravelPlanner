@@ -1,6 +1,6 @@
 <div class="main-container d-flex justify-content-center">
   <div class="col-md-12 col-lg-8 d-flex justify-content-center align-items-center row m-2">
-    <h2 class="text-center pt-4 pb-4">Edit Profile</h2>
+    <h3 class="text-center pt-4 pb-4">Edit Profile</h3>
 
     <form [formGroup]="editUserProfileForm">
       <section class="row pb-4">
@@ -28,14 +28,16 @@
       <hr>
 
       <section class="form-floating">
-        <input formControlName="name" (blur)="userDataUpdated('name')" type="name" class="form-control" id="name">
+        <input formControlName="name" (blur)="userDataUpdated('name')" (blur)="isValidInput('name')" type="name" class="form-control" id="name">
+        @if(!isValidName){<p class="ms-3 form-text text-danger"> Min 2 characters</p>}
         <label for="name">Name</label>
       </section>
 
       <br>
 
       <section class="form-floating">
-        <input formControlName="email" (blur)="userDataUpdated('email')" type="email" class="form-control" id="email">
+        <input formControlName="email" (blur)="userDataUpdated('email')" (blur)="isValidInput('email')" type="email" class="form-control" id="email">
+        @if(!isValidEmail){<p class="ms-3 form-text text-danger"> Invalid Email</p>} 
         <label for="email">Email</label>
       </section> 
 
@@ -47,5 +49,3 @@
     </form>
   </div>
 </div>
-
-<!-- Image Input -->
