@@ -3,6 +3,7 @@ import { MainpageComponent } from '@layout/mainpage/mainpage.component';
 import { guardsGuard } from './core/guards/guards.guard';
 import { TestfeatureComponent } from './features/testfeature/testfeature.component';
 import { UserProfileComponent } from '@app/features/user-profile/user-profile.component';
+import { MatchesComponent } from './features/matches/matches.component';
 
 
 
@@ -24,6 +25,7 @@ export const routes: Routes = [
             {
                 path: 'profile',
                 component: UserProfileComponent,
+                canActivate: [guardsGuard],
                 children: [
                     {
                         path: '',
@@ -38,12 +40,17 @@ export const routes: Routes = [
                 ]
             },
             {
+                path: 'matches',
+                canActivate: [guardsGuard],
+                loadComponent : () => 
+                import('@app/features/matches/matches.component').then((m) => m.MatchesComponent)
+            },
+            {
                 path: '**',
                 loadComponent : () => 
                 import('@app/features/home/home.component').then((m) => m.HomeComponent)
             },
         ]
-    },
-    
+    }    
 
 ];
