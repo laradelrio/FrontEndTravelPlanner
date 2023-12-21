@@ -6,6 +6,10 @@ $accentColor: #5cebda;
 $bgLightBlueColor: #ECFAF8;
 $bgLightGreenColor: #F0F4E0;
 
+:root {
+    --dark-primary-color: #e70909;
+    --secondary-color: #2ecc71;
+  }
 body {
     font-family: 'Poppins', sans-serif;
     color: $textColor;
@@ -45,3 +49,4 @@ div .modal-content{
 .modal {
     --bs-modal-border-color: none !important;
 }
+
