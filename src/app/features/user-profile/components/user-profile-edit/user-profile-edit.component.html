@@ -12,23 +12,18 @@
         <div class="col-md-5 col-sm-12 d-flex justify-content-center align-items-center">
           <div class="text-center">
             <p class="text-center">Profile Picture</p>
-            <button class="btn btn-blue me-2">Remove </button>
+            @if (userData.photo !== null ) {
+            <button class="btn btn-blue me-2" (click)="imgUpload(null)">Reset </button>
+            }
             @if (!updatePhoto) {
-            <button class="btn btn-green" (click)="setUpdatePhoto()">Update</button>
+            <button class="btn btn-green" (click)="showUploadImgInput()">Upload</button>
             }
           </div>
         </div>
       </section>
 
       @if (updatePhoto) {
-      <section class="">
-        <label class="mt-3 pb-1" for="image"> Choose a new profile picture:</label> 
-        <div class="">
-          <input #imageInput  formControlName="photo" accept="image/png, image/gif, image/jpeg" type="file" id="image"
-            class="border border-light w-70">
-          <!-- <p class="text-danger form-text">Select a valid image Format</p> -->
-        </div>
-      </section>
+        <app-img-upload-input (imageLink)="imgUpload($event)"></app-img-upload-input>
       }
       <hr>
 
@@ -40,7 +35,7 @@
       <br>
 
       <section class="form-floating">
-        <input formControlName="email" type="email" class="form-control" id="email">
+        <input formControlName="email" (blur)="userDataUpdated('email')" type="email" class="form-control" id="email">
         <label for="email">Email</label>
       </section> 
 

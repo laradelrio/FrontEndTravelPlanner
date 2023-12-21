@@ -1,19 +1,21 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserApiService } from '@app/core/apiServices/user-api.service';
 import { UserData } from '@app/core/interfaces/user.interface';
 import { finalize } from 'rxjs';
+import { ImgUploadInputComponent } from '@app/shared/components/img-upload-input/img-upload-input.component';
 
 @Component({
   selector: 'app-user-profile-edit',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ImgUploadInputComponent],
   templateUrl: './user-profile-edit.component.html',
   styleUrl: './user-profile-edit.component.scss'
 })
 export class UserProfileEditComponent implements OnInit{
 
+  @Input() profileImg!: string;
   private userApiService: UserApiService = inject(UserApiService);
   public updatePhoto: boolean = false;
   public editUserProfileForm: FormGroup;
@@ -23,7 +25,7 @@ export class UserProfileEditComponent implements OnInit{
     this.editUserProfileForm = this.fb.group({
       name: ['', [Validators.minLength(2)]],
       email: ['', [Validators.email]],
-      image: ['', [Validators.minLength(5)]]
+      photo: ['', []],
     })
   }
 
@@ -31,7 +33,7 @@ export class UserProfileEditComponent implements OnInit{
     this.getUserData();
   }
 
-  setUpdatePhoto() {
+  showUploadImgInput() {
     this.updatePhoto = true;
   }
 
@@ -56,17 +58,27 @@ export class UserProfileEditComponent implements OnInit{
     this.editUserProfileForm.controls['email'].setValue(this.userData.email);
   }
 
+  imgUpload(imgUrl: string | null ){
+    this.editUserProfileForm.controls['photo'].setValue(imgUrl);
+    this.userDataUpdated('photo'); 
+    this.updatePhoto = false; 
+
+    
+  }
   userDataUpdated(inputField: string) {
     let inputFieldValue = this.editUserProfileForm.get(`${inputField}`)?.value;
     let valueFound: number = (Object.values(this.userData)).indexOf(`${inputFieldValue}`)
 
     console.log('blur')
     //TODO CONTROL IF TEH FIELD IS VALID BEFORE SENDING IT
-    if(valueFound === -1){
+    if(valueFound === -1 && this.editUserProfileForm.controls[`${inputField}`].valid){
       this.userApiService.updateUser(1, {field: inputField, value: inputFieldValue})
       .subscribe( (res) => {
-        console.log('RES',res);
+        console.log('RES', res);
+        this.getUserData();
       })
     }
   }
+  
+
 }
