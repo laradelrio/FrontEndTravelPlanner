@@ -35,15 +35,12 @@ export class AccountSidebarComponent implements OnInit {
   }
 
   open() {
-    console.log("1")
     this.openModal();
   }
 
   async openModal() {
-    console.log("2")
     return await this.modalComponent.open();
   }
-  
   
   activeSection(navLink: string): string {
     if(this.router.url === navLink){

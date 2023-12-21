@@ -27,7 +27,6 @@ export class ModalComponent {
   }
 
   open(): Promise<boolean> {
-    console.log("open model")
     return new Promise<boolean>(resolve => {
       this.modalRef = this.modalService.open(this.modalContent, { size: 'sm' })
       this.modalRef.result.then((result) => {
