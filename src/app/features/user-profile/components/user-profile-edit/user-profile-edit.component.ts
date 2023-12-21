@@ -22,6 +22,7 @@ export class UserProfileEditComponent implements OnInit{
   public userData!: UserData;
   public isValidName: boolean = true;
   public isValidEmail: boolean = true; 
+  private userId: number = parseInt(localStorage.getItem('userId')!);
 
   constructor(private fb: FormBuilder,) {
     this.editUserProfileForm = this.fb.group({
@@ -36,7 +37,7 @@ export class UserProfileEditComponent implements OnInit{
   }
 
   getUserData(): void{
-    this.userApiService.getUser(1)
+    this.userApiService.getUser(this.userId)
     .pipe(
       finalize( () => {
         this.setFormInitialValues();
@@ -71,7 +72,7 @@ export class UserProfileEditComponent implements OnInit{
     let valueFound: number = (Object.values(this.userData)).indexOf(`${inputFieldValue}`)
 
     if(valueFound === -1 && this.editUserProfileForm.controls[`${inputField}`].valid){
-      this.userApiService.updateUser(1, {field: inputField, value: inputFieldValue})
+      this.userApiService.updateUser(this.userId, {field: inputField, value: inputFieldValue})
       .subscribe({
         next:  (res) => { this.getUserData() },
         error: (err) => { this.isValidEmail = false}

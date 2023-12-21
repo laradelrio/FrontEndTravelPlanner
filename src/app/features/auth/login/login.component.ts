@@ -73,12 +73,13 @@ export class LoginComponent {
               this.router.navigate(['/home']);
               this.modalService.dismissAll();
               this.appComponent.startUserActivityCheck();
+              localStorage.setItem("userId", this.loginResponse.data.id);
             }
             this.userApiService.isLoggedIn.set(this.loginResponse.success);
           })
         )
         .subscribe({
-          next: (res) => (this.loginResponse = res),
+          next: (res) => (this.loginResponse = res ),
           error: (error) => (this.loginResponse = error.error)
         })
     }

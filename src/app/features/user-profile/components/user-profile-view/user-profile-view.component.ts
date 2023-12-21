@@ -21,14 +21,15 @@ export class UserProfileViewComponent implements OnInit{
   public userData!: UserData;
   public userTripsStatus!: boolean;
   public trips: Trip[] = [];
-
+  private userId: number = parseInt(localStorage.getItem('userId')!);
+  
   ngOnInit(): void {
     this.getUserData();
     this.getUserTrips();
   }
 
   getUserData(){
-    this.userApiService.getUser(1).subscribe( (res) => {
+    this.userApiService.getUser(this.userId).subscribe( (res) => {
       this.userData = res.data;
     });
   }
@@ -44,7 +45,7 @@ export class UserProfileViewComponent implements OnInit{
   }
 
   getUserTrips(){
-    this.tripsApiService.getAllUserTrips(1).subscribe( (res) => {
+    this.tripsApiService.getAllUserTrips(this.userId).subscribe( (res) => {
       this.userTripsStatus = res.success;
       this.trips = res.data;
     })

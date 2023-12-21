@@ -51,7 +51,7 @@ export class UserApiService {
   logout() {
     this.logoutUser()
       .subscribe({
-        next: (res) => (this.isLoggedIn.set(false)),
+        next: (res) => (this.isLoggedIn.set(false), localStorage.clear),
         error: (error) => (this.isLoggedIn.set(true))
       })
   }
@@ -63,7 +63,5 @@ export class UserApiService {
   updateUser(userId: number, update: {}): Observable<UserApiResp>{
     return this.http.put<UserApiResp>(`${this.baseUrl}/users/update/${userId}`, update, { withCredentials: true });
   }
-
-  
 
 }
