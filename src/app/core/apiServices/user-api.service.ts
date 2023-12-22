@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { UserApiResp } from '../interfaces/apiResponses.interface';
+import { GetUserApiResp, UserApiResp } from '../interfaces/apiResponses.interface';
 import { Constants } from '../constants/constants';
 
 
@@ -56,8 +56,8 @@ export class UserApiService {
       })
   }
 
-  getUser(userId: number): Observable<UserApiResp>{
-    return this.http.get<UserApiResp>(`${this.baseUrl}/users/${userId}`, { withCredentials: true });
+  getUser(userId: number): Observable<GetUserApiResp>{
+    return this.http.get<GetUserApiResp>(`${this.baseUrl}/users/${userId}`, { withCredentials: true });
   }
 
   updateUser(userId: number, update: {}): Observable<UserApiResp>{

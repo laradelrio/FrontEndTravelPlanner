@@ -44,7 +44,9 @@ export class UserProfileEditComponent implements OnInit{
       })
     )
     .subscribe( (res) => {
-      this.userData = res.data;
+      if(typeof(this.userData) !== undefined){
+        this.userData = res.data as UserData;
+      }
     });
   }
 

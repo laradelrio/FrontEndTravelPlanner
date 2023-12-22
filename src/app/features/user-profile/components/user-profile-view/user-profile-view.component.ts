@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { UserApiService } from '@app/core/apiServices/user-api.service';
 import { UserData } from '@app/core/interfaces/user.interface';
 import { TripApiService } from '@app/core/apiServices/trip-api.service';
-import { ApiResp } from '@app/core/interfaces/apiResponses.interface';
 import { TripCardComponent } from '@app/shared/components/trip-card/trip-card.component';
 import { Trip } from '@app/core/interfaces/trip.interface';
 
@@ -30,7 +29,9 @@ export class UserProfileViewComponent implements OnInit{
 
   getUserData(){
     this.userApiService.getUser(this.userId).subscribe( (res) => {
-      this.userData = res.data;
+      if(typeof(this.userData) !== undefined){
+        this.userData = res.data as UserData;
+      }
     });
   }
 

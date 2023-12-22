@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserData } from '@app/core/interfaces/user.interface';
 
@@ -10,6 +10,10 @@ import { UserData } from '@app/core/interfaces/user.interface';
   styleUrl: './user-card.component.scss'
 })
 export class UserCardComponent {
+  
+  @Input()
+  userProfiles!: UserData[] | null;
+
   userData: UserData = {
     id: 0,
     name: '',
