@@ -33,3 +33,9 @@ export interface Image {
     extension: string;
     url:       string;
 }
+
+export interface CitiesRes {
+    error: boolean,
+    msg: string,
+    data: string[],
+}

@@ -1,1 +1,17 @@
 <p>trip-form works!</p>
+<form [formGroup]="tripForm" (ngSubmit)="onSubmit()">
+    <section formControlName="name">
+        <label for="name">Trip Name</label>
+        <input formControlName="name" type="text" class="form-control" id="name" maxlength="30"
+        [ngClass]="(!this.tripForm.controls['name'].valid && this.tripForm.controls['name'].touched) ? 'is-invalid':''">
+        @if(!this.tripForm.controls['name'].valid && this.tripForm.controls['name'].touched){
+            <p class="ms-3 form-text text-danger"> {{getInputError('name')}}</p>
+        }        
+    </section>
+
+    <app-country-dropdown [destination]="destinationFromGroup"></app-country-dropdown>
+    <app-date-input [dates]="datesFromGroup"></app-date-input>
+    <button type="submit">Submit</button>
+</form>
+
+{{tripForm.value|json}}

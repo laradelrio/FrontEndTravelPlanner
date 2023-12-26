@@ -1,0 +1,11 @@
+<form [formGroup]="dates">
+    @for(input of dateForm; track $index){
+        <label for="date" class="mt-2 pb-1"> <strong> {{input.label}} </strong> </label>
+        <input #date class="form-control"
+        [formControlName]="input.formControlName" type="date" id="date" name="date" [min]="todayDate" max="2028-02-20"
+        [ngClass]="(!this.dates.controls[input.formControlName].valid && this.dates.controls[input.formControlName].touched) ? 'is-invalid':''">
+        @if(!this.dates.controls[input.formControlName].valid && this.dates.controls[input.formControlName].touched){
+            <p class="ms-3 form-text text-danger"> Invalid Date</p>
+        }  
+    }
+</form>

@@ -28,7 +28,7 @@
       <hr>
 
       <section class="form-floating">
-        <input formControlName="name" (blur)="userDataUpdated('name')" (blur)="isValidInput('name')" type="name" class="form-control" id="name">
+        <input formControlName="name" (blur)="userDataUpdated('name')" (blur)="isValidInput('name')" type="text" class="form-control" id="name">
         @if(!isValidName){<p class="ms-3 form-text text-danger"> Min 2 characters</p>}
         <label for="name">Name</label>
       </section>
