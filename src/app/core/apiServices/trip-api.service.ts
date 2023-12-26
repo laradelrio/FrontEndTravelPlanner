@@ -4,6 +4,7 @@ import { Constants } from '../constants/constants';
 import { Observable } from 'rxjs';
 import { ApiResp, UserApiResp } from '../interfaces/apiResponses.interface';
 import { Trip } from '../interfaces/trip.interface';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,11 @@ export class TripApiService {
     let userId = localStorage.getItem('userId');
     return this.http.post<ApiResp>(`${this.baseUrl}/trips/matches/${userId}`, trip, { withCredentials: true });
   }
+
+  addNewTrip(trip: FormGroup): Observable<ApiResp>{
+    return this.http.post<ApiResp>(`${this.baseUrl}/trips/`, trip, { withCredentials: true });
+  }
   
+
 
 }

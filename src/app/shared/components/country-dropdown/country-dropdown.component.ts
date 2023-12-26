@@ -29,7 +29,7 @@ export class CountryDropdownComponent {
     )
     .subscribe({
       next: (res) => {cities = res.data},
-      error: (err) => {this.destination.controls['city'].setValue('  ')}
+      error: (err) => {this.destination.controls['city'].setValue('.')}
     });
   }
 

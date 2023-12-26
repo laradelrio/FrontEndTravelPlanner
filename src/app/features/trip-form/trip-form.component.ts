@@ -51,10 +51,19 @@ constructor(
     if(this.tripForm.valid){
       this.getPlacePhotoUrl();
     }
-    
   }
 
   sendForm(){
+    
+    let newTrip = {
+      name: this.tripForm.controls['name'].value,
+      fk_users_id: this.tripForm.controls['fk_users_id'].value,
+      destination: `${this.tripForm.controls['destination'].value.country}, ${this.tripForm.controls['destination'].value.country}`,
+      startDate: this.tripForm.controls['dates'].value.startDate,
+      endDate: this.tripForm.controls['dates'].value.endDate,
+      photo: this.tripForm.controls['photo'].value,
+    }
+    console.log(newTrip)
     console.log('formValue', this.tripForm.value)
   }
 
