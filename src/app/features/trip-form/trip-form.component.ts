@@ -104,8 +104,8 @@ export class TripFormComponent {
       style: ".modal-style-primary",
       title: "",
       body: "Trip Created Successfully",
-      btnClass: "",
-      closeBtnName: "btn-blue",
+      btnClass: "btn-blue",
+      closeBtnName: "",
       actionBtnName: "Okay",
     }
     this.open();

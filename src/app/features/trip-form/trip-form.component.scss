@@ -1,0 +1,42 @@
+h1{
+    font-size: x-large;
+}
+
+#girl{
+    position: fixed;
+    z-index: -1000;
+    bottom: 0px;
+    left: -30px;
+    height: 200px;
+    visibility: visible;
+}
+
+#trip-form{
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.862);
+}
+
+@media (min-width:890px){
+    #trip-form{
+        justify-content: end;
+        margin-right: 4rem;
+        background-color: rgba(255, 255, 255, 0);
+    }
+    #girl{
+        visibility: visible;
+        height: 480px;
+        left: -130px;
+    }
+}
+
+@media (min-width:1200px){
+    #trip-form{
+        justify-content: center;
+    }
+}
+
+@media (min-height:900px){
+    #trip-form{
+        justify-content: center;
+    }
+}
