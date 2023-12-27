@@ -1,3 +1,35 @@
+i{
+    color: gray;
+}
+
+#profile-photo {
+    width: 50px;
+    object-fit: cover;
+    clip-path: circle();
+    border-radius: 50%;
+    display: block;
+    top:5px;
+}
+
+#profile-photo-div{
+    overflow: visible ;
+    width: 60px;
+    height: 60px;
+}
+
 .nav-link{
     letter-spacing: 3px;
+    display: flex;
+}
+
+.dropdown-toggle::after {
+    border-top: none;
+}
+
+
+@media (min-width: 1200px){
+    ul{
+        display: flex;
+        align-items: center;
+    }
 }

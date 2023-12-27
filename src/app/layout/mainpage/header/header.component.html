@@ -6,7 +6,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse col-7" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 col-9">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 col-12">
         <li class="nav-item col-2">
           <a class="nav-link active" aria-current="page" href="#"> ABOUT </a>
         </li>
@@ -16,19 +16,27 @@
         <li class="nav-item col-2">
           <a class="nav-link" href="/matches"> MATCHES</a>
         </li>
-      </ul>
-
-      <div class="col-2">
         @if(isLoggedIn){
-        <button class="btn btn-blue" (click)="logout()">
-          LOG OUT
-        </button>
-        } @else {
+        <li class="nav-item offset-lg-5" ngbDropdown>
+          <div id="profile-photo-div" class="nav-link p-0" tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button">
+            <img id="profile-photo" [src]="userPhoto" (error)="handleImageError($event)" />
+          </div>    
+					<div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="mt-0 dropdown-menu dropdown-menu-end">
+            <button ngbDropdownItem routerLink="/profile">Settings</button>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem (click)="logout()">Log Out <i class="fa-solid fa-right-from-bracket ms-3"></i></button>
+					</div>
+				</li>
+      } @else {
+        <li class="nav-item offset-lg-5">
         <button class="btn btn-blue" (click)="openLogin()">
           LOG IN
         </button>
+      </li>
         }
-      </div>
+      </ul>
+
+      
     </div>
   </div>
 </nav>

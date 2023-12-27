@@ -6,11 +6,12 @@ import { LoginComponent } from '@app/features/auth/login/login.component';
 import { UserApiService } from '@app/core/apiServices/user-api.service';
 import { Router, RouterLink } from '@angular/router';
 import { AppComponent } from '@app/app.component';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, ModalComponent, RegisterComponent, LoginComponent, RouterLink, AppComponent],
+  imports: [CommonModule, ModalComponent, RegisterComponent, LoginComponent, RouterLink, AppComponent, NgbDropdownModule],
 
 templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -27,11 +28,20 @@ export class HeaderComponent {
   private userApiService: UserApiService = inject(UserApiService);
   private router = inject(Router)
   private appComponent:AppComponent = inject(AppComponent);
-
+  public userPhoto: string = '';
   constructor(){
-    effect(() => this.isLoggedIn = this.userApiService.isLoggedIn())
+    effect(() => {this.logInChange()})
   }
 
+  logInChange(){
+    this.isLoggedIn = this.userApiService.isLoggedIn();
+    let user = localStorage.getItem!('userId');
+    if(this.isLoggedIn && user != null){
+      this.userApiService.getUser(parseInt(user))
+      .subscribe((res) => {if(res.data?.photo !== undefined){this.userPhoto = res.data?.photo}})
+    }
+    
+  }
   openRegister() {
     this.openModalRegister();
   }
@@ -53,4 +63,7 @@ export class HeaderComponent {
     this.appComponent.stopUserActivityCheck()
   }
 
+  handleImageError(event: any){
+    event.target.src =  "../../../../../assets/user-default.webp";
+  }
 }
