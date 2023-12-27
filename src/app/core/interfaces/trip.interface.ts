@@ -9,3 +9,12 @@ export interface Trip{
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface NewTrip{
+    name: string;
+    user: number;
+    destination: string;
+    startDate: Date;
+    endDate: Date;
+    photo: string;
+}

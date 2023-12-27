@@ -257,7 +257,7 @@
         <p class="ms-3 form-text">If none applies, select the closest city to your destination</p>
         <select formControlName="city"
         [ngClass]="(!this.destination.controls['city'].valid && this.destination.controls['city'].touched) ? 'is-invalid':''"
-        #city id="city" name="city" class="form-control" (click)="onCitySelected()">
+        #city id="city" name="city" class="form-control">
             @for (city of citiesInAlphOrder; track city) {
             <option [value]="city">{{city}}</option>
             }

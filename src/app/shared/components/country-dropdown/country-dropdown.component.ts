@@ -15,14 +15,12 @@ export class CountryDropdownComponent {
 
   @Input() destination!: FormGroup;
   @ViewChild('country') country!: ElementRef ;  
-  @ViewChild('city') city!: ElementRef ;
   private formService: FormService = inject(FormService);
   public citiesInAlphOrder: string[] = [];
 
   getCities() {
     let countryLowerCase =  (this.country.nativeElement.value).toLowerCase();
     let cities: string[] = [];
-    console.log(countryLowerCase)
     this.formService.getCitiesInCountry(countryLowerCase)
     .pipe(
       finalize(() => this.orderCitiesAlphabetically(cities))
@@ -43,10 +41,6 @@ export class CountryDropdownComponent {
       }
       return 0;
     });
-  }
-
-  onCitySelected(){
-    this.destination.controls['destination'].setValue(`${this.city.nativeElement.value}, ${this.country.nativeElement.value}`)
   }
 
 }

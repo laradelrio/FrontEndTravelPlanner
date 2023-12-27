@@ -10,7 +10,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './date-input.component.html',
   styleUrl: './date-input.component.scss'
 })
-export class DateInputComponent implements OnInit{
+export class DateInputComponent {
 
   @Input() dates!: FormGroup;
 
@@ -21,10 +21,4 @@ export class DateInputComponent implements OnInit{
     {label: 'End Date', formControlName: 'endDate'},
   ] 
 
-  constructor(){
-    console.log(this.todayDate)
-  }
-  ngOnInit(): void {
-    
-  }
 }
