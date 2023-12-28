@@ -1,9 +1,35 @@
 <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="aside">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto  text-decoration-none">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white">
+                <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto  text-decoration-none">
                     <span class="fs-5 d-none d-sm-inline pt-4">My Profile</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="/profile" class="nav-link align-middle px-0" [ngClass]="activeSection('/profile')">
+                            <i class="fa-solid fa-user"></i> <span class="ms-1 d-none d-sm-inline">See</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/profile/edit" data-bs-toggle="collapse" class="nav-link px-0 align-middle"
+                        [ngClass]="activeSection('/profile/edit')">
+                            <i class="fa-solid fa-pen-to-square"></i> <span class="ms-1 d-none d-sm-inline">Edit </span> </a>
+                        
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-0 align-middle" (click)="openDeleteModal()" >
+                            <i class="fa-solid fa-trash-can"></i> <span class="ms-1 d-none d-sm-inline">Delete</span></a>
+                    </li>
+                    
+                </ul>
+                <hr>
+                
+            </div>
+            <hr>
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto  text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline pt-4">My Trips</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">

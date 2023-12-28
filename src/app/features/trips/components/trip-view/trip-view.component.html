@@ -1,4 +1,11 @@
 <img id='trip-banner' class="w-100" [src]="trip.photo" (error)="handleImageError($event)">
+@if(isLoggedInUser){}
+<div id="manage-trip-btns">
+    <button class="btn btn-warning me-3"> Edit </button> 
+    <button class="btn btn-danger"> Delete </button> 
+</div>
+
+
 <h1 class="text-center mt-2 mb-0 p-3 border-bottom">{{trip.name}}</h1>
 <div class="mt-3">
     <p class="text-center w-100 mb-1"> 

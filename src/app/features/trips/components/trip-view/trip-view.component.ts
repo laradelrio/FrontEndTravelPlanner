@@ -16,6 +16,7 @@ export class TripViewComponent implements OnInit{
   private tripService: TripApiService = inject(TripApiService);
   private route: ActivatedRoute = inject(ActivatedRoute);
   private tripId = parseInt(this.route.snapshot.url[1].path);
+  public isLoggedInUser!: boolean;
 
   constructor(){}
 
@@ -25,7 +26,8 @@ export class TripViewComponent implements OnInit{
 
   getTrip(){
     this.tripService.getOneTrip(this.tripId)
-    .subscribe( (res) =>{ this.trip = res.data; console.log(typeof(res.data.startDate))});
+    .subscribe( (res) =>{ this.trip = res.data;  
+      this.isLoggedInUser = (res.data.fk_users_id).toString() === localStorage.getItem('userId');});
   }
 
   handleImageError(event: any): void{

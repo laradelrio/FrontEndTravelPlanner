@@ -5,6 +5,16 @@
     filter: brightness(90%);
 }
 
+#manage-trip-btns{
+    position: absolute;
+    top: 15vh;
+    right: 25px;
+    &button{
+        color:Red
+    }
+}
+ 
+
 h1{
     font-size: xx-large;
 }

@@ -40,6 +40,12 @@ export const routes: Routes = [
                 ]
             },
             {
+                path: 'trips',
+                canActivate: [guardsGuard],
+                loadComponent : () => 
+                import('@app/features/trips/trips.component').then((m) => m.TripsComponent)
+            },
+            {
                 path: 'new-trip',
                 canActivate: [guardsGuard],
                 loadComponent : () => 

@@ -1,0 +1,8 @@
+<p>trips works!</p>
+@if(trips.length>0) {
+    <div class="col-12 d-flex col flex-wrap justify-content-center">
+        <app-trip-card [trips]="trips" class="w-75"></app-trip-card>
+    </div>
+} @else {
+    <p class="w-100 text-center"> No trips yet </p>
+}
