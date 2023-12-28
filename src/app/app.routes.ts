@@ -46,6 +46,12 @@ export const routes: Routes = [
                 import('@app/features/trip-form/trip-form.component').then((m) => m.TripFormComponent)
             },
             {
+                path: 'trip/:id',
+                canActivate: [guardsGuard],
+                loadComponent : () => 
+                import('@app/features/trip-view/trip-view.component').then((m) => m.TripViewComponent)
+            },
+            {
                 path: 'matches',
                 canActivate: [guardsGuard],
                 loadComponent : () => 

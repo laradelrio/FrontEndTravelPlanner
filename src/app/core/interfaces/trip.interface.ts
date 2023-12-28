@@ -3,9 +3,9 @@ export interface Trip{
     name: string;
     fk_users_id: number;
     destination: string;
-    startDate: Date;
-    endDate: Date;
-    photo: string;
+    startDate: string;
+    endDate: string;
+    photo: URL;
     createdAt: Date;
     updatedAt: Date;
 }

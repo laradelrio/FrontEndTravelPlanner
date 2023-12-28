@@ -1,0 +1,20 @@
+#trip-banner{
+    height: 25vh;
+    object-fit: cover;
+    z-index: -100;
+    filter: brightness(90%);
+}
+
+h1{
+    font-size: xx-large;
+}
+
+#map{
+    height: 50vh;
+    background-image: url('https://storage.googleapis.com/gweb-uniblog-publish-prod/images/google_maps_helpful_hero_1.width-1200.format-webp.webp');
+}
+
+#calendar{
+    height: 50vh;
+    background-image: url('https://c.tadst.com/gfx/1200x675/calendar-2023-printable.png?1');
+}

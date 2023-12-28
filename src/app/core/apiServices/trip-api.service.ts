@@ -27,6 +27,10 @@ export class TripApiService {
     return this.http.post<ApiResp>(`${this.baseUrl}/trips/matches/${userId}`, trip, { withCredentials: true });
   }
 
+  getOneTrip(tripId:number): Observable<ApiResp>{
+    return this.http.get<ApiResp>(`${this.baseUrl}/trips/${tripId}`, { withCredentials: true });
+  }
+
   addNewTrip(trip: NewTrip): Observable<ApiResp>{
     return this.http.post<ApiResp>(`${this.baseUrl}/trips/`, trip, { withCredentials: true });
   }

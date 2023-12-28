@@ -1,11 +1,12 @@
 import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Trip } from '@app/core/interfaces/trip.interface';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-trip-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './trip-card.component.html',
   styleUrl: './trip-card.component.scss'
 })
@@ -26,12 +27,12 @@ export class TripCardComponent implements OnChanges{
     event.target.src =  "../../../../assets/trip-default.webp";
   }
 
-  dateFormat(start: Date, finish: Date): string{
+  dateFormat(start: string, finish: string): string{
     let tripDates: string = `${this.sliceDate(start)} to ${this.sliceDate(finish)}`
     return tripDates;
   }
 
-  sliceDate(date: Date): string{
+  sliceDate(date: string): string{
     let day = date.toString().slice(8,10);
     let month = date.toString().slice(5,7);
     let year = date.toString().slice(2,4);
@@ -53,6 +54,10 @@ export class TripCardComponent implements OnChanges{
         this.pastTrips.push(trip)
       }
     })
+  }
+
+  getRouterLink(tripId: number): string{
+    return `/trip/${tripId}`
   }
 
 }
