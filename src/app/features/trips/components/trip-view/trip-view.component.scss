@@ -5,13 +5,14 @@
     filter: brightness(90%);
 }
 
-#manage-trip-btns{
-    position: absolute;
-    top: 15vh;
-    right: 25px;
-    &button{
-        color:Red
+.manage-btn{
+    &:hover{
+        border: 1px solid black !important;
     }
+}
+
+.position-relative {
+    width: 90vw;
 }
 
 h1{
@@ -26,4 +27,16 @@ h1{
 #calendar{
     height: 50vh;
     background-image: url('https://c.tadst.com/gfx/1200x675/calendar-2023-printable.png?1');
+}
+
+@media (max-width: 576px) {
+    .position-relative{
+        width: 80vw;
+    }
+}
+@media (min-width: 1200px) {
+    .position-relative{
+        width: 94vw;
+    }
+
 }

@@ -1,10 +1,9 @@
 h1{
     font-size: xx-large;
 }
+
 form{
     max-height: 90vh;
-    // overflow-y: scroll;
-
 }
 
 #trip-banner{
@@ -21,15 +20,8 @@ form{
     filter: brightness(90%);
 }
 
-// #trip-form-div{
-//     // overflow-y: scroll;
-//     // position: relative;
-//     // height: 80vh;
-// }
-
 #trip-form{
     height: 90vh;
-    // overflow-y: scroll;
 }
 
 #image-container{
