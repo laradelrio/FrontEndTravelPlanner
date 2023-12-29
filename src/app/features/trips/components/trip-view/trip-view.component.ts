@@ -2,12 +2,12 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Trip } from '@app/core/interfaces/trip.interface';
 import { TripApiService } from '@app/core/apiServices/trip-api.service';
-import { ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
+import { ActivatedRoute, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-trip-view',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './trip-view.component.html',
   styleUrl: './trip-view.component.scss'
 })
@@ -35,9 +35,12 @@ export class TripViewComponent implements OnInit{
   }
 
   getFormattedDate(date:string): string{
-    let inDate =  new Date();
+    let inDate =  new Date(date);
     return inDate.toDateString();
+  }
 
+  getRouterLink(tripId: number): string{
+    return `/trip/edit/${tripId}`
   }
 
 }

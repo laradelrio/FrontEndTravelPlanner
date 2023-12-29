@@ -5,7 +5,7 @@ export interface Trip{
     destination: string;
     startDate: string;
     endDate: string;
-    photo: URL;
+    photo: string;
     createdAt: Date;
     updatedAt: Date;
 }

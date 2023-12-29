@@ -1,0 +1,49 @@
+h1{
+    font-size: xx-large;
+}
+form{
+    max-height: 90vh;
+    // overflow-y: scroll;
+
+}
+
+#trip-banner{
+    height: 25vh;
+    object-fit: cover;
+    z-index: -100;
+    filter: brightness(90%);
+}
+
+#trip-image{
+    height: 95vh;
+    width: 100%;
+    object-fit: cover;
+    filter: brightness(90%);
+}
+
+// #trip-form-div{
+//     // overflow-y: scroll;
+//     // position: relative;
+//     // height: 80vh;
+// }
+
+#trip-form{
+    height: 90vh;
+    // overflow-y: scroll;
+}
+
+#image-container{
+    height:90vh;
+}
+@media (max-width: 1000px) {
+    #trip-image{
+        max-height: 15vh;
+        min-width: 100%;
+        max-width: 100vw;
+    }
+
+    #image-container{
+        width: 100vw;
+        height: 15vh;
+    }
+}

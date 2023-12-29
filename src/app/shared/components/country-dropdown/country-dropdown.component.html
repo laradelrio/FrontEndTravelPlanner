@@ -254,6 +254,17 @@
         }  
     </section>
 
+    @if(showLoader){
+    <section>
+        <label for="city" class="mt-3">City</label>
+        <div class=" d-flex justify-content-center">
+            <div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </section>
+    }
+    
     <section class="mt-3">
         @if(citiesInAlphOrder.length !== 0){
             <label for="city">City</label>

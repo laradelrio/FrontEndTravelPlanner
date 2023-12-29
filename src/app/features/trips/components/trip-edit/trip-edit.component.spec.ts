@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CountryDropdownComponent } from './country-dropdown.component';
+import { TripEditComponent } from './trip-edit.component';
 
-describe('CountryDropdownComponent', () => {
-  let component: CountryDropdownComponent;
-  let fixture: ComponentFixture<CountryDropdownComponent>;
+describe('TripEditComponent', () => {
+  let component: TripEditComponent;
+  let fixture: ComponentFixture<TripEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CountryDropdownComponent]
+      imports: [TripEditComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(CountryDropdownComponent);
+    fixture = TestBed.createComponent(TripEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

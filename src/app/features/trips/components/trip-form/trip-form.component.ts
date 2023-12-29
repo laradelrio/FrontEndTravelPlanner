@@ -118,6 +118,4 @@ export class TripFormComponent {
   async openModal() {
     return await this.modalComponent.open();
   }
-
-
 }

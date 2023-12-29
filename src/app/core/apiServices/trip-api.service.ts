@@ -35,6 +35,9 @@ export class TripApiService {
     return this.http.post<ApiResp>(`${this.baseUrl}/trips/`, trip, { withCredentials: true });
   }
   
+  updateUser(tripId: number, update: {}): Observable<UserApiResp>{
+    return this.http.put<UserApiResp>(`${this.baseUrl}/trips/update/${tripId}`, update, { withCredentials: true });
+  }
 
 
 }

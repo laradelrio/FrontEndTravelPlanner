@@ -43,19 +43,25 @@ export const routes: Routes = [
                 path: 'trips',
                 canActivate: [guardsGuard],
                 loadComponent : () => 
-                import('@app/features/trips/trips.component').then((m) => m.TripsComponent)
+                import('@app/features/trips/trips.component').then((m) => m.TripsComponent),
+            },
+            {
+                path: 'trip/edit/:id',
+                canActivate: [guardsGuard],
+                loadComponent : () => 
+                import('@app/features/trips/components/trip-edit/trip-edit.component').then((m) => m.TripEditComponent)
             },
             {
                 path: 'new-trip',
                 canActivate: [guardsGuard],
                 loadComponent : () => 
-                import('@app/features/trip-form/trip-form.component').then((m) => m.TripFormComponent)
+                import('@app/features/trips/components/trip-form/trip-form.component').then((m) => m.TripFormComponent)
             },
             {
                 path: 'trip/:id',
                 canActivate: [guardsGuard],
                 loadComponent : () => 
-                import('@app/features/trip-view/trip-view.component').then((m) => m.TripViewComponent)
+                import('@app/features/trips/components/trip-view/trip-view.component').then((m) => m.TripViewComponent)
             },
             {
                 path: 'matches',
