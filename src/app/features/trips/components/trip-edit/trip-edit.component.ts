@@ -59,7 +59,7 @@ export class TripEditComponent implements OnInit{
 
   detectFormValueChanges(): void {
     this.editTripForm.get('name')?.valueChanges.subscribe( (val) =>{ if(this.editTripForm.get('name')?.valid){this.updateTripData('name',val)}})
-    this.editTripForm.get('destination.city')?.valueChanges.subscribe( (val) => {console.log('city change', val);this.destinationChange(val);});
+    this.editTripForm.get('destination.city')?.valueChanges.subscribe( (val) => {this.destinationChange(val);});
     this.editTripForm.get('dates.startDate')?.valueChanges.subscribe( (val) => this.updateTripData('startDate',val));
     this.editTripForm.get('dates.endDate')?.valueChanges.subscribe( (val) => {this.updateTripData('endDate',val)});
   }

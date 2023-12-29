@@ -24,7 +24,6 @@ export class CountryDropdownComponent implements OnChanges{
   }
 
   checkForPreFillValues(){
-    console.log( 'value', this.destination.controls['country'].value)
     if(this.destination.controls['country'].value != ''){
       this.getCities();
     }
