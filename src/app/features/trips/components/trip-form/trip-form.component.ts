@@ -32,7 +32,7 @@ export class TripFormComponent {
     private fb: FormBuilder,
   ){
     this.tripForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
       fk_users_id: [localStorage.getItem('userId')],
       destination: this.fb.group({ 
         country: ['',[Validators.required]],
@@ -70,8 +70,6 @@ export class TripFormComponent {
       endDate: this.tripForm.controls['dates'].value.endDate,
       photo: this.tripForm.controls['photo'].value,
     }
-    console.log(newTrip)
-    console.log('formValue', this.tripForm.value)
     this.sendTrip(newTrip)
   }
 

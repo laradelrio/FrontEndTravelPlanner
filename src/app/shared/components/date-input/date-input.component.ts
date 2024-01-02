@@ -13,6 +13,8 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class DateInputComponent {
 
   @Input() dates!: FormGroup;
+  @Input() type!: string;
+
 
   private nowDate =  new Date();
   public todayDate = (this.nowDate).toISOString().slice(0,10)

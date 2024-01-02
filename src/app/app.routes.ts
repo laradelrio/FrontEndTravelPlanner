@@ -64,6 +64,12 @@ export const routes: Routes = [
                 import('@app/features/trips/components/trip-view/trip-view.component').then((m) => m.TripViewComponent)
             },
             {
+                path: 'new-sight',
+                canActivate: [guardsGuard],
+                loadComponent : () => 
+                import('@app/features/sights/new-sight/new-sight.component').then((m)=>m.NewSightComponent)
+            },
+            {
                 path: 'matches',
                 canActivate: [guardsGuard],
                 loadComponent : () => 

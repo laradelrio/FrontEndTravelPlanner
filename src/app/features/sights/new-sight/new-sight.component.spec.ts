@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DateInputComponent } from './date-input.component';
+import { NewSightComponent } from './new-sight.component';
 
-describe('DateInputComponent', () => {
-  let component: DateInputComponent;
-  let fixture: ComponentFixture<DateInputComponent>;
+describe('NewSightComponent', () => {
+  let component: NewSightComponent;
+  let fixture: ComponentFixture<NewSightComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DateInputComponent]
+      imports: [NewSightComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(DateInputComponent);
+    fixture = TestBed.createComponent(NewSightComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
