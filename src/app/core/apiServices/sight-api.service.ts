@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Constants } from '../constants/constants';
+import { NewSight } from '../interfaces/sight.interface';
+import { ApiResp } from '../interfaces/apiResponses.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,4 +16,9 @@ export class SightApiService {
   constructor() {
     this.http = inject(HttpClient);
   }
+
+  addNewSight(sight: NewSight): Observable<ApiResp>{
+    return this.http.post<ApiResp>(`${this.baseUrl}/sights/`, sight, { withCredentials: true });
+  }
+
 }

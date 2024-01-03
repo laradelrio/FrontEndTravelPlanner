@@ -16,7 +16,6 @@ export class GeoService {
 
   //get address options to fill form
   getAddressOptions(url: string): Observable<SightSearchSuggestions[]> {
-    console.log('url', url)
     return this.http.get<SightSearchSuggestions[]>(url);
   }
 

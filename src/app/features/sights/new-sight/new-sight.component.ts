@@ -6,9 +6,10 @@ import { DateInputComponent } from '@app/shared/components/date-input/date-input
 import { LocationSearchBoxComponent } from '@app/shared/components/location-search-box/location-search-box.component';
 import { finalize } from 'rxjs';
 import { NewSight } from '@app/core/interfaces/sight.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalInfo } from '@app/core/interfaces/modal.interface';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
+import { SightApiService } from '@app/core/apiServices/sight-api.service';
 
 @Component({
   selector: 'app-new-sight',
@@ -21,7 +22,9 @@ export class NewSightComponent {
 
   public sightForm!: FormGroup; 
   private formService: FormService = inject(FormService);
-  private route: ActivatedRoute = inject(ActivatedRoute);  
+  private activatedRoute: ActivatedRoute = inject(ActivatedRoute);  
+  private route: Router = inject(Router);  
+  private sightService: SightApiService = inject(SightApiService);
   @ViewChild('sharedModal') 
   private modalComponent!: ModalComponent;
   public modalInfo!: ModalInfo;
@@ -71,7 +74,7 @@ export class NewSightComponent {
   createNewSightObject(){
     let newSight: NewSight = {
       name: this.sightForm.controls['sight'].value.name,
-      fk_trips_id: parseInt(this.route.snapshot.url[1].path),
+      fk_trips_id: parseInt(this.activatedRoute.snapshot.url[1].path),
       longitude: this.sightForm.controls['sight'].value.longitude,
       latitude: this.sightForm.controls['sight'].value.latitude,
       startDate: this.sightForm.controls['dates'].value.startDate,
@@ -82,7 +85,13 @@ export class NewSightComponent {
   }
 
   sendSight(newSight: NewSight){
-    console.log('sight', newSight)
+    this.sightService.addNewSight(newSight)
+    .subscribe( (res) =>{
+      if(res.success){
+        this.writeModalContent();
+        this.route.navigate([`/trip/${parseInt(this.activatedRoute.snapshot.url[1].path)}`])
+      }
+    })
   }
 
   getInputError(field: string): string {

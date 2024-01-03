@@ -4,7 +4,7 @@
         <form [formGroup]="editTripForm" class="bg-white m-3 m-lg-5 mt-lg-1 pt-2 p-3 ">
             <fieldset  class="border rounded p-5 pt-2">
                 <legend class="float-none w-auto p-2"> General </legend>
-            <section formControlName="name">
+            <section>
                 <label for="name">Trip Name</label>
                 <input formControlName="name" type="text" class="form-control" id="name" maxlength="30" 
                 [ngClass]="(!this.editTripForm.controls['name'].valid && this.editTripForm.controls['name'].touched) ? 'is-invalid':''">
@@ -15,8 +15,8 @@
             <app-country-dropdown [destination]="destinationFromGroup"></app-country-dropdown>
             <app-date-input [type]="'date'"  [dates]="datesFromGroup"></app-date-input>
         </fieldset>
-        <fieldset  class="border rounded  d-flex justify-content-center">
-            <legend class="float-none w-auto p-2"> Sights </legend>
+        <fieldset  class="border rounded d-flex justify-content-center p-5 pt-0 pb-3">
+            <legend class="float-none w-auto p-2 mb-0"> Sights </legend>
                     <button class="m-3 btn btn-blue" [routerLink]="routerLink('new-sight')"> Add new sight </button>
                     <button class='m-3 btn btn-blue'> Edit sight </button>
         </fieldset>
