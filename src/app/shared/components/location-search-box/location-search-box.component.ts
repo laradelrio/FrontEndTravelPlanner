@@ -30,16 +30,13 @@ export class LocationSearchBoxComponent {
           this.display = true;
         }))
       .subscribe((res) => {
-        console.log('ressss', res.slice(0,5))
-        this.addressOptions = res;
-        
+        this.addressOptions = res.slice(0,5); 
       })
   }
 
   //return the url to search fro the address options
   async getUrl(): Promise<string> {
     let input: string = this.sight.get('name')!.value;
-    console.log('input', input)
     let searchableValue = this.optimizeText(input!.toString());
     let url: string = `https://nominatim.openstreetmap.org/search.php?q=${searchableValue}&format=jsonv2`;
     return url;

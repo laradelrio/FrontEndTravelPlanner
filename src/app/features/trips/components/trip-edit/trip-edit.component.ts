@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnChanges, OnInit, inject } from '@angula
 import { CommonModule } from '@angular/common';
 import { Trip } from '@app/core/interfaces/trip.interface';
 import { TripApiService } from '@app/core/apiServices/trip-api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormService } from '@app/shared/services/form.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DateInputComponent } from '@app/shared/components/date-input/date-input.component';
@@ -11,7 +11,7 @@ import { CountryDropdownComponent } from '@app/shared/components/country-dropdow
 @Component({
   selector: 'app-trip-edit',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DateInputComponent, CountryDropdownComponent],
+  imports: [CommonModule, ReactiveFormsModule, DateInputComponent, CountryDropdownComponent, RouterLink],
   templateUrl: './trip-edit.component.html',
   styleUrl: './trip-edit.component.scss'
 })
@@ -43,7 +43,6 @@ export class TripEditComponent implements OnInit{
       }),
     })
   }
-  
 
   ngOnInit(): void {
     this.getTrip();
@@ -118,5 +117,9 @@ export class TripEditComponent implements OnInit{
       .subscribe({
         next:  (res) => {},
       })
+  }
+
+  routerLink(routeParam: string): string{
+    return `/${routeParam}/${this.tripId}`
   }
 }

@@ -1,21 +1,18 @@
-<p>new-sight works!</p>
-<p>
-    name, tripId, log, lat, start, end, photo
-</p>
-
 <div class="d-flex flex-wrap col align-items-end" id="trip-form-div">
     <div class="d-flex flex-wrap col align-items-end" id="trip-form">
         <form [formGroup]="sightForm" class="rounded m-2 p-5" (ngSubmit)="onSubmit()">
+
             <h1 class="w-100 text-center mt-3 mb-4"> Sight / Attraction </h1>
 
             <app-location-search-box [sight]="sightFromGroup"></app-location-search-box>
+
             <app-date-input [type]="'datetime-local'" [dates]="datesFromGroup"></app-date-input>
 
             <section class="w-100 text-center mt-4">
                 <button type="submit" class="btn btn-blue w-50">Submit</button>
             </section>
+
         </form>
     </div>
 </div>
-    <pre>{{sightForm.value |json}}</pre>
-    <!-- <app-shared-modal #sharedModal [modalInfo]="modalInfo"></app-shared-modal> -->
+<app-shared-modal #sharedModal [modalInfo]="modalInfo"></app-shared-modal>

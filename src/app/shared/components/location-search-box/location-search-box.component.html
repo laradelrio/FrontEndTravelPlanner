@@ -1,9 +1,9 @@
 <form [formGroup]="sight">
-    <label class="mt-3 pb-1"> <strong>Event Address</strong> </label>
+    <label class="mt-3 pb-1"> Tourist Attraction </label>
     <div class="d-flex ">
-        <input formControlName="name" list="address-list" id="input" placeholder="Event Address"
+        <input formControlName="name" list="address-list" id="input" placeholder="Search a place"
             (keydown)="deleteCoordinates()" [ngClass]="(isValidAddress())? 'form-select is-invalid' : 'form-select'">
-        <button (click)="getAddressOptions()" class=" btn border-primary text-primary bg-white"
+        <button (click)="getAddressOptions()" class="btn ms-2 bg-white"
             type="button">Search</button>
     </div>
 

@@ -1,0 +1,7 @@
+.btn {
+    border: 1px solid var(--textColor);
+
+    &:hover {
+        font-weight: bold;
+    }
+}
