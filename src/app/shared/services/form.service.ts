@@ -16,7 +16,7 @@ export class FormService {
   imgbbApiKey: string = environment.imgbbApiKey;
   baseCountriesCitiesUrl: string = Constants.COUNTRIES_CITIES_API;
   unsplashApiUrl: string = Constants.UNSPLASH_API;
-  unsplashClientId: string = environment.unsplashClientID
+  unsplashClientId: string = environment.unsplashClientID;
   http!: HttpClient;
 
   constructor() {
@@ -68,5 +68,5 @@ export class FormService {
           resolve(res.results[0].urls.raw)
         })
     })
-  };
+  };  
 }

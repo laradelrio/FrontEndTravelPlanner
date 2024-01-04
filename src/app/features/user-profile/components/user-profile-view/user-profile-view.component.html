@@ -9,10 +9,10 @@
             <div class="col-6 ps-1 p-0 d-flex justify-content-center align-items-center">
                 <div>
                     <h3 class="w-100 text-center">{{userData.name | titlecase}}</h3>
-                    @if( matchPercentage !== 0 ){
+                    @if( userData.matchPercentage != null ){
                     <h6 class="fw-2 rounded w-100 mt-3 mb-3 text-center">
                         <img id="match-icon" class="p-2" src="../../../assets/match.png" alt="Match Icon" width="40px"> 
-                        <strong class="ps-2">95%</strong> match</h6>
+                        <strong class="ps-2">{{userData.matchPercentage}}%</strong> match</h6>
                     }
                 </div>
             </div>
@@ -20,7 +20,7 @@
 
         @if(trips.length>0) {
             <div class="col-12 d-flex col flex-wrap justify-content-center">
-                <app-trip-card [trips]="trips" class="w-75"></app-trip-card>
+                <app-trip-card [tripsValue]="trips" class="w-75"></app-trip-card>
             </div>
         } @else {
             <p class="w-100 text-center"> No trips yet </p>

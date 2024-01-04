@@ -1,6 +1,6 @@
 <section class="d-flex justify-content-center place-items-center flex-wrap mb-3">
     @for(user of  userProfiles; track user.id; let i = $index){
-        <div class="card">
+        <div class="card" (click)="openUserModal(user)">
         <div class="card-info">
             <div id="profile-photo-div" class="d-flex justify-content-center">
                 <img id="profile-photo" [src]="user.photo" (error)="handleImageError($event)" alt='match profile picture'/>
@@ -64,3 +64,5 @@
 </div> -->
 
 </section>
+
+<app-shared-modal #sharedModal [modalInfo]="modalInfo" ><app-user-profile-view [sentUserData]="userDisplayed"></app-user-profile-view></app-shared-modal>

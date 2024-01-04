@@ -21,7 +21,7 @@
     <div class="tab-pane  fade mt-4 show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         <article class="d-flex flex-wrap justify-content-evenly place-items-center">
             @for (trip of currentTrips; track trip.id){
-            <div class="card me-2 ms-2" [routerLink]="getRouterLink(trip.id)">
+            <div (click)='closeModal()'class="card me-2 ms-2" [routerLink]="getRouterLink(trip.id)">
                 <div class="card-info">
                     <div class="card-avatar">
                         <img [src]="trip.photo" (error)="handleImageError($event)" />
@@ -37,7 +37,7 @@
         role="tabpanel" aria-labelledby="nav-profile-tab">
         <article class="d-flex flex-wrap justify-content-evenly place-items-center">
             @for (trip of upcomingTrips; track trip.id){
-            <div class="card me-2 ms-2" [routerLink]="getRouterLink(trip.id)">
+            <div (click)='closeModal()' class="card me-2 ms-2" [routerLink]="getRouterLink(trip.id)">
                 <div class="card-info">
                     <div class="card-avatar">
                         <img [src]="trip.photo" (error)="handleImageError($event)" />
@@ -53,7 +53,7 @@
         id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
         <article class="d-flex flex-wrap justify-content-evenly place-items-center">
             @for (trip of pastTrips; track trip.id){
-            <div class="card me-2 ms-2" [routerLink]="getRouterLink(trip.id)">
+            <div (click)='closeModal()' class="card me-2 ms-2" [routerLink]="getRouterLink(trip.id)">
                 <div class="card-info">
                     <div class="card-avatar">
                         <img [src]="trip.photo" (error)="handleImageError($event)" />
@@ -74,3 +74,5 @@
 </div>
 
 }
+
+<app-shared-modal #sharedModal></app-shared-modal>

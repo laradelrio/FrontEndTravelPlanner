@@ -35,6 +35,15 @@ export class ModalComponent {
     })
   }
 
+  openXL(): Promise<boolean> {
+    return new Promise<boolean>(resolve => {
+      this.modalRef = this.modalService.open(this.modalContent, { size: 'lg' })
+      this.modalRef.result.then((result) => {
+      this.buttonClick.emit(result);
+      }, (reason) => {});
+    })
+  }
+
   closeModals(){
     this.modalService.dismissAll()
   }

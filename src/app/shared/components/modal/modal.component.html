@@ -20,12 +20,14 @@
       (click)="c('Cancel click')">
       <span aria-hidden="true">&times;</span>
     </button>
-    <p>
-      {{modalInfo.body}}
-    </p>
+    @if(modalInfo.body.length >0){
+      <p>
+        {{modalInfo.body}}
+      </p>
+    }
+    <ng-content></ng-content>   
   </div>
   }
-
   <div class="modal-footer bg-white round-bottom">
     @if(modalInfo.closeBtnName !== ''){
     <button type="button" class="btn close-btn" (click)="c('Cancel click')">
