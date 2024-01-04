@@ -28,4 +28,9 @@ export class SightApiService {
   updateSight(sightId: number, update: {}): Observable<ApiResp>{
     return this.http.put<ApiResp>(`${this.baseUrl}/sights/update/${sightId}`, update, { withCredentials: true });
   }
+
+  getMatchPercentage(userIds: {}): Observable<ApiResp>{
+      return this.http.post<ApiResp>(`${this.baseUrl}/sights/match`, userIds, { withCredentials: true });
+    }
+  
 }

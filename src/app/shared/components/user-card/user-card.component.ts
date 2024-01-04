@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserData } from '@app/core/interfaces/user.interface';
+import { SightApiService } from '@app/core/apiServices/sight-api.service';
 
 @Component({
   selector: 'app-user-card',
@@ -13,7 +14,6 @@ export class UserCardComponent {
   
   @Input()
   userProfiles!: UserData[] | null;
-
   userData: UserData = {
     id: 0,
     name: '',

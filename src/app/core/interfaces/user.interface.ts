@@ -3,4 +3,5 @@ export interface UserData{
     name: string;
     email: string
     photo?: string;
+    matchPercentage?: number
 }

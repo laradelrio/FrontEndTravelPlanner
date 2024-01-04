@@ -6,6 +6,7 @@ import { Trip } from '@app/core/interfaces/trip.interface';
 import { finalize } from 'rxjs';
 import { UserData } from '@app/core/interfaces/user.interface';
 import { UserApiService } from '@app/core/apiServices/user-api.service';
+import { SightApiService } from '@app/core/apiServices/sight-api.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class MatchesComponent implements OnInit{
 
   private userApiService: UserApiService = inject(UserApiService);
   private tripsApiService: TripApiService = inject(TripApiService);
+  private sightService: SightApiService = inject(SightApiService);
   private userId: number = parseInt(localStorage.getItem('userId')!);
   public userTripsStatus!: boolean;
   public trips: Trip[] = [];
@@ -64,18 +66,19 @@ export class MatchesComponent implements OnInit{
 
   //loop call for the matches of each of logged in user's trips
   getMatches(){
-    this.currentTrips.forEach( (trip) => {
-      this.getTripMatches(trip);
+    this.currentTrips.forEach( async (trip) => {
+      await this.getTripMatches(trip);
     });
 
-    this.upcomingTrips.forEach( (trip) => {
-      this.getTripMatches(trip);
+    this.upcomingTrips.forEach( async (trip) => {
+      await this.getTripMatches(trip);
     });
 
   }
 
   //get one trip's matches
-  getTripMatches(trip: Trip): void{
+  getTripMatches(trip: Trip): Promise<void>{
+  return new Promise ( (resolve, reject)=> {
     this.tripsApiService.getAllTripMatches(trip)
     .pipe(
       finalize(()=> {
@@ -90,18 +93,22 @@ export class MatchesComponent implements OnInit{
       } else {
         this.tripMatches.push(null);
       }
+      resolve()
     });
+  })
   }
 
   //loop call for the users of each  match of logged in user's trips
   getMatchesUsers(){
-    this.tripMatches.forEach( (matches) => {
+    this.tripMatches.forEach( (matches, index) => {
+      let tripId: number = this.getTripId(index);
       if(matches === null){
         this.matchUserProfiles.push(null);
       } else {
         let userMatches: UserData[] = [];
         matches.forEach( async (match: Trip) => {
-          let user = await this.getMatchUser(match)
+          let user = await this.getMatchUser(match);
+          user.matchPercentage = await this.getMatchPercentage(match.id, tripId);
           userMatches.push(user);
         });
         this.matchUserProfiles.push(userMatches)
@@ -109,6 +116,14 @@ export class MatchesComponent implements OnInit{
     })
   }
 
+
+  getTripId(i: number): number{
+    if(this.currentTrips.length > i){
+      return this.currentTrips[i].id
+    }else{
+      return  this.upcomingTrips[i- this.currentTrips.length].id
+    }
+  }
   //get one match's user profile
   getMatchUser(match: Trip): Promise<UserData>{
     return new Promise<UserData>((resolve, reject)=> {
@@ -120,5 +135,19 @@ export class MatchesComponent implements OnInit{
       })
     })
   }
+
+  
+  getMatchPercentage(matchTripId: number, loggedUserTrip: number ): Promise<number>{
+    return new Promise<number>((resolve, reject)=> {
+    this.sightService.getMatchPercentage({trip1: matchTripId, trip2: loggedUserTrip})
+    .subscribe((res)=>{
+      if(res.data.matchPercentage === null){
+        resolve(10)
+      } else{
+        resolve(parseInt(res.data.matchPercentage))
+      }
+    })
+  })
+}
 
 }

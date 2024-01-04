@@ -1,5 +1,5 @@
 <section class="d-flex justify-content-center place-items-center flex-wrap mb-3">
-    @for(user of  userProfiles; track user.id){
+    @for(user of  userProfiles; track user.id; let i = $index){
         <div class="card">
         <div class="card-info">
             <div id="profile-photo-div" class="d-flex justify-content-center">
@@ -11,7 +11,7 @@
         <div class="card-social">
             <h6 class="fw-2 rounded w-100 text-center">
                 <img id="match-icon" class="p-2" src="../../../assets/match.png" alt="Match Icon" width="40px"> 
-                <strong class="ps-2">95%</strong> match</h6>
+                <strong class="ps-2">{{user.matchPercentage}}%</strong> match</h6>
         </div>
     </div>
     } @empty {
