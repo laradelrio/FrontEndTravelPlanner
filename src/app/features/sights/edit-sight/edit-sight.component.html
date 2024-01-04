@@ -1,0 +1,57 @@
+<h5 class="w-100 text-center p-2 mb-0">Edit Sights</h5>
+<form [formGroup]="editSightForm" class="table-responsive">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">name</th>
+                <th scope="col">start</th>
+                <th scope="col">end</th>
+                <th scope="col">delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(sight of sights; track sight.id; let i = $index){
+            <tr>
+                @if(indexSightBeingEdited === i && fieldBeingEdited === 'sight.name'){
+                <td data-label="name" class="position-relative">
+                    <button class="position-absolute top-0 start-100 translate-middle close mt-2 pe-3"
+                        (click)="disableEditField()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <app-location-search-box [sight]="sightFromGroup"></app-location-search-box>
+                </td>
+                } @else {
+                <td (click)="enableEditField('sight.name', i, sight.id)" data-label="name">{{sight.name}}</td>
+                }
+
+                @if(indexSightBeingEdited === i && fieldBeingEdited === 'startDate'){
+                <td data-label="start" class="position-relative">
+                    <button class="position-absolute top-0 start-100 translate-middle close  mt-2 pe-3"
+                        (click)="disableEditField()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button><input
+                        (blur)="this.updateSightData('startDate', this.editSightForm.get('startDate')!.value)"
+                        type="datetime-local" formControlName="startDate" class="form-control">
+                </td>
+                } @else {
+                <td (click)="enableEditField('startDate', i, sight.id)" data-label="start">
+                    {{getFormattedDate(sight.startDate)}}</td>
+                }
+                @if(indexSightBeingEdited === i && fieldBeingEdited === 'endDate'){
+                <td data-label="end" class="position-relative">
+                    <button class="position-absolute top-0 start-100 translate-middle close mt-2 pe-3"
+                        (click)="disableEditField()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button><input (blur)="this.updateSightData('endDate', this.editSightForm.get('endDate')!.value)"
+                        type="datetime-local" formControlName="endDate" class="form-control">
+                </td>
+                } @else {
+                <td (click)="enableEditField('endDate', i, sight.id)" data-label="end">
+                    {{getFormattedDate(sight.endDate)}}</td>
+                }
+                <td data-label="delete"><button class="btn btn-danger">Delete</button></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</form>

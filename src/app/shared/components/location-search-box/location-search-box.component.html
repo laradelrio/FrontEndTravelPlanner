@@ -1,11 +1,8 @@
 <form [formGroup]="sight">
-    <label class="mt-3 pb-1"> Tourist Attraction </label>
-    <div class="d-flex ">
-        <input formControlName="name" list="address-list" id="input" placeholder="Search a place"
-            (keydown)="deleteCoordinates()" [ngClass]="(isValidAddress())? 'form-select is-invalid' : 'form-select'">
-        <button (click)="getAddressOptions()" class="btn ms-2 bg-white"
-            type="button">Search</button>
-    </div>
+
+    <input formControlName="name" list="address-list" id="input" placeholder="Search a place"
+        (keydown)="deleteCoordinates()" (keyup)="getAddressOptions()"
+        [ngClass]="(isValidAddress())? 'form-select is-invalid' : 'form-select'">
 
     @if(addressOptions.length > 0 && display){
     <ul id="address-list" class="p-0">
@@ -15,6 +12,6 @@
     </ul>
     }
     @if(isValidAddress()){
-    <p class="text-danger form-text">Please search and select for a valid address</p>
+    <p class="text-danger form-text">Please type and select a location</p>
     }
 </form>

@@ -64,10 +64,21 @@ export const routes: Routes = [
                 import('@app/features/trips/components/trip-view/trip-view.component').then((m) => m.TripViewComponent)
             },
             {
-                path: 'new-sight/:id',
-                canActivate: [guardsGuard],
-                loadComponent : () => 
-                import('@app/features/sights/new-sight/new-sight.component').then((m)=>m.NewSightComponent)
+                path: 'sight',
+                children: [
+                    {
+                        path: 'new/:id',
+                        canActivate: [guardsGuard],
+                        loadComponent : () => 
+                            import('@app/features/sights/new-sight/new-sight.component').then((m) => m.NewSightComponent)
+                    },
+                    {
+                        path: 'edit/:id',
+                        canActivate: [guardsGuard],
+                        loadComponent : () => 
+                            import('@app/features/sights/edit-sight/edit-sight.component').then((m) => m.EditSightComponent ) 
+                    },
+                ]
             },
             {
                 path: 'matches',

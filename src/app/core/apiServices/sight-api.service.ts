@@ -17,8 +17,15 @@ export class SightApiService {
     this.http = inject(HttpClient);
   }
 
+  getSights(tripId: number): Observable<ApiResp>{
+    return this.http.get<ApiResp>(`${this.baseUrl}/sights/trip/${tripId}`)
+  }
+
   addNewSight(sight: NewSight): Observable<ApiResp>{
     return this.http.post<ApiResp>(`${this.baseUrl}/sights/`, sight, { withCredentials: true });
   }
 
+  updateSight(sightId: number, update: {}): Observable<ApiResp>{
+    return this.http.put<ApiResp>(`${this.baseUrl}/sights/update/${sightId}`, update, { withCredentials: true });
+  }
 }

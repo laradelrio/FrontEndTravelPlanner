@@ -28,13 +28,13 @@ export class FormService {
     formData.append('image', imgFile);
     return this.http.post<ImgbbAPIResp>(this.baseImgBBUrl, formData, { params: { key: this.imgbbApiKey } })
   }
-    
-  getInputError(input: string, form: FormGroup): string{
-    let errors =  form.controls[input].errors  || {};   
+
+  getInputError(input: string, form: FormGroup): string {
+    let errors = form.controls[input].errors || {};
     let errorMessage: string = ""
 
-    for(let error of Object.keys(errors)){
-      switch(error){
+    for (let error of Object.keys(errors)) {
+      switch (error) {
         case 'required':
           errorMessage = "Required field";
           break;
@@ -45,7 +45,7 @@ export class FormService {
           errorMessage = `Must have at least ${errors['minlength']['requiredLength']} characters`;
           break;
         case 'maxlength':
-          console.log('error',errors)
+          console.log('error', errors)
           errorMessage = `Maximum ${errors['maxlength']['requiredLength']} characters`;
           break;
       }
@@ -53,11 +53,20 @@ export class FormService {
     return errorMessage;
   }
 
-  getCitiesInCountry(country: string): Observable<CitiesRes>{
-    return this.http.post<CitiesRes>(this.baseCountriesCitiesUrl, {"country": country}) 
+  getCitiesInCountry(country: string): Observable<CitiesRes> {
+    return this.http.post<CitiesRes>(this.baseCountriesCitiesUrl, { "country": country })
   }
 
-  getPlaceImage(place: string):Observable<PhotoRes>{
+  getPlaceImage(place: string): Observable<PhotoRes> {
     return this.http.get<PhotoRes>(`${this.unsplashApiUrl}${place}&client_id=${this.unsplashClientId}`)
   }
+
+  getPlacePhotoUrl(place: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.getPlaceImage(place)
+        .subscribe((res) => {
+          resolve(res.results[0].urls.raw)
+        })
+    })
+  };
 }

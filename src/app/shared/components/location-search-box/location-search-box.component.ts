@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { finalize } from 'rxjs';
 import { GeoService } from '@app/shared/services/geo.service';
@@ -12,7 +12,7 @@ import { SightSearchSuggestions } from '@app/core/interfaces/geo.interface';
   templateUrl: './location-search-box.component.html',
   styleUrl: './location-search-box.component.scss'
 })
-export class LocationSearchBoxComponent {
+export class LocationSearchBoxComponent{
 
   @Input() sight!: FormGroup;
   public display: boolean = false;

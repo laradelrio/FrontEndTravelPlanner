@@ -15,14 +15,17 @@
             <app-country-dropdown [destination]="destinationFromGroup"></app-country-dropdown>
             <app-date-input [type]="'date'"  [dates]="datesFromGroup"></app-date-input>
         </fieldset>
-        <fieldset  class="border rounded d-flex justify-content-center p-5 pt-0 pb-3">
+        <fieldset  class="border rounded d-flex justify-content-center row p-5 pt-0 pb-3">
             <legend class="float-none w-auto p-2 mb-0"> Sights </legend>
-                    <button class="m-3 btn btn-blue" [routerLink]="routerLink('new-sight')"> Add new sight </button>
-                    <button class='m-3 btn btn-blue'> Edit sight </button>
+                    <button class="m-3 btn btn-blue" [routerLink]="routerLink('new')"> Add new sight </button>
+                    <button class='m-3 btn btn-blue'  [routerLink]="routerLink('edit')"> Edit sight </button>
         </fieldset>
         </form>
     </div>
+
     <div class="col-lg-6 col-sm-12 " id="image-container">
         <img id='trip-image' class="" [src]="trip.photo" (error)="handleImageError($event)">
     </div>
 </div>
+
+

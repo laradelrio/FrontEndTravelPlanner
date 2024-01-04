@@ -7,11 +7,12 @@ import { FormService } from '@app/shared/services/form.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DateInputComponent } from '@app/shared/components/date-input/date-input.component';
 import { CountryDropdownComponent } from '@app/shared/components/country-dropdown/country-dropdown.component';
+import { EditSightComponent } from '@app/features/sights/edit-sight/edit-sight.component';
 
 @Component({
   selector: 'app-trip-edit',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DateInputComponent, CountryDropdownComponent, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, DateInputComponent, CountryDropdownComponent, RouterLink, EditSightComponent],
   templateUrl: './trip-edit.component.html',
   styleUrl: './trip-edit.component.scss'
 })
@@ -112,14 +113,14 @@ export class TripEditComponent implements OnInit{
     return this.formService.getInputError(field, this.editTripForm);
   }
 
-    updateTripData(inputField: string, inputFieldValue: string){
-    this.tripService.updateUser(this.trip.id, {field: inputField, value: inputFieldValue})
+  updateTripData(inputField: string, inputFieldValue: string){
+    this.tripService.updateTrip(this.trip.id, {field: inputField, value: inputFieldValue})
       .subscribe({
         next:  (res) => {},
       })
   }
 
   routerLink(routeParam: string): string{
-    return `/${routeParam}/${this.tripId}`
+    return `/sight/${routeParam}/${this.tripId}`
   }
 }
