@@ -49,3 +49,34 @@ div .modal-content{
     --bs-modal-border-color: none !important;
 }
 
+
+.mapboxgl-popup-content {
+    color: white !important;
+    background-color:  var(--accentColor) ;
+    padding: 6px;
+    font-family: 'League Spartan', sans-serif !important;
+    max-width: 150px;
+    border-radius: 10px;
+    border: 2px solid var(--textColor);
+    
+
+    p{
+        margin-bottom: 0px !important;
+    }
+
+    .mapPopupText{
+        background-color:var(--primaryColor);
+        color: var(--textColor);;
+        padding: 0px 10px 0px 10px;
+        border-radius: 10px;
+    }
+}
+
+.mapboxgl-popup-close-button {
+    display: none;
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+    border-top-color:var(--textColor);
+    
+}

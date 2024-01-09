@@ -3,8 +3,8 @@ export interface SightSearchSuggestions {
     licence:      string;
     osm_type:     string;
     osm_id:       number;
-    lat:          string;
-    lon:          string;
+    lat:         number;
+    lon:          number;
     category:     string;
     type:         string;
     place_rank:   number;
