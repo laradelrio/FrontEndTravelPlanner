@@ -7,11 +7,12 @@ import { MapComponent } from '@app/shared/components/map/map.component';
 import { Sight } from '@app/core/interfaces/sight.interface';
 import { SightApiService } from '@app/core/apiServices/sight-api.service';
 import { CalendarComponent } from '@app/shared/components/calendar/calendar.component';
+import { ViewSightsComponent } from '@app/features/sights/view-sights/view-sights.component';
 
 @Component({
   selector: 'app-trip-view',
   standalone: true,
-  imports: [CommonModule, RouterLink, MapComponent, CalendarComponent],
+  imports: [CommonModule, RouterLink, MapComponent, CalendarComponent, ViewSightsComponent],
   templateUrl: './trip-view.component.html',
   styleUrl: './trip-view.component.scss'
 })

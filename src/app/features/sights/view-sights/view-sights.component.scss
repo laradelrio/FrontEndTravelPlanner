@@ -1,0 +1,25 @@
+.sight-img{
+    height: 25vh;
+    object-fit: cover;
+    z-index: -100;
+    filter: brightness(90%);
+}
+
+.sight-card{
+    border: 2px solid var(--mainDarkColor)
+}
+
+.btn-add-sight{
+    margin-bottom: 40px;
+
+}
+
+.bg-sight-text{
+    background-color: var(--bgLightPrimaryColor);
+}
+
+@media (max-width: 670px){
+    .sight-card{
+        min-width: 80%;
+    }
+}
