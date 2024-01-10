@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { TripCardComponent } from '@app/shared/components/trip-card/trip-card.component';
 import { Trip } from '@app/core/interfaces/trip.interface';
 import { TripApiService } from '@app/core/apiServices/trip-api.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-trips',
   standalone: true,
-  imports: [CommonModule, TripCardComponent],
+  imports: [CommonModule, TripCardComponent, RouterLink],
   templateUrl: './trips.component.html',
   styleUrl: './trips.component.scss'
 })
