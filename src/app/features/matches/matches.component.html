@@ -4,7 +4,7 @@
     <h1 class="text-center mb-3 p-4 border-bottom bg-white">Current Trips</h1>
 
     @for(trip of currentTrips; track trip.id; let i = $index; ){
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-center align-items-center mb-4">
         <section class="border border rounded w-75 mt-2 trip-match-section">
             <h2 class="text-center mb-0 rounded-top p-3 border-bottom trip-title mb-4"> {{trip.name}}</h2>
             <app-user-card [userProfiles]="matchUserProfiles[i]"></app-user-card>
@@ -18,7 +18,7 @@
 
     <h1 class="text-center mt-3 mb-3 p-4 border-bottom bg-white">Upcoming Trips</h1>
     @for(trip of upcomingTrips; track trip.id; let i = $index;){
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-center align-items-center mb-4">
         <section class="border border rounded w-75 mt-2 trip-match-section">
             <h2 class="text-center mb-0 rounded-top p-3 border-bottom trip-title mb-4">{{trip.name}}</h2>
             <app-user-card [userProfiles]="matchUserProfiles[currentTrips.length + i]"></app-user-card>
@@ -27,3 +27,4 @@
     }
 
 }
+<div id='empty-space'></div>
