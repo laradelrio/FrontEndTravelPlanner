@@ -5,7 +5,12 @@ i{
 }
 
 span{
-    color: var(--textColor);
+    color: var(--textColor);  
+}
+
+.title{
+    font-family: var(--headerFont);
+    font-size: large;
 }
 
 .container-fluid{

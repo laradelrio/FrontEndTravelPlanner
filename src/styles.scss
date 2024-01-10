@@ -7,11 +7,16 @@
     --accentColor: #5cebda;
     --bgLightPrimaryColor: #ECFAF8;
     --bgLightSecondaryColor: #F0F4E0;
+    --headerFont:  "Squada One", sans-serif;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     color: var(--textColor);
+}
+
+h1, h2, h3{
+    font-family: "Squada One", sans-serif;
 }
 
 .btn-blue{
