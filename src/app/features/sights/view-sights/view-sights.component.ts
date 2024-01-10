@@ -16,13 +16,11 @@ export class ViewSightsComponent {
   private tripId = parseInt(this.route.snapshot.url[1].path);
   public isLoggedInUser: boolean = false;
   @Input() set tripUser(value: number){
-    this.isLoggedInUser = ( value.toString() != localStorage.getItem('userId'));
+    this.isLoggedInUser = (value.toString() == localStorage.getItem('userId'));
   }
 
   routerLink(): string{
     return `/sight/new/${this.tripId}`;
   }
-
-  
 }
 
