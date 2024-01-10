@@ -15,14 +15,19 @@ span{
 
 .container-fluid{
     border-right: 1px solid rgba(128, 128, 128, 0.249);
+    height: 90vh;
 }
 
 .nav-pills .nav-link{
     color: #042e2fb7;
 }
+
 .nav-item .active{
-    background-color: white;
-    font-weight: bolder;
+    background-color: #F8F9FA;
+    font-weight: bold;
+    i{
+        color: #157a70;
+    }
 }
 
 .nav-item:hover{
