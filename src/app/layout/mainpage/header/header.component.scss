@@ -2,6 +2,13 @@ i{
     color: gray;
 }
 
+#logo{
+    width: 10vh;
+    position: absolute;
+    z-index: 49;
+    top: 5px;
+}
+
 #profile-photo {
     width: 50px;
     object-fit: cover;
