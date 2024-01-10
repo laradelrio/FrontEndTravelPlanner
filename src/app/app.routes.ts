@@ -1,18 +1,12 @@
 import { Routes } from '@angular/router';
 import { MainpageComponent } from '@layout/mainpage/mainpage.component';
 import { guardsGuard } from './core/guards/guards.guard';
-import { TestfeatureComponent } from './features/testfeature/testfeature.component';
 import { UserProfileComponent } from '@app/features/user-profile/user-profile.component';
 import { MatchesComponent } from './features/matches/matches.component';
 
 
 
 export const routes: Routes = [
-    {
-        path: 'test',
-        component: TestfeatureComponent,
-        canActivate: [guardsGuard],
-    },
     {
         path: '',
         component: MainpageComponent,
