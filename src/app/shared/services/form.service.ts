@@ -45,7 +45,6 @@ export class FormService {
           errorMessage = `Must have at least ${errors['minlength']['requiredLength']} characters`;
           break;
         case 'maxlength':
-          console.log('error', errors)
           errorMessage = `Maximum ${errors['maxlength']['requiredLength']} characters`;
           break;
       }
