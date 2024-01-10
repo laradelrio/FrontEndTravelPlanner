@@ -48,7 +48,6 @@ export class AppComponent implements OnInit {
   //check close modal and log out if not touched within 3 min of opening
   checkIfModalIgnored(){
     setTimeout(() => {
-      console.log("Delayed for 3 min.");
       if(this.modalClicked){
         this.modalClicked = false;
       } else {

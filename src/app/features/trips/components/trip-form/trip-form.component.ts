@@ -76,7 +76,6 @@ export class TripFormComponent {
   sendTrip(newTrip: NewTrip){
     this.tripService.addNewTrip(newTrip).
     subscribe( (res) => {
-      console.log(res);
       if(res.success){
         this.writeModalContent();
       }

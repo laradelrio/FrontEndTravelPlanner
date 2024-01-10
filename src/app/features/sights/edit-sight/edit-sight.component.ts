@@ -88,10 +88,7 @@ export class EditSightComponent implements OnInit {
       }
     })
   }
-  dismiss(h:string){
-    console.log('DISMISS')
-  }
-
+  
   async sightLocationUpdated() {
     this.updateSightData('name', this.editSightForm.get('sight.name')!.value);
     this.updateSightData('longitude', this.editSightForm.get('sight.longitude')!.value);
