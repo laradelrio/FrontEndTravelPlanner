@@ -43,7 +43,7 @@
 </div>
 } @else {
 <div id="calendar" class="w-100">
-    <app-calendar [setSights]="sights"></app-calendar>
+    <app-calendar [setSights]="sights" [tripStartDate]="trip.startDate"></app-calendar>
 </div>
 <app-view-sights [sights]="sights"></app-view-sights>
 }
