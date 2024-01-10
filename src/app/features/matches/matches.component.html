@@ -1,20 +1,29 @@
+<div id='img-bg'></div>
+
 @if(currentTrips.length > 0){
-    <h1 class="text-center shadow p-5 mb-0" id="current-trips-title">Current Trips</h1>
+    <h1 class="text-center mb-3 p-4 border-bottom bg-white">Current Trips</h1>
 
     @for(trip of currentTrips; track trip.id; let i = $index; ){
-        <section class="border">
-            <h2 class="text-center mt-5 mb-5">{{trip.name}}</h2>
+    <div class="d-flex justify-content-center align-items-center">
+        <section class="border border rounded w-75 mt-2 trip-match-section">
+            <h2 class="text-center mb-0 rounded-top p-3 border-bottom trip-title mb-4"> {{trip.name}}</h2>
             <app-user-card [userProfiles]="matchUserProfiles[i]"></app-user-card>
-        </section>                
-    }    
+        </section>
+    </div>
+    }
+
 }
 
 @if(upcomingTrips.length > 0){
-    <h1 class="text-center shadow p-5 mb-0" id="upcoming-trips-title">Upcoming Trips</h1>
+
+    <h1 class="text-center mt-3 mb-3 p-4 border-bottom bg-white">Upcoming Trips</h1>
     @for(trip of upcomingTrips; track trip.id; let i = $index;){
-        <section class="border">
-            <h2 class="text-center mt-5 mb-5">{{trip.name}}</h2>
+    <div class="d-flex justify-content-center align-items-center">
+        <section class="border border rounded w-75 mt-2 trip-match-section">
+            <h2 class="text-center mb-0 rounded-top p-3 border-bottom trip-title mb-4">{{trip.name}}</h2>
             <app-user-card [userProfiles]="matchUserProfiles[currentTrips.length + i]"></app-user-card>
-        </section>  
+        </section>
+    </div>
     }
+
 }
