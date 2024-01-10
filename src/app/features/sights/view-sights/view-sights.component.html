@@ -1,8 +1,10 @@
 <h2 class=" text-center w-100 border p-4 mb-0 bg-light ">Trip Sightseeing Spots</h2>
-<button id='btn-add-sight' class="offset-9 col-sm-3 offset-lg-11 col-lg-1 btn btn-sm border" [routerLink]="routerLink()">
+@if(isLoggedInUser){
+<button id='btn-add-sight' class="offset-8 col-sm-4 offset-lg-11 col-lg-1 btn btn-sm border" [routerLink]="routerLink()">
     <i class="fa-solid fa-plus me-2" style="color: #042e2f;"></i>
     Add Spot
 </button>
+}
 <div class="d-flex flex-wrap justify-content-center align-items-center mt-3 mb-4">
     @for(sight of sights; track sight.id){
     <div class=" col-lg-4 m-2 rounded sight-card">

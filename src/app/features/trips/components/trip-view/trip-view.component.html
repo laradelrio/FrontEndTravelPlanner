@@ -34,16 +34,16 @@
     <app-map [tripLocation]="trip.destination" [setSights]="sights"></app-map>
 </div>
 
-@if(sights.length === 0){
+@if(sights.length === 0 && isLoggedInUser){
 <div id='addSightMessage' class="d-flex justify-content-center align-items-center row m-4">
     <section class="rounded border d-flex justify-content-center align-items-center row w-50 pt-3">
         <p class="w-100 text-center">Add sightseeing spots to your trip to access the calendar display!</p>
         <button class="m-3 btn btn-blue w-50" [routerLink]="routerLink()"> Add a sight </button>
     </section>
 </div>
-} @else {
+} @else if (sights.length > 0){
 <div id="calendar" class="w-100">
     <app-calendar [setSights]="sights" [tripStartDate]="trip.startDate"></app-calendar>
 </div>
-<app-view-sights [sights]="sights"></app-view-sights>
+<app-view-sights [sights]="sights" [tripUser]="trip.fk_users_id"></app-view-sights>
 }

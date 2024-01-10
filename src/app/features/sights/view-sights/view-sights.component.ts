@@ -14,9 +14,15 @@ export class ViewSightsComponent {
   @Input() sights!: Sight[];
   private route: ActivatedRoute = inject(ActivatedRoute);
   private tripId = parseInt(this.route.snapshot.url[1].path);
-  
+  public isLoggedInUser: boolean = false;
+  @Input() set tripUser(value: number){
+    this.isLoggedInUser = ( value.toString() != localStorage.getItem('userId'));
+  }
+
   routerLink(): string{
     return `/sight/new/${this.tripId}`;
   }
+
+  
 }
 
