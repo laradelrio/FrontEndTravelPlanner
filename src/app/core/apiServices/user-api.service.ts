@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { GetUserApiResp, UserApiResp } from '../interfaces/apiResponses.interface';
 import { Constants } from '../constants/constants';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -14,6 +15,7 @@ export class UserApiService {
   baseUrl: string = Constants.DB_API_ENDPOINT;
   http!: HttpClient;
   isLoggedIn = signal<boolean>(false);
+  router: Router = inject(Router);
 
   constructor() {
     this.http = inject(HttpClient);
@@ -51,7 +53,7 @@ export class UserApiService {
   logout() {
     this.logoutUser()
       .subscribe({
-        next: (res) => (this.isLoggedIn.set(false), localStorage.clear),
+        next: (res) => (this.isLoggedIn.set(false), localStorage.clear, this.router.navigate(['/home'])),
         error: (error) => (this.isLoggedIn.set(true))
       })
   }
