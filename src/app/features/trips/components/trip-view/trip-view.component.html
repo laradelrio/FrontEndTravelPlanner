@@ -1,7 +1,7 @@
 @if(isLoggedInUser){
 <div id="manage-trip-btns " class="p-2 bg-light d-flex justify-content-end">
     <button class="manage-btn btn btn-sm border me-3" [routerLink]="getRouterLink(trip.id)"> Edit </button>
-    <button class="manage-btn btn btn-sm border"> Delete </button>
+    <button class="manage-btn btn btn-sm border" (click)="openDeleteModal()"> Delete </button>
 </div>
 }
 <img id='trip-banner' class="w-100" [src]="trip.photo" (error)="handleImageError($event)">
@@ -47,3 +47,4 @@
 </div>
 <app-view-sights [sights]="sights" [tripUser]="trip.fk_users_id"></app-view-sights>
 }
+<app-shared-modal #sharedModal [modalInfo]="modalInfo" (buttonClick)="deleteTrip($event)"></app-shared-modal>

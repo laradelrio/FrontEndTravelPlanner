@@ -155,14 +155,7 @@ export class EditSightComponent implements OnInit {
   }
 
   openDeleteModal(sightId: number){
-    this.modalInfo = {
-      style: "modal-style-danger",
-      title: "Delete Account",
-      body: "Deleting your account is permanent. Are you sure you want to delete your account?",
-      btnClass: "btn-danger",
-      closeBtnName: "Cancel",
-      actionBtnName: "Delete",
-    }
+    this.modalInfo = this.formService.getDeleteModalInfo('this sight');
     this.sightId = sightId;
     this.open();
   }

@@ -3,6 +3,7 @@ import { Injectable, Input, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Constants } from '@app/core/constants/constants';
 import { CitiesRes, ImgbbAPIResp } from '@app/core/interfaces/form.interface';
+import { ModalInfo } from '@app/core/interfaces/modal.interface';
 import { PhotoRes } from '@app/core/interfaces/photo.interface';
 import { environment } from 'environments/environment.development';
 import { Observable } from 'rxjs/internal/Observable';
@@ -71,4 +72,16 @@ export class FormService {
         })
     })
   };  
+
+  getDeleteModalInfo(deletedElement: string): ModalInfo{
+    let modalInfo: ModalInfo = {
+      style: "modal-style-danger",
+      title: "Delete Account",
+      body: `Deleting ${deletedElement} is permanent. Are you sure you want to delete ${deletedElement}?`,
+      btnClass: "btn-danger",
+      closeBtnName: "Cancel",
+      actionBtnName: "Delete",
+    }
+    return modalInfo;
+  }
 }

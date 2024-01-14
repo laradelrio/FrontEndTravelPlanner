@@ -39,5 +39,8 @@ export class TripApiService {
     return this.http.put<ApiResp>(`${this.baseUrl}/trips/update/${tripId}`, update, { withCredentials: true });
   }
 
+  deleteTrip(tripId: number){
+    return this.http.delete<ApiResp>(`${this.baseUrl}/trips/delete/${tripId}`, { withCredentials: true });
+  }
 
 }
