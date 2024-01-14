@@ -33,6 +33,7 @@ export class FormService {
     let errors = form.controls[input].errors || {};
     let errorMessage: string = ""
 
+
     for (let error of Object.keys(errors)) {
       switch (error) {
         case 'required':
@@ -47,6 +48,8 @@ export class FormService {
         case 'maxlength':
           errorMessage = `Maximum ${errors['maxlength']['requiredLength']} characters`;
           break;
+        case 'invalidDate':
+          errorMessage = `Date not within trip dates`;
       }
     }
     return errorMessage;

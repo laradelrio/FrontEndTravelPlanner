@@ -1,12 +1,14 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LocationSearchBoxComponent } from '@app/shared/components/location-search-box/location-search-box.component';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Sight } from '@app/core/interfaces/sight.interface';
 import { SightApiService } from '@app/core/apiServices/sight-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormService } from '@app/shared/services/form.service';
-import { Subscription } from 'rxjs';
+import { Subscription, finalize } from 'rxjs';
+import { TripApiService } from '@app/core/apiServices/trip-api.service';
+import { Trip } from '@app/core/interfaces/trip.interface';
 
 @Component({
   selector: 'app-edit-sight',
@@ -16,7 +18,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './edit-sight.component.scss'
 })
 export class EditSightComponent implements OnInit {
-
+  
   public indexSightBeingEdited!: number;
   private sightId!: number;
   public fieldBeingEdited!: string;
@@ -26,7 +28,10 @@ export class EditSightComponent implements OnInit {
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   private tripId = parseInt(this.activatedRoute.snapshot.url[1].path);
   private sightService: SightApiService = inject(SightApiService);
+  private tripService: TripApiService = inject(TripApiService);
   private subscription!: Subscription;  
+  public startDate: string = '2024-01-30T00:00:00';
+  public endDate: string = '2028-12-31T00:00:00';
 
   constructor(
     private fb: FormBuilder,
@@ -44,6 +49,7 @@ export class EditSightComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSights();
+    this.getTrip();
   }
   
   get sightFromGroup(): FormGroup {
@@ -57,6 +63,34 @@ export class EditSightComponent implements OnInit {
       })
   }
 
+  getTrip() {
+    let tripId: number = parseInt(this.activatedRoute.snapshot.url[1].path);
+    this.tripService.getOneTrip(tripId)
+      .pipe(
+        finalize(() => {
+          this.editSightForm.get('startDate')!.setValidators([this.dateValidator.bind(this), Validators.required]);
+      })
+      )
+      .subscribe((res) => {
+        this.startDate = (res.data.startDate).slice(0,19);
+      this.endDate = res.data.endDate.slice(0,19);
+      })
+  }
+
+  dateValidator(control: AbstractControl): { [key: string]: any } | null {
+    let returnValue: { [key: string]: any } | null = { invalidDate: false }
+    if (control.value != ''){
+      let inputDate = new Date(control.value);
+      let startDate = new Date(this.startDate);
+      let endDate = new Date(this.endDate);
+
+      if (inputDate >= startDate && inputDate <= endDate) {
+        returnValue = null;
+      }
+    }
+    return returnValue;
+  }
+  
   getFormattedDate(date: string): string {
     return `${date.slice(0,10)} ${date.slice(11,16)}`;
   }

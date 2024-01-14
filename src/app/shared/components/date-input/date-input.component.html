@@ -3,10 +3,10 @@
     <section class="mt-3">
         <label for="date"> {{input.label}} </label>
         <input #date class="form-control"
-        [formControlName]="input.formControlName" [type]="type" id="date" name="date" [min]="todayDate" max="2028-02-20"
+        [formControlName]="input.formControlName" [type]="type" id="date" name="date" [min]="startDate" [max]="endDate"
         [ngClass]="(!this.dates.controls[input.formControlName].valid && this.dates.controls[input.formControlName].touched) ? 'is-invalid':''">
         @if(!this.dates.controls[input.formControlName].valid && this.dates.controls[input.formControlName].touched){
-            <p class="ms-3 form-text text-danger"> Invalid Date</p>
+            <p class="ms-3 form-text text-danger"> {{getInputError(input.formControlName)}}</p>
         }  
     </section>
     }

@@ -31,7 +31,7 @@
                         <i class="fa-solid fa-xmark"></i>
                     </button><input
                         (blur)="this.updateSightData('startDate', this.editSightForm.get('startDate')!.value)"
-                        type="datetime-local" formControlName="startDate" class="form-control">
+                        type="datetime-local" formControlName="startDate" class="form-control" [min]="startDate" [max]="endDate">
                 </td>
                 } @else {
                 <td (click)="enableEditField('startDate', i, sight.id)" data-label="start">
@@ -43,7 +43,7 @@
                         (click)="disableEditField()">
                         <i class="fa-solid fa-xmark"></i>
                     </button><input (blur)="this.updateSightData('endDate', this.editSightForm.get('endDate')!.value)"
-                        type="datetime-local" formControlName="endDate" class="form-control">
+                        type="datetime-local" formControlName="endDate" class="form-control" [min]="startDate" [max]="endDate">
                 </td>
                 } @else {
                 <td (click)="enableEditField('endDate', i, sight.id)" data-label="end">
