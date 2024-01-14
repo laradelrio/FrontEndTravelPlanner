@@ -80,17 +80,28 @@ export class EditSightComponent implements OnInit {
   dateValidator(control: AbstractControl): { [key: string]: any } | null {
     let returnValue: { [key: string]: any } | null = { invalidDate: false }
     if (control.value != ''){
+      
+      console.log('here')
       let inputDate = new Date(control.value);
       let startDate = new Date(this.startDate);
       let endDate = new Date(this.endDate);
-
+      console.log('here', inputDate,startDate,endDate)
       if (inputDate >= startDate && inputDate <= endDate) {
         returnValue = null;
       }
     }
+    console.log(returnValue)
     return returnValue;
   }
+
+  isValidDate(field:string): boolean | null {
+    return !(this.editSightForm.get(field)?.valid);
+  }
   
+  getInputError(field: string): string {
+    return this.formService.getInputError(field, this.editSightForm);
+  }
+
   getFormattedDate(date: string): string {
     return `${date.slice(0,10)} ${date.slice(11,16)}`;
   }
@@ -124,11 +135,13 @@ export class EditSightComponent implements OnInit {
   }
   
   async sightLocationUpdated() {
+    if(this.editSightForm.valid){
     this.updateSightData('name', this.editSightForm.get('sight.name')!.value);
     this.updateSightData('longitude', this.editSightForm.get('sight.longitude')!.value);
     this.updateSightData('latitude', this.editSightForm.get('sight.latitude')!.value);
     let photoUrl = await this.formService.getPlacePhotoUrl(this.editSightForm.get('sight.name')!.value);
     this.updateSightData('photo', photoUrl);
+    }
     this.subscription.unsubscribe();
   }
 
