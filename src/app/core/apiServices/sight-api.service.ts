@@ -31,6 +31,10 @@ export class SightApiService {
 
   getMatchPercentage(userIds: {}): Observable<ApiResp>{
       return this.http.post<ApiResp>(`${this.baseUrl}/sights/match`, userIds, { withCredentials: true });
-    }
+  }
+
+  deleteSight(sightId: number){
+    return this.http.delete<ApiResp>(`${this.baseUrl}/sights/delete/${sightId}`, { withCredentials: true });
+  }
   
 }

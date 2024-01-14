@@ -53,9 +53,10 @@
                 <td (click)="enableEditField('endDate', i, sight.id)" data-label="end">
                     {{getFormattedDate(sight.endDate)}}</td>
                 }
-                <td data-label="delete"><button class="btn btn-danger">Delete</button></td>
+                <td data-label="delete"><button class="btn btn-danger" (click)="openDeleteModal(sight.id)">Delete</button></td>
             </tr>
             }
         </tbody>
     </table>
 </form>
+<app-shared-modal #sharedModal [modalInfo]="modalInfo" (buttonClick)="deleteSight($event)"></app-shared-modal>

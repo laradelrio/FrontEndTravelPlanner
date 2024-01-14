@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LocationSearchBoxComponent } from '@app/shared/components/location-search-box/location-search-box.component';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -9,11 +9,13 @@ import { FormService } from '@app/shared/services/form.service';
 import { Subscription, finalize } from 'rxjs';
 import { TripApiService } from '@app/core/apiServices/trip-api.service';
 import { Trip } from '@app/core/interfaces/trip.interface';
+import { ModalComponent } from '@app/shared/components/modal/modal.component';
+import { ModalInfo } from '@app/core/interfaces/modal.interface';
 
 @Component({
   selector: 'app-edit-sight',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, LocationSearchBoxComponent],
+  imports: [CommonModule, ReactiveFormsModule, LocationSearchBoxComponent, ModalComponent],
   templateUrl: './edit-sight.component.html',
   styleUrl: './edit-sight.component.scss'
 })
@@ -32,6 +34,9 @@ export class EditSightComponent implements OnInit {
   private subscription!: Subscription;  
   public startDate: string = '2024-01-30T00:00:00';
   public endDate: string = '2028-12-31T00:00:00';
+  @ViewChild('sharedModal') 
+  private modalComponent!: ModalComponent;
+  public modalInfo!: ModalInfo;
 
   constructor(
     private fb: FormBuilder,
@@ -80,17 +85,13 @@ export class EditSightComponent implements OnInit {
   dateValidator(control: AbstractControl): { [key: string]: any } | null {
     let returnValue: { [key: string]: any } | null = { invalidDate: false }
     if (control.value != ''){
-      
-      console.log('here')
       let inputDate = new Date(control.value);
       let startDate = new Date(this.startDate);
       let endDate = new Date(this.endDate);
-      console.log('here', inputDate,startDate,endDate)
       if (inputDate >= startDate && inputDate <= endDate) {
         returnValue = null;
       }
     }
-    console.log(returnValue)
     return returnValue;
   }
 
@@ -151,5 +152,38 @@ export class EditSightComponent implements OnInit {
       .subscribe({
         next:  (res) => { this.getSights()},
       })
+  }
+
+  openDeleteModal(sightId: number){
+    this.modalInfo = {
+      style: "modal-style-danger",
+      title: "Delete Account",
+      body: "Deleting your account is permanent. Are you sure you want to delete your account?",
+      btnClass: "btn-danger",
+      closeBtnName: "Cancel",
+      actionBtnName: "Delete",
+    }
+    this.sightId = sightId;
+    this.open();
+  }
+
+  open() {
+    this.openModal();
+  }
+
+  async openModal() {
+    return await this.modalComponent.open();
+  }
+
+  deleteSight(value: string){
+    if(value === 'Action click'){
+      this.sightService.deleteSight(this.sightId)
+      .pipe(
+        finalize( () => {
+          this.getSights();
+        })
+      )
+      .subscribe();
+    }
   }
 }
