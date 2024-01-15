@@ -47,7 +47,7 @@ export class AccountSidebarComponent implements OnInit {
       this.userService.deleteUser(userId)
       .pipe(
         finalize( () => {
-          this.userService.logout(); //TODO Delete all trips and sights before deleting
+          this.userService.logout(); 
           this.router.navigate(['/home']);
         })
       )
