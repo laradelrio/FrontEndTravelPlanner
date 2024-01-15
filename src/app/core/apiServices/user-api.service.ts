@@ -66,4 +66,8 @@ export class UserApiService {
     return this.http.put<UserApiResp>(`${this.baseUrl}/users/update/${userId}`, update, { withCredentials: true });
   }
 
+  deleteUser(userId: number){
+    return this.http.delete<UserApiResp>(`${this.baseUrl}/users/delete/${userId}`, { withCredentials: true });
+  }
+
 }

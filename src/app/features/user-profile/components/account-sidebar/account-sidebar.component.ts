@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
 import { ModalInfo } from '@app/core/interfaces/modal.interface';
+import { FormService } from '@app/shared/services/form.service';
+import { UserApiService } from '@app/core/apiServices/user-api.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-account-sidebar',
@@ -17,20 +20,15 @@ export class AccountSidebarComponent implements OnInit {
   private modalComponent!: ModalComponent;
   public modalInfo!: ModalInfo;
   private router: Router = inject(Router);
+  private formService: FormService = inject(FormService);
+  private userService: UserApiService = inject(UserApiService);
 
   ngOnInit(): void {
     this.activeSection(this.router.url);
   }
 
   openDeleteModal(){
-    this.modalInfo = {
-      style: "modal-style-danger",
-      title: "Delete Account",
-      body: "Deleting your account is permanent. Are you sure you want to delete your account?",
-      btnClass: "btn-danger",
-      closeBtnName: "Cancel",
-      actionBtnName: "Delete",
-    }
+    this.modalInfo = this.formService.getDeleteModalInfo('this trip');
     this.open();
   }
 
@@ -40,6 +38,21 @@ export class AccountSidebarComponent implements OnInit {
 
   async openModal() {
     return await this.modalComponent.open();
+  }
+
+  deleteUser(value: string){
+    console.log(value)
+    if(value === 'Action click'){
+      let userId = parseInt(localStorage.getItem('userId')!);
+      this.userService.deleteUser(userId)
+      .pipe(
+        finalize( () => {
+          this.userService.logout(); //TODO Delete all trips and sights before deleting
+          this.router.navigate(['/home']);
+        })
+      )
+      .subscribe();
+    }
   }
   
   activeSection(navLink: string): string {

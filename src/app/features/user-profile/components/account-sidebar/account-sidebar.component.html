@@ -30,4 +30,4 @@
     </div>
 </div>
 
-<app-shared-modal #sharedModal [modalInfo]="modalInfo"></app-shared-modal>
+<app-shared-modal #sharedModal [modalInfo]="modalInfo" (buttonClick)="deleteUser($event)"></app-shared-modal>
