@@ -25,7 +25,7 @@ export class EditSightComponent implements OnInit {
   private sightId!: number;
   public fieldBeingEdited!: string;
   public editSightForm!: FormGroup;
-  public sights!: Sight[];
+  public sights: Sight[] = [];
   private formService: FormService = inject(FormService);
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   private tripId = parseInt(this.activatedRoute.snapshot.url[1].path);
