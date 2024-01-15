@@ -14,10 +14,14 @@ import { ModalInfo } from '@app/core/interfaces/modal.interface';
 })
 export class ModalComponent {
   private modalRef!: NgbModalRef;
-  @Input() modalInfo!: ModalInfo;
+  @Input() content!: ModalInfo;
+  @Input() set modalInfo(value: ModalInfo){
+    this.content = value;
+    console.log('modal value', this.content)
+  }
   @ViewChild('sharedModal') private modalContent!: TemplateRef<ModalComponent>
   @Output() buttonClick = new EventEmitter<string>();
-
+  
   constructor(config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
     config.keyboard = false;

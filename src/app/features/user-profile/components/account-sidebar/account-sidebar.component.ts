@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, OnInit, ViewChild, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
@@ -49,10 +49,31 @@ export class AccountSidebarComponent implements OnInit {
         finalize( () => {
           this.userService.logout(); 
           this.router.navigate(['/home']);
+
         })
       )
-      .subscribe();
+      .subscribe((res) => {
+        console.log('here')
+        if(res.success){
+          console.log('here1')
+          this.openSuccessModal()
+        }
+      });
     }
+  }
+
+  openSuccessModal(): void{
+    this.modalInfo  = {
+      style: "modal-style-primary",
+      title: "Account deleted successfully",
+      body: `Your account has been permanently deleted`,
+      btnClass: "btn-blue",
+      closeBtnName: "",
+      actionBtnName: "Okay",
+    }
+    console.log( this.modalInfo,'here2')
+    
+    this.open();
   }
   
   activeSection(navLink: string): string {

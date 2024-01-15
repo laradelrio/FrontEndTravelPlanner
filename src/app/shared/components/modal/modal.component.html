@@ -1,8 +1,8 @@
 <ng-template #sharedModal let-c="close" let-d="dismiss">
-  @if(modalInfo.title !== ''){
-  <div class="modal-header body bg-white round-top" [ngClass]="modalInfo.style">
+  @if(content.title !== ''){
+  <div class="modal-header body bg-white round-top" [ngClass]="content.style">
     <h5 class="modal-title" id="modal-title">
-      {{modalInfo.title}}
+      {{content.title}}
     </h5>
     <button type="button" class="close btn position-absolute top-0 end-0" aria-describedby="modal-title"
       (click)="c('Cancel click')">
@@ -11,7 +11,7 @@
   </div>
   <div class="modal-body bg-white">
     <p>
-      {{modalInfo.body}}
+      {{content.body}}
     </p>
   </div>
   } @else {
@@ -20,22 +20,22 @@
       (click)="c('Cancel click')">
       <span aria-hidden="true">&times;</span>
     </button>
-    @if(modalInfo.body.length >0){
+    @if(content.body.length >0){
       <p>
-        {{modalInfo.body}}
+        {{content.body}}
       </p>
     }
     <ng-content></ng-content>   
   </div>
   }
   <div class="modal-footer bg-white round-bottom">
-    @if(modalInfo.closeBtnName !== ''){
+    @if(content.closeBtnName !== ''){
     <button type="button" class="btn close-btn" (click)="c('Cancel click')">
-      {{modalInfo.closeBtnName}}
+      {{content.closeBtnName}}
     </button>
     }
-    <button type="button" class="btn" [ngClass]="modalInfo.btnClass" (click)="c('Action click')">
-      {{modalInfo.actionBtnName}} 
+    <button type="button" class="btn" [ngClass]="content.btnClass" (click)="c('Action click')">
+      {{content.actionBtnName}} 
     </button>
   </div>
 </ng-template>
