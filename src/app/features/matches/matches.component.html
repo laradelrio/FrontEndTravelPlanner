@@ -1,30 +1,41 @@
 <div id='img-bg'></div>
 
-@if(currentTrips.length > 0){
-    <h1 class="text-center mb-3 p-4 border-bottom bg-white">Current Trips</h1>
+@if (trips.length === 0){
+<div class="d-flex justify-content-center align-items-center mb-4 mt-5">
+    <section id='no-trips' class="border border rounded mt-2 trip-match-section
+    d-flex justify-content-center align-items-center row">
+        <h2 class="text-center mb-0 rounded-top p-3 border-bottom trip-title mb-4"> No matches yet</h2>
+        <p class="w-100 text-center ps-5 pe-5 mt-2">Add a trip now to start matching with potential Travel Mates</p>
+        <button class="btn btn-blue w-50 mb-5 mt-3" routerLink="/new-trip"> Add trip </button>
+    </section>
+</div>
+}
 
-    @for(trip of currentTrips; track trip.id; let i = $index; ){
-    <div class="d-flex justify-content-center align-items-center mb-4">
-        <section class="border border rounded w-75 mt-2 trip-match-section">
-            <h2 class="text-center mb-0 rounded-top p-3 border-bottom trip-title mb-4"> {{trip.name}}</h2>
-            <app-user-card [userProfiles]="matchUserProfiles[i]"></app-user-card>
-        </section>
-    </div>
-    }
+@if(currentTrips.length > 0){
+<h1 class="text-center mb-3 p-4 border-bottom bg-white">Current Trips</h1>
+
+@for(trip of currentTrips; track trip.id; let i = $index; ){
+<div class="d-flex justify-content-center align-items-center mb-4">
+    <section class="border border rounded w-75 mt-2 trip-match-section">
+        <h2 class="text-center mb-0 rounded-top p-3 border-bottom trip-title mb-4"> {{trip.name}}</h2>
+        <app-user-card [userProfiles]="matchUserProfiles[i]"></app-user-card>
+    </section>
+</div>
+}
 
 }
 
 @if(upcomingTrips.length > 0){
 
-    <h1 class="text-center mt-3 mb-3 p-4 border-bottom bg-white">Upcoming Trips</h1>
-    @for(trip of upcomingTrips; track trip.id; let i = $index;){
-    <div class="d-flex justify-content-center align-items-center mb-4">
-        <section class="border border rounded w-75 mt-2 trip-match-section">
-            <h2 class="text-center mb-0 rounded-top p-3 border-bottom trip-title mb-4">{{trip.name}}</h2>
-            <app-user-card [userProfiles]="matchUserProfiles[currentTrips.length + i]"></app-user-card>
-        </section>
-    </div>
-    }
+<h1 class="text-center mt-3 mb-3 p-4 border-bottom bg-white">Upcoming Trips</h1>
+@for(trip of upcomingTrips; track trip.id; let i = $index;){
+<div class="d-flex justify-content-center align-items-center mb-4">
+    <section class="border border rounded w-75 mt-2 trip-match-section">
+        <h2 class="text-center mb-0 rounded-top p-3 border-bottom trip-title mb-4">{{trip.name}}</h2>
+        <app-user-card [userProfiles]="matchUserProfiles[currentTrips.length + i]"></app-user-card>
+    </section>
+</div>
+}
 
 }
 <div id='empty-space'></div>

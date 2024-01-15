@@ -7,12 +7,13 @@ import { finalize } from 'rxjs';
 import { UserData } from '@app/core/interfaces/user.interface';
 import { UserApiService } from '@app/core/apiServices/user-api.service';
 import { SightApiService } from '@app/core/apiServices/sight-api.service';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-matches',
   standalone: true,
-  imports: [CommonModule, UserCardComponent],
+  imports: [CommonModule, UserCardComponent, RouterLink],
   templateUrl: './matches.component.html',
   styleUrl: './matches.component.scss'
 })
