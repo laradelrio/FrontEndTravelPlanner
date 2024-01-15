@@ -23,10 +23,10 @@ export class AppComponent implements OnInit {
   
   modalInfo: ModalInfo = {
     style: '',
-    title: 'title',
+    title: '',
     body: 'Are you still there?',
     btnClass: '.btn btn-blue',
-    closeBtnName: 'hello',
+    closeBtnName: '',
     actionBtnName: 'Yes'
   }
   
