@@ -4,7 +4,9 @@
 
             <h1 class="w-100 text-center mt-3 mb-4"> Sight / Attraction </h1>
 
-            <app-location-search-box [sight]="sightFromGroup"></app-location-search-box>
+            <div id="location-input">
+                <app-location-search-box [sight]="sightFromGroup"></app-location-search-box>
+            </div>
 
             <app-date-input [type]="'datetime-local'" [dates]="datesFromGroup" [trip]='trip'></app-date-input>
 

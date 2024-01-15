@@ -2,6 +2,15 @@ h1{
     font-size: x-large;
 }
 
+form{
+    width: 100%;
+    overflow-x: hidden;
+}
+
+#location-input{
+    font-size: small;
+}
+
 #girl{
     position: fixed;
     z-index: -1000;
@@ -17,6 +26,10 @@ h1{
 }
 
 @media (min-width:890px){
+    form{
+        width: 50%;
+    } 
+
     #sight-form{
         justify-content: end;
         margin-right: 4rem;
