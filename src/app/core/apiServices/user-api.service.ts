@@ -1,11 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { GetUserApiResp, UserApiResp } from '../interfaces/apiResponses.interface';
 import { Constants } from '../constants/constants';
 import { Router } from '@angular/router';
-import { environment } from 'environments/environment.development';
 
 
 @Injectable({
@@ -17,7 +16,6 @@ export class UserApiService {
   http!: HttpClient;
   isLoggedIn = signal<boolean>(false);
   router: Router = inject(Router);
-  sendGridApiKey: string = environment.sendGripApiKey;
 
   constructor() {
     this.http = inject(HttpClient);
@@ -72,14 +70,4 @@ export class UserApiService {
     return this.http.delete<UserApiResp>(`${this.baseUrl}/users/delete/${userId}`, { withCredentials: true });
   }
 
-  sendEmailChangePassword(){
-    console.log('here')
-    const httpHeaders: HttpHeaders = new HttpHeaders()
-    .set('Authorization', `Bearer ${this.sendGridApiKey}`)
-    .set('Content-Type', 'application/json')
-
-    return this.http.post(`https://api.sendgrid.com/v3/mail/send`, 
-    {"personalizations":[{"to":[{"email":"remaxa2666@rentaen.com","name":"Rem Axa"}],"subject":"Hello, Rem!"}],"content": [{"type": "text/plain", "value": "Holaa!"}],"from":{"email":"test@mail.com","name":"Sam Smith"},"reply_to":{"email":"sam.smith@example.com","name":"Sam Smith"}} 
-    , {headers: httpHeaders});
-  }
 }
