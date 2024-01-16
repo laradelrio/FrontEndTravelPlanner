@@ -9,6 +9,7 @@ import { NewTrip, Trip } from '@app/core/interfaces/trip.interface';
 import { TripApiService } from '@app/core/apiServices/trip-api.service';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
 import { ModalInfo } from '@app/core/interfaces/modal.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trip-form',
@@ -24,6 +25,7 @@ export class TripFormComponent {
   private formService: FormService = inject(FormService);
   private tripService: TripApiService = inject(TripApiService);
   public tripForm: FormGroup;
+  private router: Router = inject(Router);
   @ViewChild('sharedModal') 
   private modalComponent!: ModalComponent;
   public modalInfo!: ModalInfo;
@@ -78,6 +80,7 @@ export class TripFormComponent {
     subscribe( (res) => {
       if(res.success){
         this.writeModalContent();
+        this.router.navigate([`/trips`])
       }
     })
   }
