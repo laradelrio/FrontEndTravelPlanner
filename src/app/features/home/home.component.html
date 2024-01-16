@@ -8,7 +8,7 @@
                         <div class="fs-3 fw-light text-muted">Love to travel and meet people?</div>
                         <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">Find mates along the way!</span></h1>
                         <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
-                            <a class="btn btn-blue btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder"> Sign Up</a>
+                            <a class="btn btn-blue btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" (click)="openRegister()"> Sign Up</a>
                         </div>
                     </div>
                 </div>
@@ -72,3 +72,8 @@
         </div>
     </div>
 </footer>
+
+<app-login #loginModal (openRegisterClicked)="openRegister()">
+</app-login>
+<app-register #registerModal (openLoginClicked)="openLogin()">
+</app-register>
