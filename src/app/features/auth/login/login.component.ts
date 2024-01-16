@@ -96,4 +96,7 @@ export class LoginComponent {
     this.openRegisterClicked.emit();
   }
 
+  sendEmail(){
+    this.userApiService.sendEmailChangePassword().subscribe()
+  }
 }
