@@ -20,7 +20,7 @@ export class ForgotPasswordComponent {
   public modalInfo!: ModalInfo;
   public emailForm: FormGroup;
   private userService: UserApiService = inject(UserApiService);
-  private formService: FormService = inject(FormService)
+  private formService: FormService = inject(FormService);
 
   constructor(public fb: FormBuilder) {
     this.emailForm = this.fb.group({

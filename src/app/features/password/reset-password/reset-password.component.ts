@@ -6,6 +6,7 @@ import { UserApiService } from '@app/core/apiServices/user-api.service';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
 import { ModalInfo } from '@app/core/interfaces/modal.interface';
 import { ApiResp } from '@app/core/interfaces/apiResponses.interface';
+import { FormService } from '@app/shared/services/form.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -22,6 +23,7 @@ export class ResetPasswordComponent implements OnInit{
   public resetPasswordForm: FormGroup;
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   private userService: UserApiService = inject(UserApiService);
+  private formService: FormService = inject(FormService);
   
   constructor( public fb: FormBuilder){
     this.resetPasswordForm = this.fb.group({
@@ -58,7 +60,6 @@ export class ResetPasswordComponent implements OnInit{
     }
   }
 
-
   openNotificationModal(passwordChangeResult: ApiResp): void {
     if (passwordChangeResult.success) {
       this.modalInfo = {
@@ -91,5 +92,8 @@ export class ResetPasswordComponent implements OnInit{
     return await this.modalComponent.open();
   }
 
+  getInputError(field: string): string {
+    return this.formService.getInputError(field, this.resetPasswordForm);
+  }
 
 }

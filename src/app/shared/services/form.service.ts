@@ -51,6 +51,10 @@ export class FormService {
           break;
         case 'invalidDate':
           errorMessage = `Date not within trip dates`;
+          break;
+        case 'isSamePassword':
+          errorMessage = `Passwords don't match`;
+          break;
       }
     }
     return errorMessage;
