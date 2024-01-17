@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { GetUserApiResp, UserApiResp } from '../interfaces/apiResponses.interface';
 import { Constants } from '../constants/constants';
 import { Router } from '@angular/router';
+import { Form } from '@app/core/interfaces/form.interface';
 
 
 @Injectable({
@@ -78,7 +79,7 @@ export class UserApiService {
     return this.http.post<UserApiResp>(`${this.baseUrl}/users/isRegisteredEmail`, {email: email});
   }
 
-  changePassword(newPassword: {}): Observable<UserApiResp>{
-    return this.http.post<UserApiResp>(`${this.baseUrl}/users/resetPassword`, {newPassword});
+  changePassword(resetPasswordForm:FormGroup): Observable<UserApiResp>{
+    return this.http.post<UserApiResp>(`${this.baseUrl}/users/resetPassword`, resetPasswordForm.value);
   }
 }

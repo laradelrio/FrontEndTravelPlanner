@@ -33,8 +33,8 @@ export class ResetPasswordComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.resetPasswordForm.controls['passwordConfirmed'].addValidators(this.isSamePassword.bind(this))
-    this.resetPasswordForm.controls['encryptedUserId'].setValue(this.activatedRoute.snapshot.url[1].path)
+    this.resetPasswordForm.controls['passwordConfirmed'].addValidators(this.isSamePassword.bind(this));
+    this.resetPasswordForm.controls['encryptedUserId'].setValue(this.activatedRoute.snapshot.url[1].path);
   }
 
   isSamePassword(control: AbstractControl): { [key: string]: any } | null {
@@ -49,7 +49,7 @@ export class ResetPasswordComponent implements OnInit{
 
   onSubmit() {
     if (this.resetPasswordForm.valid) {
-      this.userService.changePassword(this.resetPasswordForm.value)
+      this.userService.changePassword(this.resetPasswordForm)
         .subscribe((res) => {
           this.openNotificationModal(res);
         })
