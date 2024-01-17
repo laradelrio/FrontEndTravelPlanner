@@ -83,6 +83,11 @@ label {
    --bs-gutter-x: 0rem
 }
 
+.hover{
+   &:hover{
+      font-weight: bold;
+   }
+}
 @media (max-width: 780px) {
    .card-img {
       display: none;

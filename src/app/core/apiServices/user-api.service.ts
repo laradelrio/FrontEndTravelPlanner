@@ -70,4 +70,15 @@ export class UserApiService {
     return this.http.delete<UserApiResp>(`${this.baseUrl}/users/delete/${userId}`, { withCredentials: true });
   }
 
+  sendEmailChangePassword(email: string): Observable<UserApiResp>{
+    return this.http.post<UserApiResp>(`${this.baseUrl}/users/sendResetPasswordEmail`,  {email: email});
+  }
+
+  isEmailRegistered(email: string): Observable<UserApiResp>{
+    return this.http.post<UserApiResp>(`${this.baseUrl}/users/isRegisteredEmail`, {email: email});
+  }
+
+  changePassword(newPassword: {}): Observable<UserApiResp>{
+    return this.http.post<UserApiResp>(`${this.baseUrl}/users/resetPassword`, {newPassword});
+  }
 }

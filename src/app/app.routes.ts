@@ -13,7 +13,7 @@ export const routes: Routes = [
         children: [
             {
                 path: 'home',
-                loadComponent : () => 
+                loadComponent: () =>
                     import('@app/features/home/home.component').then((m) => m.HomeComponent)
             },
             {
@@ -23,39 +23,55 @@ export const routes: Routes = [
                 children: [
                     {
                         path: '',
-                        loadComponent : () => 
+                        loadComponent: () =>
                             import('@app/features/user-profile/components/user-profile-view/user-profile-view.component').then((m) => m.UserProfileViewComponent)
                     },
                     {
                         path: 'edit',
-                        loadComponent : () => 
-                            import('@app/features/user-profile/components/user-profile-edit/user-profile-edit.component').then((m) => m.UserProfileEditComponent ) 
+                        loadComponent: () =>
+                            import('@app/features/user-profile/components/user-profile-edit/user-profile-edit.component').then((m) => m.UserProfileEditComponent)
+                    },
+                ]
+            },
+            {
+                path: 'password',
+                children: [
+                    {
+                        path: 'reset/:token',
+                        pathMatch: 'prefix',
+                        loadComponent: () =>
+                            import('@app/features/password/reset-password/reset-password.component').then((m) => m.ResetPasswordComponent),
+                    },
+                    {
+                        path: '',
+                        loadComponent: () =>
+                            import('@app/features/password/forgot-password/forgot-password.component').then((m) => m.ForgotPasswordComponent)
                     },
                 ]
             },
             {
                 path: 'trips',
                 canActivate: [guardsGuard],
-                loadComponent : () => 
-                import('@app/features/trips/trips.component').then((m) => m.TripsComponent),
+                loadComponent: () =>
+                    import('@app/features/trips/trips.component').then((m) => m.TripsComponent),
             },
             {
                 path: 'trip/edit/:id',
                 canActivate: [guardsGuard],
-                loadComponent : () => 
-                import('@app/features/trips/components/trip-edit/trip-edit.component').then((m) => m.TripEditComponent)
+                loadComponent: () =>
+                    import('@app/features/trips/components/trip-edit/trip-edit.component').then((m) => m.TripEditComponent)
             },
             {
                 path: 'new-trip',
                 canActivate: [guardsGuard],
-                loadComponent : () => 
-                import('@app/features/trips/components/trip-form/trip-form.component').then((m) => m.TripFormComponent)
+                loadComponent: () =>
+                    import('@app/features/trips/components/trip-form/trip-form.component').then((m) => m.TripFormComponent)
             },
             {
                 path: 'trip/:id',
                 canActivate: [guardsGuard],
-                loadComponent : () => 
-                import('@app/features/trips/components/trip-view/trip-view.component').then((m) => m.TripViewComponent)
+                loadComponent: () =>
+                    import('@app/features/trips/components/trip-view/trip-view.component').then((m) => m.TripViewComponent)
             },
             {
                 path: 'sight',
@@ -63,29 +79,30 @@ export const routes: Routes = [
                     {
                         path: 'new/:id',
                         canActivate: [guardsGuard],
-                        loadComponent : () => 
+                        loadComponent: () =>
                             import('@app/features/sights/new-sight/new-sight.component').then((m) => m.NewSightComponent)
                     },
                     {
                         path: 'edit/:id',
                         canActivate: [guardsGuard],
-                        loadComponent : () => 
-                            import('@app/features/sights/edit-sight/edit-sight.component').then((m) => m.EditSightComponent ) 
+                        loadComponent: () =>
+                            import('@app/features/sights/edit-sight/edit-sight.component').then((m) => m.EditSightComponent)
                     },
                 ]
             },
             {
                 path: 'matches',
                 canActivate: [guardsGuard],
-                loadComponent : () => 
-                import('@app/features/matches/matches.component').then((m) => m.MatchesComponent)
+                loadComponent: () =>
+                    import('@app/features/matches/matches.component').then((m) => m.MatchesComponent)
             },
             {
                 path: '**',
-                loadComponent : () => 
-                import('@app/features/home/home.component').then((m) => m.HomeComponent)
+                loadComponent: () =>
+                    import('@app/features/home/home.component').then((m) => m.HomeComponent)
             },
+
         ]
-    }    
+    }
 
 ];

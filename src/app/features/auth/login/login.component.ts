@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, TemplateRef, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Form } from '@app/core/interfaces/form.interface';
 import { FormService } from '@app/shared/services/form.service';
 import { NgbModal, NgbModalConfig, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -13,7 +13,7 @@ import { AppComponent } from '@app/app.component';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   providers: [NgbModalConfig, NgbModal],
   templateUrl: './login.component.html',
   styleUrl: '../auth.component.scss'
@@ -96,4 +96,7 @@ export class LoginComponent {
     this.openRegisterClicked.emit();
   }
 
+  closeModals(){
+    this.modalService.dismissAll();
+  }
 }
