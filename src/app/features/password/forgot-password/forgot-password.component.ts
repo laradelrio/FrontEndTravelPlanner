@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
 import { ModalInfo } from '@app/core/interfaces/modal.interface';
 import { UserApiService } from '@app/core/apiServices/user-api.service';
+import { FormService } from '@app/shared/services/form.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -19,6 +20,7 @@ export class ForgotPasswordComponent {
   public modalInfo!: ModalInfo;
   public emailForm: FormGroup;
   private userService: UserApiService = inject(UserApiService);
+  private formService: FormService = inject(FormService)
 
   constructor(public fb: FormBuilder) {
     this.emailForm = this.fb.group({
@@ -75,4 +77,7 @@ export class ForgotPasswordComponent {
     return await this.modalComponent.open();
   }
 
+  getInputError(field: string): string {
+    return this.formService.getInputError(field, this.emailForm);
+  }
 }
