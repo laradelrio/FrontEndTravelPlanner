@@ -5,11 +5,12 @@ import { UserApiService } from '@app/core/apiServices/user-api.service';
 import { UserData } from '@app/core/interfaces/user.interface';
 import { finalize } from 'rxjs';
 import { ImgUploadInputComponent } from '@app/shared/components/img-upload-input/img-upload-input.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile-edit',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ImgUploadInputComponent],
+  imports: [CommonModule, ReactiveFormsModule, ImgUploadInputComponent, RouterLink],
   templateUrl: './user-profile-edit.component.html',
   styleUrl: './user-profile-edit.component.scss'
 })
