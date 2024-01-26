@@ -17,7 +17,6 @@ export class ModalComponent {
   @Input() content!: ModalInfo;
   @Input() set modalInfo(value: ModalInfo){
     this.content = value;
-    console.log('modal value', this.content)
   }
   @ViewChild('sharedModal') private modalContent!: TemplateRef<ModalComponent>
   @Output() buttonClick = new EventEmitter<string>();

@@ -17,7 +17,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './matches.component.html',
   styleUrl: './matches.component.scss'
 })
-export class MatchesComponent implements OnInit{
+export class MatchesComponent implements OnInit {
 
   private userApiService: UserApiService = inject(UserApiService);
   private tripsApiService: TripApiService = inject(TripApiService);
@@ -27,128 +27,116 @@ export class MatchesComponent implements OnInit{
   public trips: Trip[] = [];
   upcomingTrips: Trip[] = [];
   currentTrips: Trip[] = [];
-  tripMatches: (Trip[]|null)[]  = [];
   matchUserProfiles: (UserData[] | null)[] = [];
 
-  constructor(){}
+  constructor() { }
 
   ngOnInit(): void {
-    this.getUserTrips(); 
+    this.getUserTrips();
   }
 
   //Find logged it user's trips
-  getUserTrips(): void{
+  getUserTrips(): void {
     this.tripsApiService.getAllUserTrips(this.userId)
-    .pipe(
-      finalize( () => this.sortTrips())
-    )
-    .subscribe( (res) => {
-      this.userTripsStatus = res.success;
-      this.trips = res.data;
-    })
+      .pipe(
+        finalize(() => this.sortTrips())
+      )
+      .subscribe((res) => {
+        this.userTripsStatus = res.success;
+        this.trips = res.data;
+      })
   }
 
   //sort logged in user's trips by current and upcoming
-  sortTrips(): void{
-    let today: Date= new Date();
-    
-    this.trips.forEach( trip => {
+  sortTrips(): void {
+    let today: Date = new Date();
+
+    this.trips.forEach(trip => {
       let startDate: Date = new Date(trip.startDate);
       let endDate: Date = new Date(trip.endDate);
 
-      if(startDate > today && endDate > today){
+      if (startDate > today && endDate > today) {
         this.upcomingTrips.push(trip)
-      } else if (startDate >= today == endDate <= today){
+      } else if (startDate >= today == endDate <= today) {
         this.currentTrips.push(trip);
-      } 
+      }
     })
     this.getMatches();
   }
 
   //loop call for the matches of each of logged in user's trips
-  getMatches(){
-    this.currentTrips.forEach( async (trip) => {
-      await this.getTripMatches(trip);
-    });
+  async getMatches() {
+    const currentPromises = this.currentTrips.map(async trip => await this.getTripMatches(trip));
+    const upcomingPromises = this.upcomingTrips.map(async trip => await this.getTripMatches(trip));
 
-    this.upcomingTrips.forEach( async (trip) => {
-      await this.getTripMatches(trip);
+    await Promise.all([...currentPromises, ...upcomingPromises]).then((tripMatches) => {
+      this.getMatchesUsers(tripMatches);
     });
-
   }
 
   //get one trip's matches
-  getTripMatches(trip: Trip): Promise<void>{
-  return new Promise ( (resolve, reject)=> {
-    this.tripsApiService.getAllTripMatches(trip)
-    .pipe(
-      finalize(()=> {
-        if(this.tripMatches.length === (this.currentTrips.length + this.upcomingTrips.length)){
-          this.getMatchesUsers();
-        }
-      })
-    )
-    .subscribe( (res) => {
-      if(res.data !== undefined){
-        this.tripMatches.push(res.data);
-      } else {
-        this.tripMatches.push(null);
-      }
-      resolve()
-    });
-  })
+  getTripMatches(trip: Trip): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.tripsApiService.getAllTripMatches(trip)
+        .subscribe((res) => {
+          if (res.data !== undefined) {
+            resolve(res.data);
+          } else {
+            resolve(null);
+          }
+        });
+    })
   }
 
   //loop call for the users of each  match of logged in user's trips
-  getMatchesUsers(){
-    this.tripMatches.forEach( (matches, index) => {
+  async getMatchesUsers(tripMatches: (Trip[] | null)[]) {
+    tripMatches.forEach((matches, index) => {
       let tripId: number = this.getTripId(index);
-      if(matches === null){
+      if (matches === null) {
         this.matchUserProfiles.push(null);
       } else {
         let userMatches: UserData[] = [];
-        matches.forEach( async (match: Trip) => {
+        matches.forEach(async (match: Trip) => {
           let user = await this.getMatchUser(match);
           user.matchPercentage = await this.getMatchPercentage(match.id, tripId);
           userMatches.push(user);
         });
         this.matchUserProfiles.push(userMatches)
-      }      
-    })
-  }
-
-
-  getTripId(i: number): number{
-    if(this.currentTrips.length > i){
-      return this.currentTrips[i].id
-    }else{
-      return  this.upcomingTrips[i- this.currentTrips.length].id
-    }
-  }
-  //get one match's user profile
-  getMatchUser(match: Trip): Promise<UserData>{
-    return new Promise<UserData>((resolve, reject)=> {
-      this.userApiService.getUser(match.fk_users_id)
-      .subscribe( (res) => {
-        if(res.data != undefined){
-          resolve(res.data)
-        }
-      })
-    })
-  }
-
-  
-  getMatchPercentage(matchTripId: number, loggedUserTrip: number ): Promise<number>{
-    return new Promise<number>((resolve, reject)=> {
-    this.sightService.getMatchPercentage({trip1: matchTripId, trip2: loggedUserTrip})
-    .subscribe((res)=>{
-      if(res.data.matchPercentage === null){
-        resolve(10)
-      } else{
-        resolve(parseInt(res.data.matchPercentage))
       }
     })
-  })
-}
+  }
+
+  getTripId(i: number): number {
+    if (this.currentTrips.length > i) {
+      return this.currentTrips[i].id
+    } else {
+      return this.upcomingTrips[i - this.currentTrips.length].id
+    }
+  }
+
+  //get one match's user profile
+  getMatchUser(match: Trip): Promise<UserData> {
+    return new Promise<UserData>((resolve, reject) => {
+      this.userApiService.getUser(match.fk_users_id)
+        .subscribe((res) => {
+          if (res.data != undefined) {
+            resolve(res.data)
+          }
+        })
+    })
+  }
+
+  getMatchPercentage(matchTripId: number, loggedUserTrip: number): Promise<number> {
+    return new Promise<number>((resolve, reject) => {
+      this.sightService.getMatchPercentage({ trip1: matchTripId, trip2: loggedUserTrip })
+        .subscribe((res) => {
+          if (res.data.matchPercentage === null) {
+            resolve(10)
+          } else {
+            resolve(parseInt(res.data.matchPercentage))
+          }
+        })
+    })
+  }
 
 }

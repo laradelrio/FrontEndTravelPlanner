@@ -41,7 +41,6 @@ export class AccountSidebarComponent implements OnInit {
   }
 
   deleteUser(value: string){
-    console.log(value)
     if(value === 'Action click'){
       let userId = parseInt(localStorage.getItem('userId')!);
       this.userService.deleteUser(userId)
@@ -53,9 +52,7 @@ export class AccountSidebarComponent implements OnInit {
         })
       )
       .subscribe((res) => {
-        console.log('here')
         if(res.success){
-          console.log('here1')
           this.openSuccessModal()
         }
       });
@@ -71,7 +68,6 @@ export class AccountSidebarComponent implements OnInit {
       closeBtnName: "",
       actionBtnName: "Okay",
     }
-    console.log( this.modalInfo,'here2')
     
     this.open();
   }
