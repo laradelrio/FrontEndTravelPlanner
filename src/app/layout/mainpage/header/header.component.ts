@@ -26,7 +26,7 @@ export class HeaderComponent {
   private loginComponent!: LoginComponent;
 
   private userApiService: UserApiService = inject(UserApiService);
-  private router = inject(Router)
+  private router = inject(Router);
   private appComponent:AppComponent = inject(AppComponent);
   public userPhoto: string = '';
   constructor(){
@@ -35,7 +35,7 @@ export class HeaderComponent {
 
   logInChange(){
     this.isLoggedIn = this.userApiService.isLoggedIn();
-    let user = localStorage.getItem!('userId');
+    let user = localStorage.getItem('userId');
     if(this.isLoggedIn && user != null){
       this.userApiService.getUser(parseInt(user))
       .subscribe((res) => {if(res.data?.photo !== undefined){this.userPhoto = res.data?.photo}})
@@ -60,7 +60,9 @@ export class HeaderComponent {
 
   logout(){
     this.userApiService.logout()
-    this.appComponent.stopUserActivityCheck()
+    this.appComponent.stopUserActivityCheck();
+    this.router.navigate(['/home']);
+    this.isLoggedIn = false;
   }
 
   handleImageError(event: any){

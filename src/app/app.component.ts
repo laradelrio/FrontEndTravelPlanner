@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { UserApiService } from './core/apiServices/user-api.service';
 import { ModalComponent } from './shared/components/modal/modal.component';
 import { ModalInfo } from './core/interfaces/modal.interface';
@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   private lastMouseMove: number = Date.now();
   private checkActivityInterval!: number; 
   private modalClicked: boolean = false;
+  private router: Router = inject(Router);
   
   modalInfo: ModalInfo = {
     style: '',
@@ -53,7 +54,8 @@ export class AppComponent implements OnInit {
       } else {
         this.modalComponent.closeModals();
         this.userApiService.logout();
-        this.startUserActivityCheck();
+        this.stopUserActivityCheck();
+        this.router.navigate(['/home']);
       }
     }, 180000);
   }
