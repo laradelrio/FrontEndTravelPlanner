@@ -32,14 +32,14 @@ export class MapComponent {
   private mapCenter!: [number, number];
 
   async makeMap() {
-    //   let map = new Map({
-    //   container: this.mapDivElement.nativeElement, // container where the map will be rendered
-    //   style: 'mapbox://styles/mapbox/navigation-day-v1', // style URL
-    //   center: this.mapCenter, // starting position [lng, lat]
-    //   zoom: 12, // starting zoom
-    // });
+      let map = new Map({
+      container: this.mapDivElement.nativeElement, // container where the map will be rendered
+      style: 'mapbox://styles/mapbox/navigation-day-v1', // style URL
+      center: this.mapCenter, // starting position [lng, lat]
+      zoom: 12, // starting zoom
+    });
 
-    // this.addPopup(map)
+    this.addPopup(map)
   }
 
   addPopup(map: Map) {
