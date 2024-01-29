@@ -73,7 +73,7 @@ export class ResetPasswordComponent implements OnInit{
     } else {
       this.modalInfo = {
         style: "modal-style-danger",
-        title: "Password Reset unsuccessful not registered",
+        title: "Password Reset Unsuccessful",
         body: `${passwordChangeResult.message}`,
         btnClass: "btn-danger",
         closeBtnName: "",

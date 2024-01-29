@@ -80,7 +80,7 @@ export class FormService {
   getDeleteModalInfo(deletedElement: string): ModalInfo{
     let modalInfo: ModalInfo = {
       style: "modal-style-danger",
-      title: "Delete Account",
+      title: `Delete ${deletedElement}`,
       body: `Deleting ${deletedElement} is permanent. Are you sure you want to delete ${deletedElement}?`,
       btnClass: "btn-danger",
       closeBtnName: "Cancel",
