@@ -16,7 +16,7 @@ export class UserApiService {
   http!: HttpClient;
   isLoggedIn = signal<boolean>(false);
   router: Router = inject(Router);
-  openLogin = signal(1);
+  openLogin = signal(false);
 
   constructor() {
     this.http = inject(HttpClient);
@@ -84,6 +84,6 @@ export class UserApiService {
   }
 
   openLoginModal(){
-    this.openLogin.set(2);
+    this.openLogin.set(true);
   }
 }

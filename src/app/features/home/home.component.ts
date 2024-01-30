@@ -23,11 +23,13 @@ export class HomeComponent {
   @ViewChild('loginModal') 
   private loginComponent!: LoginComponent;
 
-  private userApiService: UserApiService = inject(UserApiService) 
-
+  private userService: UserApiService = inject(UserApiService);
+  
   constructor(){
     effect(()=>{
-      this.openLogin();
+        if(this.userService.openLogin()){
+        this.openLogin();
+      }
     })
   }
 
