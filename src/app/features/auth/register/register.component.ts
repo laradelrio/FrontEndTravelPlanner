@@ -97,6 +97,8 @@ export class RegisterComponent {
       this.modalService.dismissAll();
       this.openLoginClicked.emit()
       clearInterval(counter);
+      this.registrationResponse = { success: false,  message: '' }
+      this.registerForm.reset();
     }, 3000);
   }
 

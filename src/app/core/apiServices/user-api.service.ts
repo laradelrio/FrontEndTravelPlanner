@@ -55,7 +55,7 @@ export class UserApiService {
     this.logoutUser()
       .subscribe({
         next: (res) => (this.isLoggedIn.set(false), localStorage.clear, this.router.navigate(['/home'])),
-        error: (error) => (this.isLoggedIn.set(true))
+        error: (error) => (this.isLoggedIn.set(false))
       })
   }
 

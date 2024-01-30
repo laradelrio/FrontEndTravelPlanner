@@ -28,7 +28,7 @@ export class AccountSidebarComponent implements OnInit {
   }
 
   openDeleteModal(){
-    this.modalInfo = this.formService.getDeleteModalInfo('this trip');
+    this.modalInfo = this.formService.getDeleteModalInfo('your account');
     this.open();
   }
 
@@ -47,28 +47,22 @@ export class AccountSidebarComponent implements OnInit {
       .pipe(
         finalize( () => {
           this.userService.logout(); 
-          this.router.navigate(['/home']);
-
+          setTimeout(() => {
+              this.router.navigate(['/home']);
+          }, 1000);
         })
       )
       .subscribe((res) => {
         if(res.success){
-          this.openSuccessModal()
+          this.openSuccessModal();          
         }
       });
     }
   }
 
   openSuccessModal(): void{
-    this.modalInfo  = {
-      style: "modal-style-primary",
-      title: "Account deleted successfully",
-      body: `Your account has been permanently deleted`,
-      btnClass: "btn-blue",
-      closeBtnName: "",
-      actionBtnName: "Okay",
-    }
-    
+    // this.modalInfo = this.formService.getDeleteModalInfo('DSFRYJKU5TMNRBEGREFWD');
+    this.modalInfo = this.formService.getSuccessModalInfo('Account deleted', 'Your account has been permanently deleted');
     this.open();
   }
   

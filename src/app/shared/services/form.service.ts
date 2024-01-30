@@ -89,4 +89,16 @@ export class FormService {
     return modalInfo;
   }
 
+  getSuccessModalInfo(element: string, body: string): ModalInfo{
+    let modalInfo: ModalInfo = {
+        style: "modal-style-primary",
+        title: `${element} successfully`,
+        body: `${body}`,
+        btnClass: "btn-blue",
+        closeBtnName: "",
+        actionBtnName: "Okay",
+    }
+    return modalInfo;
+  }
+
 }
