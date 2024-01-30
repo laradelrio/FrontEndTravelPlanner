@@ -29,19 +29,22 @@ export class HeaderComponent {
   private router = inject(Router);
   private appComponent:AppComponent = inject(AppComponent);
   public userPhoto: string = '';
+
   constructor(){
-    effect(() => {this.logInChange()})
+    effect(() => {
+      this.isLoggedIn = this.userApiService.isLoggedIn();
+      this.logInChange()
+    })
   }
 
   logInChange(){
-    this.isLoggedIn = this.userApiService.isLoggedIn();
     let user = localStorage.getItem('userId');
     if(this.isLoggedIn && user != null){
       this.userApiService.getUser(parseInt(user))
       .subscribe((res) => {if(res.data?.photo !== undefined){this.userPhoto = res.data?.photo}})
     }
-    
   }
+
   openRegister() {
     this.openModalRegister();
   }
@@ -62,7 +65,6 @@ export class HeaderComponent {
     this.userApiService.logout()
     this.appComponent.stopUserActivityCheck();
     this.router.navigate(['/home']);
-    this.isLoggedIn = false;
   }
 
   handleImageError(event: any){

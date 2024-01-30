@@ -68,6 +68,7 @@ export class LoginComponent {
       this.userApiService.loginUser(this.loginForm)
         .pipe(
           finalize(() => {
+            this.userApiService.isLoggedIn.set(this.loginResponse.success);
             if(this.loginResponse.success) {
               this.loginForm.reset();
               this.router.navigate(['/home']);
@@ -80,7 +81,7 @@ export class LoginComponent {
         )
         .subscribe({
           next: (res) => { this.loginResponse = res },
-          error: (error) =>{ this.loginResponse =  {success: false, message: error.error } },
+          error: (error) =>{ this.loginResponse =  {success: false, message: 'Email or password incorrect' } },
         })
     }
   }
