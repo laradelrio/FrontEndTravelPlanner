@@ -8,9 +8,11 @@ export const guardsGuard: CanActivateFn = async (route, state) => {
 
   let isUserAuthorized = await userApiService.setUserAuthorizationStatus();
   
-  if(!isUserAuthorized){
-    alert('Unauthorized, please Login');
+    if(isUserAuthorized){
+    return true
+  } else {
+    await router.navigate(['/home']);
+    userApiService.openLoginModal();
+    return false
   }
-  
-  return isUserAuthorized ? true : router.navigate(['/home'])
 };

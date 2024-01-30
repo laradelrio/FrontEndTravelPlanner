@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { GetUserApiResp, UserApiResp } from '../interfaces/apiResponses.interface';
 import { Constants } from '../constants/constants';
 import { Router } from '@angular/router';
-import { Form } from '@app/core/interfaces/form.interface';
 
 
 @Injectable({
@@ -17,6 +16,7 @@ export class UserApiService {
   http!: HttpClient;
   isLoggedIn = signal<boolean>(false);
   router: Router = inject(Router);
+  openLogin = signal(1);
 
   constructor() {
     this.http = inject(HttpClient);
@@ -81,5 +81,9 @@ export class UserApiService {
 
   changePassword(resetPasswordForm:FormGroup): Observable<UserApiResp>{
     return this.http.post<UserApiResp>(`${this.baseUrl}/users/resetPassword`, resetPasswordForm.value);
+  }
+
+  openLoginModal(){
+    this.openLogin.set(2);
   }
 }
