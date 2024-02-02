@@ -1,8 +1,124 @@
 i{
     font-size: xx-large;
     margin-bottom: 1rem;
+    color: var(--mainDarkColor) !important
+}
+
+h3, h5{
+    font-family: "Squada One", sans-serif;
 }
 
 img{
     width: 90%;
 }
+
+iframe[src*="https://www.youtube.com/embed/"] {
+    position: relative !important;
+    width: 230px !important;
+    height: 400px !important;
+    max-width: 320px!important;
+    aspect-ratio: 9 / 16 !important;
+    border-radius: 23px;
+    margin: 25px;
+}
+
+.feature-text{
+    color: #0d665d;
+    font-weight: bold;
+}
+
+.home-banner{
+    background-image: url(https://i.ibb.co/2ghgnjp/sumit-chinchane-j-WKk-0-ZBUyg-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 70vh;
+    width: 100%;
+    object-fit: cover;
+    object-position: bottom;
+    z-index: -100;
+    filter: brightness(90%);
+}
+
+.adventure-banner{
+    background-image: url(http://tinyurl.com/4buj3cvy);
+    background-position: center;
+    background-size: cover;
+    height: 30vh;
+    width: 100%;
+    object-fit: cover;
+    object-position: bottom;
+    z-index: -100;
+    filter: brightness(90%);
+    h2{
+        text-shadow: rgba(0, 0, 0, 0.691) 1px 0 5px;
+        font-size: xxx-large;
+    }
+}
+
+.bg-transparent{
+    background-color: rgba(0, 0, 0, 0.142) !important;
+    box-shadow: 0 0 5px 10px rgba(0, 0, 0, 0.142);
+    border-radius: 23px;
+}
+
+.matches{
+    margin-bottom: 20px;
+}
+
+.slanted {
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+}
+
+:host ::ng-deep {
+    .product-item {
+        .product-item-content {
+            border: 1px solid var(--surface-d);
+            border-radius: 3px;
+            margin: .3rem;
+            text-align: center;
+            padding: 2rem 0;
+        }  
+    }
+
+    .user-image {
+        overflow: visible ;
+        width: 170px;
+        height: 180px;
+    }
+
+    .user-name{   
+        color: #0d665d;
+    }
+    
+    .card{
+        background-color: transparent;
+        --bs-card-border-color: none;
+    }
+
+    ul{
+        display: none;
+    }
+}
+
+#profile-photo {
+    width: 170px;
+    height: 180px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    display: block;
+    border: 3px solid var(--mainDarkColor);
+}
+
+
+@media (max-width:800px) {
+    iframe[src*="https://www.youtube.com/embed/"] {
+    margin-bottom: 5px;
+}
+}
+
+
+
+

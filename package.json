@@ -28,6 +28,7 @@
     "@ng-bootstrap/ng-bootstrap": "^16.0.0-rc.2",
     "fullcalendar": "^6.1.10",
     "mapbox-gl": "^3.0.1",
+    "primeng": "^17.4.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"

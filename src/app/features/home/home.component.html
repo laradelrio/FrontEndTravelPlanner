@@ -1,56 +1,94 @@
 <main class="flex-shrink-0">
-    <header class="py-5 pt-xxl-0 ">
-        <div class="container px-5 pb-5">
-            <div class="row gx-5 align-items-center">
-                <div class="col-xxl-5">
-                    <!-- Header text content-->
-                    <div class="text-center text-xxl-start">
-                        <div class="fs-3 fw-light text-muted">Love to travel and meet people?</div>
-                        <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">Find mates along the way!</span></h1>
-                        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
-                            <a class="btn btn-blue btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" (click)="openRegister()"> Sign Up</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-7">
-                    <div class="d-flex justify-content-center mt-5 mt-xxl-0">
-                        <div class="profile bg-gradient-primary-to-secondary mt-5 d-flex justify-content-center">
-                            <img  class='pt-5 mt-5' src="../../../assets/travel_people.svg">
+    <div class="home-banner">
+        <header class="py-5">
+            <div class="container px-5 pb-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-xxl-5">
+                        <!-- Header text content-->
+                        <div class="text-center text-xxl-start p-3">
+                            <div class="fs-3 fw-light   text-white">Love to travel and meet people?</div>
+                            <h1 class="display-3 fw-bolder mb-5  text-white"><span class="text-gradient d-inline">Find
+                                    mates along the way!</span></h1>
+                            <!-- <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
+                                <a class="btn btn-blue btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" (click)="openRegister()"> Sign Up</a>
+                            </div> -->
                         </div>
                     </div>
                 </div>
             </div>
+        </header>
+    </div>
+    <div class="slanted pt-3 pb-3 mb-5 mt-5">
+        <h3 class="text-center w-100 pb-4">Discover friends from all over</h3>
+        <div class="card">
+            <p-carousel [value]="userProfiles" [numVisible]="4" [numScroll]="3" [circular]="true"
+                [responsiveOptions]="responsiveOptions" autoPlayInterval="3000">
+                <ng-template let-user pTemplate="item">
+                    <div class="border-1 surface-border border-round m-2 text-center d-flex justify-content-center row">
+                        <div class="mb-1" id="profile-photo"
+                            [ngStyle]="{'background-image': 'url(' + user.photo + ')'}">
+                        </div>
+                        <div>
+                            <h4 class="mb-1 user-name">{{ user.name }}</h4>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
         </div>
-    </header>
+    </div>
+
+    
+    <div class="adventure-banner d-flex justify-content-center align-items-center">
+        <h2 class=" fw-bolder pt-4 w-100 text-center text-white">Share unforgettable <br> adventures</h2>
+    </div>
+    <div class="d-flex justify-content-center flex-wrap w-100 mb-4 mt-5">
+        <iframe
+            src="https://www.youtube.com/embed/GjOZxC6j-qs?autoplay=1&mute=1&controls=0&showinfo=0&playlist=GjOZxC6j-qs&loop=1"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+
+        <iframe
+            src="https://www.youtube.com/embed/i8sWVevmQ3w?autoplay=1&mute=1&controls=0&showinfo=0&playlist=i8sWVevmQ3w&loop=1"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+
+        <iframe
+            src="https://www.youtube.com/embed/L43i0jfc4R4?autoplay=1&mute=1&controls=0&showinfo=0&playlist=L43i0jfc4R4&loop=1"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+    </div>
+
     <!-- About Section-->
-    <section class="bg-light py-5">
+    <section class="mt-5 py-5">
+        <hr>
         <div class="container px-5">
             <div class="row gx-5 justify-content-center">
                 <div class="col-xxl-8">
                     <div class="text-center my-5">
                         <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">Features</span></h2>
                         <p class="lead fw-light mb-4">Find mates to enhance your travels</p>
-                        <p class="text-muted">Find the perfect travel mate based on your common trip interests, and organize and visualize your trips in the easiest way possible</p>
+                        <p class="text-muted">Find the perfect travel mate based on your common trip interests, and
+                            organize and visualize your trips in the easiest way possible</p>
                         <section class='d-flex flex-wrap justify-content-center'>
                             <div class="m-5">
                                 <i class="fa-solid fa-fire-flame-curved" style="color: #a2a8b4;"></i>
-                                <p>Travel Matches</p>
+                                <p class="feature-text">Travel Matches</p>
                             </div>
                             <div class="m-5">
                                 <i class="fa-solid fa-percent" style="color: #a2a8b4;"></i>
-                                <p>Match Percentage</p>
+                                <p class="feature-text">Match Percentage</p>
                             </div>
                             <div class="m-5">
                                 <i class="fa-solid fa-plane" style="color: #a2a8b4;"></i>
-                                <p>Plan your travels</p>
+                                <p class="feature-text">Plan your travels</p>
                             </div>
                             <div class="m-5">
                                 <i class="fa-solid fa-map" style="color: #a2a8b4;"></i>
-                                <p>Map View</p>
+                                <p class="feature-text">Map View</p>
                             </div>
                             <div class="m-5">
                                 <i class="fa-regular fa-calendar" style="color: #a2a8b4;"></i>
-                                <p>Calendar View</p>
+                                <p class="feature-text">Calendar View</p>
                             </div>
                         </section>
                     </div>
@@ -60,14 +98,18 @@
     </section>
 </main>
 <!-- Footer-->
-<footer class="bg-white py-4 mt-auto">
+<footer class="bg-light py-4 mt-auto">
     <div class="container px-5">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-            <div class="col-auto"><div class="small m-0">Project by Lara Del Rio Garcia</div></div>
             <div class="col-auto">
-                <a class="small" href="https://www.linkedin.com/in/lara-del-rio-garcia/"> <i class="fa-brands fa-linkedin" style="color: #494a4c;"></i></a>
+                <div class="small m-0">Project by Lara Del Rio Garcia</div>
+            </div>
+            <div class="col-auto">
+                <a class="small" href="https://www.linkedin.com/in/lara-del-rio-garcia/"> <i
+                        class="fa-brands fa-linkedin" style="color: #494a4c;"></i></a>
                 <span class="mx-1">&middot;</span>
-                <a class="small" href="https://github.com/laradelrio"><i class="fa-brands fa-square-github" style="color: #494a4c;"></i></a>
+                <a class="small" href="https://github.com/laradelrio"><i class="fa-brands fa-square-github"
+                        style="color: #494a4c;"></i></a>
             </div>
         </div>
     </div>
