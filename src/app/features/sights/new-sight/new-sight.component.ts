@@ -58,6 +58,10 @@ export class NewSightComponent implements OnInit {
     return this.sightForm.get('dates.startDate')!;
   }
 
+  get endDate(): AbstractControl {
+    return this.sightForm.get('dates.endDate')!;
+  }
+
   get datesFromGroup(): FormGroup {
     return this.sightForm.get('dates') as FormGroup;
   }
@@ -86,6 +90,7 @@ export class NewSightComponent implements OnInit {
       .pipe(
         finalize(() => {
           this.startDate.setValidators([this.dateValidator.bind(this), Validators.required]);
+          this.endDate.setValidators([this.dateValidator.bind(this), Validators.required]);
       })
       )
       .subscribe((res) => {

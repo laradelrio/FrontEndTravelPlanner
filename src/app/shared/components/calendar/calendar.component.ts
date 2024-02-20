@@ -63,7 +63,7 @@ export class CalendarComponent {
 
     handleEventClick(arg: EventClickArg){
     let eventClicked : Event;
-  this.sightClicked = {
+    this.sightClicked = {
       id: parseInt(arg.event._def.publicId),
       name: arg.event._def.title,
       fk_trips_id: arg.event._def.extendedProps['tripId'],
@@ -86,6 +86,7 @@ export class CalendarComponent {
   }
 
   formatSightsForCalendar() {
+    this.sightsArray = [];
     this.sights.forEach((sight) => {
       this.sightsArray.push({
         id: `${sight.id}`,
@@ -109,6 +110,11 @@ export class CalendarComponent {
   //Open Inactivity Modal
   async openModal() {
     return await this.modalComponent.openXL();
+  }
+
+  setEditedSights(editedSights: Sight[]){
+    this.modalComponent.closeModals()
+    this.setSights = editedSights;
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LocationSearchBoxComponent } from '@app/shared/components/location-search-box/location-search-box.component';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -42,6 +42,7 @@ export class EditSightComponent implements OnInit {
     this.sights = [value];
     this.title = `${value.name}`;
   }
+  @Output() editedSights = new EventEmitter<Sight[]>();
 
   constructor(
     private fb: FormBuilder,
@@ -70,6 +71,7 @@ export class EditSightComponent implements OnInit {
     this.sightService.getSights(this.tripId)
       .subscribe((res) => {
         this.sights = res.data;
+        this.editedSights.emit(res.data);
       })
   }
 
@@ -79,11 +81,12 @@ export class EditSightComponent implements OnInit {
       .pipe(
         finalize(() => {
           this.editSightForm.get('startDate')!.setValidators([this.dateValidator.bind(this), Validators.required]);
+          this.editSightForm.get('endDate')!.setValidators([this.dateValidator.bind(this), Validators.required]);
       })
       )
       .subscribe((res) => {
         this.startDate = (res.data.startDate).slice(0,19);
-      this.endDate = res.data.endDate.slice(0,19);
+        this.endDate = res.data.endDate.slice(0,19);
       })
   }
 
@@ -153,8 +156,14 @@ export class EditSightComponent implements OnInit {
     this.disableEditField();
     this.sightService.updateSight(this.sightId, {field: inputField, value: inputFieldValue})
       .subscribe({
-        next:  (res) => { this.getSights()},
+        next:  (res) => { this.getSights();},
       })
+  }
+
+  onDateInputBlur(date: string){
+    if(this.editSightForm.get(`${date}`)!.valid){
+      this.updateSightData(`${date}`, this.editSightForm.get(`${date}`)!.value)
+    }
   }
 
   openDeleteModal(sightId: number){

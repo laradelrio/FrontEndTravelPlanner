@@ -1,4 +1,4 @@
 <div class="container mt-5 mb-5">
     <full-calendar [events]="eventsPromise | async" [options]="calendarOptions"> </full-calendar>
 </div>
-<app-shared-modal #sharedModal [modalInfo]="modalInfo"><app-edit-sight [setSight]="sightClicked"></app-edit-sight></app-shared-modal>
+<app-shared-modal #sharedModal [modalInfo]="modalInfo"><app-edit-sight [setSight]="sightClicked" (editedSights)="setEditedSights($event)"></app-edit-sight></app-shared-modal>

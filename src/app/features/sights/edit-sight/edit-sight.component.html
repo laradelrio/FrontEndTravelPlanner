@@ -31,7 +31,7 @@
                         (click)="disableEditField()">
                         <i class="fa-solid fa-xmark"></i>
                     </button><input
-                        (blur)="this.updateSightData('startDate', this.editSightForm.get('startDate')!.value)"
+                        (blur)="onDateInputBlur('startDate')"
                         type="datetime-local" formControlName="startDate" class="form-control" [min]="startDate" [max]="endDate"
                         [ngClass]="(isValidDate('startDate'))? 'form-select is-invalid' : 'form-select'">
                         <p class="ms-3 form-text text-danger"> {{getInputError('startDate')}}</p>
@@ -45,7 +45,7 @@
                     <button class="position-absolute top-0 start-100 translate-middle close mt-2 pe-3"
                         (click)="disableEditField()">
                         <i class="fa-solid fa-xmark"></i>
-                    </button><input (blur)="this.updateSightData('endDate', this.editSightForm.get('endDate')!.value)"
+                    </button><input (blur)="onDateInputBlur('endDate')"
                         type="datetime-local" formControlName="endDate" class="form-control" [min]="startDate" [max]="endDate"
                         [ngClass]="(isValidDate('endDate'))? 'form-select is-invalid' : 'form-select'">
                         <p class="ms-3 form-text text-danger"> {{getInputError('endDate')}}</p>
