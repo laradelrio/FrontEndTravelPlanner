@@ -9,7 +9,7 @@ import { environment } from 'environments/environment.development';
 bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
 
-mapboxgl.accessToken = environment.mapBoxApiKey;
+// mapboxgl.accessToken = environment.mapBoxApiKey;
 
 if (!navigator.geolocation){
   alert('Browser incompatible with Geolocation');
