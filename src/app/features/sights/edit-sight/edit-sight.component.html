@@ -1,4 +1,4 @@
-<h5 class="w-100 text-center p-2 mb-0">Edit Sights</h5>
+<h5 class="w-100 text-center p-2 mb-0">{{title}}</h5>
 
 <form [formGroup]="editSightForm" class="table-responsive">
     <table>
@@ -60,6 +60,8 @@
         </tbody>
     </table>
 </form>
+<pre> {{editSightForm.value | json}}</pre>
+<pre> {{editSightForm.get('sight')!.valid |json}}</pre>
 
 @if(sights.length === 0){
     <p class="w-100 text-center mt-3">No sights planed for this trip</p>

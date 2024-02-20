@@ -34,9 +34,14 @@ export class EditSightComponent implements OnInit {
   private subscription!: Subscription;  
   public startDate: string = '2024-01-30T00:00:00';
   public endDate: string = '2028-12-31T00:00:00';
+  public title: string = 'Edit Sights'
   @ViewChild('sharedModal') 
   private modalComponent!: ModalComponent;
   public modalInfo!: ModalInfo;
+  @Input() set setSight(value: Sight){
+    this.sights = [value];
+    this.title = `${value.name}`;
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -128,21 +133,19 @@ export class EditSightComponent implements OnInit {
   }
 
   subscribeToCoordinateChange() {
-    this.subscription = this.editSightForm.get('sight.longitude')!.valueChanges.subscribe((val) => {
+    this.subscription = this.editSightForm.get('sight.longitude')!.valueChanges.subscribe(async (val) => {
       if (val != '') {
-        this.sightLocationUpdated();
+        await this.sightLocationUpdated();
       }
     })
   }
   
   async sightLocationUpdated() {
-    if(this.editSightForm.valid){
     this.updateSightData('name', this.editSightForm.get('sight.name')!.value);
     this.updateSightData('longitude', this.editSightForm.get('sight.longitude')!.value);
     this.updateSightData('latitude', this.editSightForm.get('sight.latitude')!.value);
     let photoUrl = await this.formService.getPlacePhotoUrl(this.editSightForm.get('sight.name')!.value);
     this.updateSightData('photo', photoUrl);
-    }
     this.subscription.unsubscribe();
   }
 

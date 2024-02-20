@@ -9,11 +9,12 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { Sight } from '@app/core/interfaces/sight.interface';
 import { ModalComponent } from '../modal/modal.component';
 import { ModalInfo } from '@app/core/interfaces/modal.interface';
+import { EditSightComponent } from '@app/features/sights/edit-sight/edit-sight.component';
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [CommonModule, FullCalendarModule, ModalComponent],
+  imports: [CommonModule, FullCalendarModule, ModalComponent, EditSightComponent],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
@@ -30,6 +31,7 @@ export class CalendarComponent {
       this.calendarOptions.initialDate =  value.slice(0,10)    }  
   };
   @ViewChild('sharedModal') modalComponent!: ModalComponent;
+  public sightClicked!: Sight;
   private initialDate: string = '';
   private sights!: Sight[];
   sightsArray: {}[] = [];
@@ -56,11 +58,23 @@ export class CalendarComponent {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
     },
-    eventClick: ((arg) => this.handleEventClick(arg))
+    eventClick: ((arg) => this.handleEventClick(arg)),
   }
 
     handleEventClick(arg: EventClickArg){
     let eventClicked : Event;
+  this.sightClicked = {
+      id: parseInt(arg.event._def.publicId),
+      name: arg.event._def.title,
+      fk_trips_id: arg.event._def.extendedProps['tripId'],
+      longitude: 0,
+      latitude: 0,
+      startDate: `${arg.event._def.extendedProps['startDate']}`,
+      endDate: `${arg.event._def.extendedProps['endDate']}`,
+      photo: `${arg.event._def.extendedProps['image_url']}`,
+      createdAt: '',
+      updatedAt: ''
+    }
     this.open();
   }
 
@@ -79,6 +93,10 @@ export class CalendarComponent {
         end: `${sight.endDate}`,
         title: `${sight.name}`,
         editable: false,
+        image_url: `${sight.photo}`,
+        startDate: `${sight.startDate}`,
+        endDate: `${sight.endDate}`,
+        tripId: `${sight.fk_trips_id}`
       })
       this.updateCalendar()
     })
@@ -90,7 +108,7 @@ export class CalendarComponent {
 
   //Open Inactivity Modal
   async openModal() {
-    return await this.modalComponent.open();
+    return await this.modalComponent.openXL();
   }
 
 }
