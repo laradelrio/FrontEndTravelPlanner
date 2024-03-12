@@ -64,7 +64,9 @@ export class TripViewComponent implements OnInit{
   getSights() {
     this.sightService.getSights(this.tripId)
       .subscribe((res) => {
+        if(res.success){
         this.sights = res.data;
+        }
       })
   }
 
