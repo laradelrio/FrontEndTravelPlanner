@@ -8,6 +8,7 @@
 
 This project is an innovative web app designed to revolutionize solo traveling and trip planning! Our platform matches you with individuals who share your interests and destinations, making solo adventures a thing of the past. Seamlessly connect with like-minded travelers and streamline your itinerary with interactive maps and customizable calendars. Join us today and unlock endless possibilities for adventure and connection!
 </p>
+<p><strong>Demo:</strong> https://travel-mates.vercel.app/</p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
